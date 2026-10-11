@@ -1,8 +1,8 @@
 <div align="center">
 
-# ?? ReSell AI Agent
+# 🤖 ReSell AI Agent
 
-**Platform AI untuk reseller Indonesia � analisis harga, generate konten, dan posting ke Instagram otomatis.**
+**Platform AI untuk reseller Indonesia — analisis harga, generate konten, dan posting ke Instagram otomatis.**
 
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)](https://expressjs.com)
@@ -13,49 +13,49 @@
 
 ---
 
-## ? Fitur Utama
+## ✨ Fitur Utama
 
 | Fitur | Deskripsi |
 |---|---|
-| ?? **Analisis Harga** | Riset harga pasar & rekomendasi harga jual optimal |
-| ?? **Kalkulator Profit** | Hitung margin, keuntungan, dan break-even secara real-time |
-| ?? **Generate Deskripsi** | Caption & deskripsi produk siap-posting berbahasa Indonesia |
-| ?? **Perbandingan Marketplace** | Bandingkan harga di Tokopedia, Shopee, Facebook Marketplace, OLX |
-| ?? **Estimasi Ongkir** | Konsultasi biaya pengiriman berdasarkan berat & kota tujuan |
-| ?? **Foto Editor AI** | Hapus background & edit foto produk otomatis dengan AI |
-| ?? **Inbox Pesan** | Balas DM Instagram langsung dari dashboard + draf AI |
-| ?? **Auto-Post Instagram** | Posting produk ke Instagram Business via Composio OAuth |
+| 🔍 **Analisis Harga** | Riset harga pasar & rekomendasi harga jual optimal |
+| 💰 **Kalkulator Profit** | Hitung margin, keuntungan, dan break-even secara real-time |
+| 📝 **Generate Deskripsi** | Caption & deskripsi produk siap-posting berbahasa Indonesia |
+| 📊 **Perbandingan Marketplace** | Bandingkan harga di Tokopedia, Shopee, Facebook Marketplace, OLX |
+| 🚚 **Estimasi Ongkir** | Konsultasi biaya pengiriman berdasarkan berat & kota tujuan |
+| 📸 **Foto Editor AI** | Hapus background & edit foto produk otomatis dengan AI |
+| 📬 **Inbox Pesan** | Balas DM Instagram langsung dari dashboard + draf AI |
+| 📤 **Auto-Post Instagram** | Posting produk ke Instagram Business via Composio OAuth |
 
 ---
 
-## ??? Arsitektur
+## 🏗️ Arsitektur
 
 ```
 ReSellAgent/
-+-- frontend/
-�   +-- index.html              # Single-page app (Vanilla JS)
-�   +-- assets/css/main.css     # Dark navy + amber/cyan theme
-�   +-- assets/js/main.js       # Semua logika klien
-�
-+-- backend/
-    +-- server.js               # Express server (port 3000)
-    +-- config.env              # Konfigurasi environment (lokal)
-    +-- config.env.example      # Template konfigurasi
-    +-- middleware/
-    �   +-- langflow.js         # Proxy & helper ke Langflow
-    +-- routes/
-        +-- flows.js            # AI flow endpoints
-        +-- instagram.js        # Instagram post via Composio
-        +-- instagram-meta.js   # Instagram OAuth via Meta API
-        +-- inbox.js            # DM inbox & reply
-        +-- google-drive.js     # Google Drive integration
+├── frontend/
+│   ├── index.html              # Single-page app (Vanilla JS)
+│   ├── assets/css/main.css     # Dark navy + amber/cyan theme
+│   └── assets/js/main.js       # Semua logika klien
+│
+└── backend/
+    ├── server.js               # Express server (port 3000)
+    ├── config.env              # Konfigurasi environment (lokal)
+    ├── config.env.example      # Template konfigurasi
+    ├── middleware/
+    │   └── langflow.js         # Proxy & helper ke Langflow
+    └── routes/
+        ├── flows.js            # AI flow endpoints
+        ├── instagram.js        # Instagram post via Composio
+        ├── instagram-meta.js   # Instagram OAuth via Meta API
+        ├── inbox.js            # DM inbox & reply
+        └── google-drive.js     # Google Drive integration
 ```
 
-**Stack:** Static HTML/CSS/JS (Vanilla) � Express.js � Langflow � Composio � Meta Graph API
+**Stack:** Static HTML/CSS/JS (Vanilla) · Express.js · Langflow · Composio · Meta Graph API
 
 ---
 
-## ?? Instalasi & Setup
+## 🚀 Instalasi & Setup
 
 ### 1. Clone & Install
 
@@ -74,11 +74,11 @@ cp config.env.example config.env
 Edit `backend/config.env`:
 
 ```env
-# -- Langflow --------------------------------------------
+# ── Langflow ────────────────────────────────────────────
 LANGFLOW_SERVER_URL=http://127.0.0.1:7860
 LANGFLOW_API_KEY=your_langflow_api_key
 
-# -- Flow IDs (salin dari Langflow dashboard) ------------
+# ── Flow IDs (salin dari Langflow dashboard) ────────────
 FLOW_KONSULTAN_RESELL=
 FLOW_REKOMENDASI_HARGA=
 FLOW_DESKRIPSI_CAPTION=
@@ -89,14 +89,14 @@ FLOW_FOTO_VALIDATOR=
 FLOW_FOTO_EDITOR=
 FLOW_INBOX_REPLY_DRAFT=
 
-# -- Remove.bg (opsional, untuk hapus background) --------
+# ── Remove.bg (opsional, untuk hapus background) ────────
 REMOVE_BG_API_KEY=
 
-# -- Composio (Instagram via Composio) -------------------
+# ── Composio (Instagram via Composio) ───────────────────
 COMPOSIO_API_KEY=
 COMPOSIO_AUTH_CONFIG_ID=
 
-# -- Meta API (Instagram OAuth langsung) -----------------
+# ── Meta API (Instagram OAuth langsung) ─────────────────
 META_APP_ID=
 META_APP_SECRET=
 META_REDIRECT_URI=http://localhost:3000/api/instagram/meta/callback
@@ -118,7 +118,7 @@ Buka **http://localhost:3000** di browser.
 
 ---
 
-## ?? Konfigurasi Langflow Flows
+## 🤖 Konfigurasi Langflow Flows
 
 Setiap fitur AI membutuhkan satu flow di Langflow. Berikut kontrak input/output masing-masing:
 
@@ -138,20 +138,20 @@ Setiap fitur AI membutuhkan satu flow di Langflow. Berikut kontrak input/output 
 
 ---
 
-## ?? Inbox Pesan Instagram
+## 📬 Inbox Pesan Instagram
 
-- Menggunakan akun Instagram yang sudah terhubung di menu **Post IG** � tidak perlu OAuth ulang.
+- Menggunakan akun Instagram yang sudah terhubung di menu **Post IG** — tidak perlu OAuth ulang.
 - Akun harus bertipe **Instagram Business/Creator** dengan izin pesan aktif di koneksi Meta.
 - Percakapan diperbarui otomatis setiap **60 detik**.
 - Meta hanya mengizinkan balasan API dalam **24 jam** setelah pesan/interaksi pelanggan.
 - Tombol **Kirim** dinonaktifkan otomatis jika jendela 24 jam sudah lewat.
-- **Draf AI** membutuhkan `FLOW_INBOX_REPLY_DRAFT` � draf tetap bisa diedit sebelum dikirim.
+- **Draf AI** membutuhkan `FLOW_INBOX_REPLY_DRAFT` — draf tetap bisa diedit sebelum dikirim.
 
 > **Facebook Messenger & WhatsApp** belum diaktifkan di Inbox untuk saat ini.
 
 ---
 
-## ?? API Endpoints
+## 📡 API Endpoints
 
 | Method | Endpoint | Deskripsi |
 |---|---|---|
@@ -166,7 +166,7 @@ Setiap fitur AI membutuhkan satu flow di Langflow. Berikut kontrak input/output 
 
 ---
 
-## ?? Health Check
+## ⚙️ Health Check
 
 ```bash
 curl http://localhost:3000/api/health
@@ -180,24 +180,23 @@ curl http://localhost:3000/api/health
   "instagram_meta_configured": true,
   "flows": {
     "konsultan_resell": "abc-123",
-    "rekomendasi_harga": "def-456",
-    ...
+    "rekomendasi_harga": "def-456"
   }
 }
 ```
 
 ---
 
-## ??? Keamanan
+## 🛡️ Keamanan
 
 - `backend/config.env` **tidak di-commit** ke repository (sudah di `.gitignore`).
-- Salin `config.env.example` ? `config.env` dan isi dengan key milik sendiri.
+- Salin `config.env.example` → `config.env` dan isi dengan key milik sendiri.
 - API key Composio & Meta App Secret **jangan pernah** di-expose ke frontend.
 - Jika API key ter-leak, segera **regenerate** dari dashboard masing-masing platform.
 
 ---
 
-## ??? Roadmap
+## 🗺️ Roadmap
 
 - [ ] WhatsApp & Facebook Messenger di Inbox
 - [ ] Integrasi Tokopedia & Shopee API untuk sinkronisasi listing
@@ -207,6 +206,6 @@ curl http://localhost:3000/api/health
 
 ---
 
-## ?? Lisensi
+## 📄 Lisensi
 
-MIT � 2025 [heteronut](https://github.com/heteronut)
+MIT © 2025 [heteronut](https://github.com/heteronut)
