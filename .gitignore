@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files (sensitive)
+backend/config.env
+*.env
+.env.*
+!*.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+.next/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.suo
+*.user
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Binary files from skills (large)
+.claude/skills/impeccable/scripts/bin/

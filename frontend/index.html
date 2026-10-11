@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReSell AI Agent</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <svg class="logo-mark" width="32" height="32" viewBox="0 0 26 26" fill="none">
+      <rect x="4" y="8" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.6"/>
+      <rect x="10" y="12" width="2.5" height="2.5" rx="0.75" fill="currentColor"/>
+      <rect x="13.5" y="12" width="2.5" height="2.5" rx="0.75" fill="currentColor"/>
+      <path d="M13 8V5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="13" cy="4" r="1.2" fill="currentColor"/>
+      <path d="M4 15H2M22 15H24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">ReSell <b>AI</b></span>
+  </div>
+
+  <nav class="sidebar-nav">
+
+    <!-- ── A. Riset Barang ── -->
+    <span class="nav-group-label">Riset Barang</span>
+
+    <button class="nav-item active" data-fn="konsultan-pembelian">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span class="nav-label">Konsultan Pembelian</span>
+    </button>
+
+    <button class="nav-item" data-fn="penilai-harga">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span class="nav-label">Penilai Harga Jual</span>
+    </button>
+
+    <!-- ── B. Pemasaran ── -->
+    <span class="nav-group-label" style="margin-top:16px">Pemasaran</span>
+
+    <button class="nav-item" data-fn="estimasi-ongkir">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <span class="nav-label">Estimasi Ongkir</span>
+    </button>
+
+    <button class="nav-item" data-fn="analisis-pasar">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span class="nav-label">Analisis Harga Pasar</span>
+    </button>
+
+    <button class="nav-item" data-fn="caption-posting">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="nav-label">Caption Posting</span>
+    </button>
+
+    <!-- ── C. Tools ── -->
+    <span class="nav-group-label" style="margin-top:16px">Tools</span>
+
+    <button class="nav-item" data-fn="foto-editor">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <span class="nav-label">Studio Foto Editor</span>
+    </button>
+
+    <button class="nav-item" data-fn="ig-autopost">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <span class="nav-label">Post IG</span>
+    </button>
+
+    <span class="nav-group-label" style="margin-top:16px">Pesan Pelanggan</span>
+
+    <button class="nav-item" data-fn="inbox">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>
+      <span class="nav-label">Inbox Pesan</span>
+    </button>
+
+    <!-- ── D. AI Agent ── -->
+    <span class="nav-group-label" style="margin-top:16px">AI Agent</span>
+
+    <button class="nav-item" data-fn="ai-agent">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span class="nav-label">AI Agent</span>
+    </button>
+
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">Menghubungkan...</span>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════════════════════
+     TOPBAR (mobile)
+══════════════════════════════════════════════════════════ -->
+<header class="topbar">
+  <button class="topbar-toggle" id="sidebarToggle" aria-label="Buka sidebar">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="topbar-brand">
+    <svg width="18" height="18" viewBox="0 0 26 26" fill="none" style="vertical-align:-3px;color:var(--amber)"><rect x="4" y="8" width="18" height="13" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="10" y="12" width="2.5" height="2.5" rx="0.75" fill="currentColor"/><rect x="13.5" y="12" width="2.5" height="2.5" rx="0.75" fill="currentColor"/><path d="M13 8V5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="13" cy="4" r="1.2" fill="currentColor"/><path d="M4 15H2M22 15H24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    ReSell <b>AI</b>
+  </div>
+  <div class="topbar-status" id="topbarStatus">
+    <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════════ -->
+<main class="main-content" id="mainContent">
+
+  <!-- ── INPUT PANEL ── -->
+  <div class="panel input-panel">
+    <div class="panel-header">
+      <div class="panel-title-row">
+        <span class="panel-fn-icon" id="fnIcon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <div>
+          <h2 class="panel-title" id="fnTitle">Konsultan Pembelian</h2>
+          <p class="panel-subtitle" id="fnSubtitle">Analisis kelayakan beli &amp; estimasi harga jual terbaik</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FIELD GROUPS — satu per fungsi ── -->
+    <div class="extra-fields" id="extraFields">
+
+      <!-- ── A1. Konsultan Pembelian ── -->
+      <div class="extra-group" data-for="konsultan-pembelian">
+        <div class="input-grid">
+          <div class="field-group">
+            <label>Nama Produk <span class="req">*</span></label>
+            <input type="text" id="kp_productName" placeholder="Contoh: Laptop Acer Extensa 215" />
+          </div>
+          <div class="field-group">
+            <label>Harga Beli (Rp) <span class="req">*</span></label>
+            <input type="number" id="kp_buyPrice" placeholder="1500000" />
+          </div>
+          <div class="field-group">
+            <label>Kondisi Produk</label>
+            <input type="text" id="kp_condition" placeholder="Contoh: layar retak, tanpa charger" />
+          </div>
+          <div class="field-group">
+            <label>Spesifikasi</label>
+            <input type="text" id="kp_specs" placeholder="Contoh: Intel i3, RAM 4GB, SSD 256GB" />
+          </div>
+          <div class="field-group">
+            <label>Biaya Perbaikan/Upgrade (Rp)</label>
+            <input type="number" id="kp_repairCost" placeholder="Kosong jika tidak ada" />
+          </div>
+          <div class="field-group">
+            <label>Marketplace Target</label>
+            <select id="kp_marketplace">
+              <option value="Facebook Marketplace">Facebook Marketplace</option>
+              <option value="Tokopedia">Tokopedia</option>
+              <option value="Shopee">Shopee</option>
+              <option value="OLX">OLX</option>
+              <option value="Semua Marketplace">Semua Marketplace</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── A2. Penilai Harga Jual ── -->
+      <div class="extra-group hidden" data-for="penilai-harga">
+        <div class="input-grid">
+          <div class="field-group">
+            <label>Nama Produk <span class="req">*</span></label>
+            <input type="text" id="ph_productName" placeholder="Contoh: HP Samsung Galaxy A32" />
+          </div>
+          <div class="field-group">
+            <label>Harga Beli (Rp)</label>
+            <input type="number" id="ph_buyPrice" placeholder="Kosong jika tidak tahu" />
+          </div>
+          <div class="field-group">
+            <label>Kondisi</label>
+            <input type="text" id="ph_condition" placeholder="Contoh: normal, ada goresan layar" />
+          </div>
+          <div class="field-group">
+            <label>Spesifikasi</label>
+            <input type="text" id="ph_specs" placeholder="Contoh: 6GB RAM, 128GB, Exynos" />
+          </div>
+          <div class="field-group full-width">
+            <label>Kekurangan / Minus Produk</label>
+            <input type="text" id="ph_defects" placeholder="Contoh: baterai kembung, tombol volume rusak, tidak ada charger" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ── B1. Estimasi Ongkir ── -->
+      <div class="extra-group hidden" data-for="estimasi-ongkir">
+        <div class="input-grid">
+          <div class="field-group">
+            <label>Nama Produk</label>
+            <input type="text" id="eo_productName" placeholder="Contoh: Laptop 15 inch" />
+          </div>
+          <div class="field-group">
+            <label>Berat Estimasi (kg)</label>
+            <input type="number" id="eo_weight" step="0.1" placeholder="2.5" />
+          </div>
+          <div class="field-group">
+            <label>Kota Asal <span class="req">*</span></label>
+            <input type="text" id="eo_origin" placeholder="Contoh: Jakarta Selatan" />
+          </div>
+          <div class="field-group">
+            <label>Kota Tujuan <span class="req">*</span></label>
+            <input type="text" id="eo_destination" placeholder="Contoh: Surabaya" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ── B2. Analisis Harga Pasar ── -->
+      <div class="extra-group hidden" data-for="analisis-pasar">
+        <div class="input-grid">
+          <div class="field-group">
+            <label>Nama Produk <span class="req">*</span></label>
+            <input type="text" id="ap_productName" placeholder="Contoh: iPhone 11 64GB" />
+          </div>
+          <div class="field-group">
+            <label>Harga Saya (Rp)</label>
+            <input type="number" id="ap_currentPrice" placeholder="Kosong jika belum ada" />
+          </div>
+          <div class="field-group">
+            <label>Kondisi</label>
+            <input type="text" id="ap_condition" placeholder="Contoh: second normal" />
+          </div>
+          <div class="field-group">
+            <label>Spesifikasi</label>
+            <input type="text" id="ap_specs" placeholder="Contoh: 64GB, Black, iCloud off" />
+          </div>
+          <div class="field-group">
+            <label>Wilayah</label>
+            <select id="ap_region">
+              <option value="Indonesia">Seluruh Indonesia</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Bandung">Bandung</option>
+              <option value="Surabaya">Surabaya</option>
+              <option value="Medan">Medan</option>
+              <option value="Yogyakarta">Yogyakarta</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── B3. Caption Posting ── -->
+      <div class="extra-group hidden" data-for="caption-posting">
+        <div class="input-grid">
+          <div class="field-group">
+            <label>Nama Produk <span class="req">*</span></label>
+            <input type="text" id="cp_productName" placeholder="Contoh: Laptop Lenovo ThinkPad X230" />
+          </div>
+          <div class="field-group">
+            <label>Harga Jual (Rp)</label>
+            <input type="number" id="cp_price" placeholder="1950000" />
+          </div>
+          <div class="field-group">
+            <label>Kondisi</label>
+            <input type="text" id="cp_condition" placeholder="Contoh: mulus, normal pakai" />
+          </div>
+          <div class="field-group">
+            <label>Spesifikasi</label>
+            <input type="text" id="cp_specs" placeholder="Contoh: Intel i5, RAM 8GB, SSD 256GB" />
+          </div>
+          <div class="field-group">
+            <label>Platform Target</label>
+            <select id="cp_platform">
+              <option value="Facebook Marketplace">Facebook Marketplace</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook Marketplace, Instagram">FB + Instagram</option>
+              <option value="Tokopedia">Tokopedia</option>
+              <option value="Semua Platform">Semua Platform</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Selling Points / Keunggulan</label>
+            <input type="text" id="cp_sellingPoints" placeholder="Contoh: sudah upgrade SSD, bonus tas, garansi toko" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ── C. Foto Editor ── -->
+      <div class="extra-group hidden" data-for="foto-editor">
+        <div class="photo-editor-form">
+
+          <!-- Kolom kiri: upload foto produk -->
+          <div class="photo-upload-field">
+            <label class="photo-editor-label" for="photoEditorInput">Foto produk (barang) <span class="req">*</span></label>
+            <label class="photo-dropzone" id="photoEditorDrop" for="photoEditorInput" tabindex="0">
+              <input id="photoEditorInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+              <span class="photo-dropzone-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21M12 3v6m-3-3h6"/></svg>
+              </span>
+              <strong id="photoDropTitle">Pilih foto barang atau tarik ke sini</strong>
+              <span id="photoDropHint">JPG, PNG, atau WEBP · Maksimal 7 MB</span>
+            </label>
+            <div class="photo-upload-preview hidden" id="photoUploadPreview">
+              <img id="photoSourcePreview" alt="Pratinjau foto produk asli" />
+              <div class="photo-upload-meta">
+                <strong id="photoFileName"></strong>
+                <span id="photoValidateStatus">Foto siap divalidasi otomatis…</span>
+                <button type="button" class="photo-text-btn" id="photoRemoveBtn">Ganti foto</button>
+              </div>
+            </div>
+            <p class="photo-editor-status" id="photoEditorStatus" role="status" aria-live="polite">Unggah foto produk untuk memulai validasi otomatis.</p>
+          </div>
+
+          <!-- Kolom kanan: latar belakang (foto atau preset) -->
+          <div class="photo-settings">
+            <div class="field-group">
+              <label for="photoBackground">Latar belakang</label>
+              <select id="photoBackground">
+                <option value="solid">Warna pilihan saya</option>
+                <option value="studio-cream">Studio krem</option>
+                <option value="studio-cool">Studio abu sejuk</option>
+                <option value="marketplace-white">Putih marketplace</option>
+                <option value="lifestyle-warm">Lifestyle hangat</option>
+                <option value="custom-image">Foto latar sendiri</option>
+              </select>
+            </div>
+            <div class="field-group photo-color-field" id="photoColorField">
+              <label for="photoBackgroundColor">Pilih warna latar</label>
+              <div class="photo-color-control">
+                <input id="photoBackgroundColor" type="color" value="#f2eee8" aria-label="Warna latar belakang" />
+                <span id="photoBackgroundColorValue">#F2EEE8</span>
+              </div>
+            </div>
+            <!-- Upload foto latar kustom -->
+            <div class="field-group photo-bg-image-field hidden" id="photoBgImageField">
+              <label class="photo-editor-label" for="photoBgInput">Foto latar belakang <span class="req">*</span></label>
+              <label class="photo-dropzone photo-dropzone--sm" id="photoBgDrop" for="photoBgInput" tabindex="0">
+                <input id="photoBgInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+                <span class="photo-dropzone-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                </span>
+                <strong>Pilih foto latar</strong>
+                <span>JPG, PNG, WEBP · Maks 7 MB</span>
+              </label>
+              <div class="photo-upload-preview hidden" id="photoBgPreview">
+                <img id="photoBgSourcePreview" alt="Pratinjau foto latar" />
+                <div class="photo-upload-meta">
+                  <strong id="photoBgFileName"></strong>
+                  <span>Foto latar siap digunakan</span>
+                  <button type="button" class="photo-text-btn" id="photoBgRemoveBtn">Ganti latar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Baris bawah: penyesuaian slider -->
+          <div class="photo-adjustments" aria-label="Penyesuaian hasil foto">
+            <div class="photo-adjustment">
+              <label for="photoLighting">Pencahayaan <output id="photoLightingValue">100%</output></label>
+              <input id="photoLighting" type="range" min="70" max="140" value="100" />
+            </div>
+            <div class="photo-adjustment">
+              <label for="photoShadow">Bayangan <output id="photoShadowValue">35%</output></label>
+              <input id="photoShadow" type="range" min="0" max="100" value="35" />
+            </div>
+            <div class="photo-adjustment">
+              <label for="photoTemperature">Temperatur <output id="photoTemperatureValue">Netral</output></label>
+              <input id="photoTemperature" type="range" min="-50" max="50" value="0" />
+            </div>
+          </div>
+          <p class="photo-flow-note">Foto barang divalidasi otomatis saat diunggah. Setelah dinyatakan layak, pilih latar lalu tekan <strong>Proses Foto</strong> — AI akan menghapus latar asli, menempatkan objek pada latar baru, lalu menyesuaikan cahaya dan bayangan.</p>
+        </div>
+      </div>
+
+      <!-- ── C. Post IG ── -->
+      <div class="extra-group hidden" data-for="ig-autopost">
+
+        <!-- Profile Switcher + IG User ID — 1 kartu gabungan -->
+        <div class="ig-profile-card" id="igProfileBar">
+          <div class="ig-profile-card-left">
+            <div class="ig-profile-select-wrap">
+              <label>Profil Aktif</label>
+              <select id="igProfileSelect" onchange="igSwitchProfile(this.value)"></select>
+            </div>
+            <div class="ig-profile-actions">
+              <button class="ig-step-btn" onclick="igCreateProfile()" title="Buat profil baru">+ Baru</button>
+              <button class="ig-step-btn" onclick="igRenameProfile()" title="Ganti nama">Ganti Nama</button>
+              <button class="ig-step-btn ig-step-btn--danger" onclick="igDeleteProfile()" title="Hapus">Hapus</button>
+            </div>
+          </div>
+          <div class="ig-profile-card-right">
+            <div class="ig-profile-id-item">
+              <span class="ig-profile-id-label">IG User ID</span>
+              <span class="ig-id-value" id="igUserId">—</span>
+              <button class="ig-id-copy-btn" onclick="igCopyId('igUserId')">Salin</button>
+            </div>
+            <div class="ig-profile-id-item">
+              <span class="ig-profile-id-label">Username</span>
+              <span class="ig-profile-username" id="igUsername">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setup Guide -->
+        <div class="ig-setup-guide" id="igSetupGuide">
+          <div class="ig-setup-title">Cara Menghubungkan Akun Instagram</div>
+          <div class="ig-setup-subtitle" id="igSetupSubtitle">Profil: —</div>
+
+          <!-- API Key Box -->
+          <div class="ig-apikey-box" id="igApiKeyBox">
+            <div class="ig-step-body">
+              <strong>API Key Composio Profil Ini</strong>
+              <span>Setiap profil memakai API key Composio sendiri. Ambil gratis di <a href="https://app.composio.dev" target="_blank" rel="noopener">app.composio.dev</a>.</span>
+              <!-- Input row (disembunyikan setelah tersimpan & terhubung) -->
+              <div class="ig-apikey-row" id="igApiKeyInputRow">
+                <input type="password" id="ig_apiKey" placeholder="sk-..." autocomplete="off" />
+                <button class="ig-step-btn ig-step-btn--primary" onclick="igSaveApiKey()">Simpan</button>
+              </div>
+              <!-- Status terhubung (muncul setelah tersimpan & terhubung) -->
+              <div class="ig-apikey-connected hidden" id="igApiKeyConnected">
+                <span class="ig-apikey-connected-badge">✅ Composio sudah terhubung</span>
+                <button class="ig-step-btn" onclick="igChangeApiKey()">Ganti API Key</button>
+              </div>
+              <span class="ig-apikey-status" id="igApiKeyStatus"></span>
+            </div>
+          </div>
+
+          <!-- Steps -->
+          <div class="ig-setup-steps">
+            <!-- Step 1 -->
+            <div class="ig-step" id="igStep1">
+              <div class="ig-step-num" id="igStep1Num">1</div>
+              <div class="ig-step-body">
+                <strong>Daftar / login ke Composio</strong>
+                <span>Buka <a href="https://app.composio.dev" target="_blank" rel="noopener">app.composio.dev</a>, buat akun gratis jika belum ada, lalu salin <em>API Key</em> dari menu Settings → API Keys.</span>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="ig-step" id="igStep2">
+              <div class="ig-step-num" id="igStep2Num">2</div>
+              <div class="ig-step-body">
+                <strong>Masukkan API Key Composio di atas &amp; klik Simpan</strong>
+                <span>Salin API key dari Composio dan tempel di kolom <em>API Key Composio Profil Ini</em> di atas, lalu klik Simpan.</span>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="ig-step" id="igStep3">
+              <div class="ig-step-num" id="igStep3Num">3</div>
+              <div class="ig-step-body">
+                <strong>Buka Composio &amp; tambahkan Instagram Toolkit</strong>
+                <span>Di dashboard Composio, pilih Instagram toolkit, lalu klik <em>Add Account</em> untuk menautkan akun Instagram Anda.</span>
+                <button class="ig-step-btn" onclick="igOpenComposioToolkits()">Buka Composio Toolkits</button>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="ig-step" id="igStep4">
+              <div class="ig-step-num" id="igStep4Num">4</div>
+              <div class="ig-step-body">
+                <strong>Hubungkan akun Instagram via OAuth</strong>
+                <span>Klik tombol di bawah untuk memulai OAuth. Anda akan diarahkan ke halaman Composio untuk memberi izin.</span>
+                <button class="ig-step-btn ig-step-btn--primary" id="igConnectBtn" onclick="igConnect()">Mulai OAuth Composio</button>
+              </div>
+            </div>
+            <!-- Step 5: Verify — hidden visually but function still accessible -->
+            <div class="ig-step hidden" id="igStep5">
+              <div class="ig-step-num" id="igStep5Num">5</div>
+              <div class="ig-step-body">
+                <strong>Verifikasi &amp; ambil IG User ID</strong>
+                <span>Sudah selesai OAuth? Klik Verifikasi untuk mengambil <code>ig_user_id</code>.</span>
+                <button class="ig-step-btn" id="igVerifyBtn" onclick="igVerifyConnection()">Verifikasi Koneksi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connected Card (shown when connected, replaces setup guide) -->
+        <div class="ig-connected-info hidden" id="igConnectedInfo">
+          <div class="ig-account-row">
+            <div class="ig-avatar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div class="ig-account-detail">
+              <strong id="igUsernameConnected">@username</strong>
+              <span class="ig-meta">Terhubung via Composio</span>
+            </div>
+            <button class="ig-disconnect-btn" onclick="igDisconnect()">Putuskan</button>
+          </div>
+        </div>
+
+        <!-- Product fields for Generate Caption -->
+        <div class="input-grid ig-prod-fields" style="margin-top:12px">
+          <div class="field-group">
+            <label>Nama Produk</label>
+            <input type="text" id="ig_prodName" placeholder="Contoh: Laptop Acer Extensa 215" />
+          </div>
+          <div class="field-group">
+            <label>Harga Jual (Rp)</label>
+            <input type="number" id="ig_price" placeholder="1500000" />
+          </div>
+          <div class="field-group">
+            <label>Kondisi</label>
+            <input type="text" id="ig_condition" placeholder="Contoh: mulus, normal pakai" />
+          </div>
+          <div class="field-group">
+            <label>Spesifikasi</label>
+            <input type="text" id="ig_specs" placeholder="Contoh: Intel i5, RAM 8GB, SSD 256GB" />
+          </div>
+          <div class="field-group full-width">
+            <label>Selling Points / Keunggulan</label>
+            <input type="text" id="ig_sellingPoints" placeholder="Contoh: bonus tas, garansi toko" />
+          </div>
+        </div>
+
+        <!-- Caption, Image, Tag inputs -->
+        <div class="input-grid" style="margin-top:8px">
+          <div class="field-group full-width">
+            <label>Caption Instagram <span class="req">*</span></label>
+            <textarea id="ig_caption" rows="4" placeholder="Caption produk... atau klik Generate Caption"></textarea>
+          </div>
+          <div class="field-group full-width ig-image-field">
+            <label for="ig_imageUrl">Foto Produk <span class="field-hint">URL publik atau upload ke Google Drive</span></label>
+            <div class="ig-image-url-row">
+              <input type="url" id="ig_imageUrl" placeholder="https://example.com/foto.jpg (URL publik)" />
+              <button type="button" class="ig-step-btn" id="igPreviewUrlBtn">Preview URL</button>
+            </div>
+            <div class="ig-drive-upload">
+              <div class="ig-drive-toolbar">
+                <span class="ig-drive-status" id="igDriveStatus">Google Drive belum terhubung ke Composio</span>
+                <div class="ig-drive-actions">
+                  <button type="button" class="ig-step-btn" onclick="igDriveOpenComposio()">Buka Google Drive di Composio</button>
+                  <button type="button" class="ig-step-btn ig-step-btn--primary" id="igDriveConnectBtn">Hubungkan via Composio</button>
+                  <button type="button" class="ig-step-btn ig-step-btn--danger hidden" id="igDriveDisconnectBtn">Putuskan</button>
+                </div>
+              </div>
+              <label class="ig-drive-file-label" for="ig_imageFile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M20 16.5v2A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-2"/></svg>
+                Pilih foto untuk diunggah
+              </label>
+              <input type="file" id="ig_imageFile" accept="image/jpeg,image/png,image/webp" hidden disabled />
+              <span class="ig-drive-upload-hint" id="igDriveUploadStatus">Tambahkan toolkit Google Drive di Composio, lalu hubungkan memakai API Key Composio profil aktif.</span>
+            </div>
+            <div class="ig-image-preview hidden" id="igImagePreview">
+              <img id="igImagePreviewImg" alt="Preview foto produk" />
+              <div class="ig-image-preview-actions">
+                <span id="igImagePreviewMessage">Preview foto produk</span>
+                <a id="igImagePreviewLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden">Buka foto</a>
+                <button type="button" class="ig-image-clear-btn" id="igImageClearBtn">Hapus foto</button>
+              </div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Tag / Hashtag</label>
+            <input type="text" id="ig_tags" placeholder="#resell #jualmurah #laptop" />
+          </div>
+        </div>
+
+        <!-- IG Actions — equal size, side by side -->
+        <div class="ig-action-row">
+          <button class="ig-action-btn ig-gen-btn" onclick="igGenerateCaption()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Generate Caption
+          </button>
+          <button class="ig-action-btn ig-create-btn" id="igCreateBtn" onclick="igCreateContent()">
+            <svg id="igCreateIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+            <span id="igCreateText">Buat Konten</span>
+            <span class="run-spinner hidden" id="igCreateSpinner"></span>
+          </button>
+        </div>
+
+      </div><!-- /ig-autopost -->
+
+      <!-- ── D. AI Agent ── -->
+      <div class="extra-group hidden" data-for="ai-agent">
+        <div class="agent-layout">
+          <!-- Left col 4/7: question textarea -->
+          <div class="agent-col-text field-group">
+            <label>Pertanyaan / Deskripsi untuk AI <span class="req">*</span></label>
+            <textarea id="f_agent_message" class="agent-textarea"
+              placeholder="Contoh:
+- Berapa harga wajar jual barang ini jika ada lecet di casing?
+- Beli 3 juta, kira-kira untung ga?
+- Bantu strategi jualan laptop refurbished di FB Marketplace
+
+AI akan otomatis mendeteksi kebutuhan dan menggunakan tools yang tepat."></textarea>
+          </div>
+          <!-- Right col 3/7: image drop + run button -->
+          <div class="agent-col-img">
+            <div class="field-group">
+              <label>Foto Barang <span class="field-hint">Opsional — deteksi otomatis</span></label>
+              <div class="agent-img-drop" id="agentImgDrop" role="button" tabindex="0" aria-label="Area unggah foto barang">
+                <input type="file" id="agentImgInput" accept="image/*" class="agent-img-file" aria-hidden="true">
+                <div class="agent-img-placeholder" id="agentImgPlaceholder">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span>Klik atau seret foto</span>
+                  <small>JPG, PNG, WEBP — maks 5 MB</small>
+                </div>
+                <div class="agent-img-preview hidden" id="agentImgPreview">
+                  <img id="agentImgThumb" src="" alt="Preview foto barang">
+                  <button type="button" class="agent-img-remove" id="agentImgRemove" aria-label="Hapus foto">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  </button>
+                  <span class="agent-img-name" id="agentImgName"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Run button sits here for ai-agent -->
+            <button class="run-btn agent-run-btn hidden" id="agentRunBtn" data-fn="ai-agent" type="button">
+              <span class="run-icon" id="agentRunIcon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </span>
+              <span class="run-text" id="agentRunText">AI Agent</span>
+              <span class="run-spinner hidden" id="agentRunSpinner"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /extra-fields -->
+
+    <!-- ── RUN BUTTON (hidden for ai-agent, shown for all others) ── -->
+    <button class="run-btn" id="runBtn">
+      <span class="run-icon" id="runIcon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </span>
+      <span class="run-text" id="runText">Konsultan Pembelian</span>
+      <span class="run-spinner hidden" id="runSpinner"></span>
+    </button>
+  </div>
+
+  <!-- ── KP ANALYSIS WIDGET ── -->
+  <div class="kp-widget hidden" id="kpAnalysisWidget">
+
+    <!-- ─ Row 1: Identitas Barang & Keputusan ─ -->
+    <div class="kp-identity">
+      <div class="kp-identity-main">
+        <div class="kp-identity-title-row">
+          <h2 class="kp-item-name" id="kpItemName">—</h2>
+          <div class="kp-badges-row">
+            <!-- Decision status badge with icon -->
+            <span class="kp-decision-badge" id="kpDecisionBadge" aria-label="Status keputusan">
+              <span class="kp-decision-icon" id="kpDecisionIcon" aria-hidden="true"></span>
+              <span id="kpDecisionLabel">—</span>
+            </span>
+            <!-- Risk level badge -->
+            <span class="kp-risk-badge" id="kpRiskBadge" aria-label="Tingkat risiko">
+              <span class="kp-risk-icon" id="kpRiskIcon" aria-hidden="true"></span>
+              <span id="kpRiskLabel">—</span>
+            </span>
+            <!-- Repair badge -->
+            <span class="kp-repair-badge" id="kpRepairBadge" aria-label="Status perbaikan">
+              <span class="kp-repair-icon" id="kpRepairIcon" aria-hidden="true"></span>
+              <span id="kpRepairLabel">—</span>
+            </span>
+          </div>
+        </div>
+        <p class="kp-identity-meta" id="kpDecisionMeta">—</p>
+      </div>
+    </div>
+
+    <!-- ─ Row 2: Ringkasan Metrik (4 kartu) ─ -->
+    <div class="kp-metrics-row">
+
+      <div class="kp-metric-card kp-mc--ask">
+        <span class="kp-mc-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Harga Penawaran
+        </span>
+        <b class="kp-mc-val" id="kpAskingPrice">—</b>
+        <span class="kp-mc-sub">Harga awal penjual</span>
+      </div>
+
+      <div class="kp-metric-card kp-mc--total">
+        <span class="kp-mc-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Total Modal
+        </span>
+        <b class="kp-mc-val" id="kpTotalCost">—</b>
+        <span class="kp-mc-sub">Beli + perbaikan</span>
+      </div>
+
+      <div class="kp-metric-card kp-mc--profit">
+        <span class="kp-mc-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Estimasi Keuntungan
+        </span>
+        <b class="kp-mc-val" id="kpProfit">—</b>
+        <span class="kp-mc-profit-note hidden" id="kpProfitNote"></span>
+      </div>
+
+      <div class="kp-metric-card kp-mc--roi">
+        <span class="kp-mc-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          ROI
+        </span>
+        <b class="kp-mc-val" id="kpRoi">—</b>
+        <div class="kp-roi-bar-wrap"><div class="kp-roi-bar-fill" id="kpRoiBarFill" style="width:0%"></div></div>
+      </div>
+
+    </div><!-- /kp-metrics-row -->
+
+    <!-- ─ Row 3: Analisis Harga & Biaya + Strategi Negosiasi ─ -->
+    <div class="kp-bottom-row">
+
+      <!-- Panel: Analisis Harga & Biaya -->
+      <div class="kp-panel kp-panel--analysis">
+        <div class="kp-panel-head">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Analisis Harga &amp; Biaya
+        </div>
+
+        <!-- Breakdown rows -->
+        <div class="kp-cost-rows">
+          <div class="kp-cost-row">
+            <span class="kp-cost-lbl">Harga Penawaran</span>
+            <span class="kp-cost-val" id="kpCostAsking">—</span>
+          </div>
+          <div class="kp-cost-row kp-cost-row--repair">
+            <span class="kp-cost-lbl">
+              Biaya Perbaikan
+              <span class="kp-repair-tag" id="kpRepairTag">—</span>
+            </span>
+            <span class="kp-cost-val" id="kpCostRepair">—</span>
+          </div>
+          <div class="kp-cost-row kp-cost-row--total">
+            <span class="kp-cost-lbl kp-cost-lbl--bold">Total Modal</span>
+            <span class="kp-cost-val kp-cost-val--bold" id="kpCostTotal">—</span>
+          </div>
+          <div class="kp-cost-row kp-cost-row--market">
+            <span class="kp-cost-lbl">Harga Pasar</span>
+            <span class="kp-cost-val kp-cost-val--market" id="kpMarketPrice">—</span>
+          </div>
+          <div class="kp-cost-row kp-cost-row--sep">
+            <span class="kp-cost-lbl kp-cost-lbl--profit">Estimasi Keuntungan</span>
+            <span class="kp-cost-val" id="kpCostProfit">—</span>
+          </div>
+        </div>
+
+        <!-- Visual: Bar perbandingan Total Modal vs Harga Pasar -->
+        <div class="kp-bar-compare">
+          <div class="kp-bar-compare-label">Perbandingan Modal vs Pasar</div>
+          <div class="kp-bar-track">
+            <div class="kp-bar-segment kp-bar--buy" id="kpBarBuy" style="width:0%" title="Harga Penawaran"></div>
+            <div class="kp-bar-segment kp-bar--repair" id="kpBarRepair" style="width:0%" title="Biaya Perbaikan"></div>
+          </div>
+          <div class="kp-bar-legend">
+            <span class="kp-bar-leg kp-bar-leg--buy">
+              <span class="kp-bar-dot kp-bar-dot--buy"></span>Harga Beli
+            </span>
+            <span class="kp-bar-leg kp-bar-leg--repair">
+              <span class="kp-bar-dot kp-bar-dot--repair"></span>Biaya Perbaikan
+            </span>
+            <span class="kp-bar-leg kp-bar-leg--market">
+              <span class="kp-bar-marker" id="kpBarMarker" style="left:0%"></span>
+              Harga Pasar
+            </span>
+          </div>
+          <div class="kp-bar-labels">
+            <span class="kp-bar-label-total" id="kpBarLabelTotal">Modal: —</span>
+            <span class="kp-bar-label-market" id="kpBarLabelMarket">Pasar: —</span>
+          </div>
+        </div>
+
+      </div><!-- /kp-panel--analysis -->
+
+      <!-- Panel: Target Negosiasi -->
+      <div class="kp-panel kp-panel--nego">
+        <div class="kp-panel-head">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Target Negosiasi
+        </div>
+
+        <!-- Target price — most prominent -->
+        <div class="kp-nego-target">
+          <span class="kp-nego-target-lbl">Target Harga Beli</span>
+          <b class="kp-nego-target-val" id="kpNegoPrice">—</b>
+          <!-- Comparison row -->
+          <div class="kp-nego-compare" id="kpNegoCompare">
+            <span class="kp-nego-cmp-item">
+              <span class="kp-nego-cmp-dot kp-nego-cmp-dot--ask"></span>
+              <span class="kp-nego-cmp-lbl">Penawaran awal</span>
+              <span class="kp-nego-cmp-val" id="kpNegoCmpAsk">—</span>
+            </span>
+            <span class="kp-nego-cmp-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+            <span class="kp-nego-cmp-item">
+              <span class="kp-nego-cmp-dot kp-nego-cmp-dot--target"></span>
+              <span class="kp-nego-cmp-lbl">Target</span>
+              <span class="kp-nego-cmp-val kp-nego-cmp-val--target" id="kpNegoCmpTarget">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- ROI after nego -->
+        <div class="kp-nego-roi-row">
+          <span class="kp-nego-roi-lbl">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Target ROI Setelah Negosiasi
+          </span>
+          <b class="kp-nego-roi-val" id="kpNegoRoi">—</b>
+        </div>
+
+        <!-- Negotiation reasoning list -->
+        <div class="kp-nego-args-section">
+          <div class="kp-nego-args-lbl">Alasan Negosiasi</div>
+          <ul class="kp-nego-args" id="kpNegoArgs">
+            <li class="kp-nego-args-empty">Tidak ada alasan negosiasi.</li>
+          </ul>
+        </div>
+
+      </div><!-- /kp-panel--nego -->
+
+    </div><!-- /kp-bottom-row -->
+
+  </div><!-- /kpAnalysisWidget -->
+
+  <!-- ══════════════════════════════════════════════════════════
+       PH (PENILAI HARGA JUAL) WIDGET
+  ══════════════════════════════════════════════════════════ -->
+  <div class="ph-widget hidden" id="phWidget">
+
+    <!-- ─ Header: Nama Barang + Range Harga Mulus ─ -->
+    <div class="ph-header">
+      <div class="ph-header-left">
+        <span class="ph-badge-label">Penilaian Harga Jual</span>
+        <h2 class="ph-item-name" id="phItemName">—</h2>
+      </div>
+      <div class="ph-market-range" id="phMarketRange">
+        <span class="ph-range-label">Harga Mulus Pasar</span>
+        <div class="ph-range-track">
+          <div class="ph-range-fill" id="phRangeFill"></div>
+          <div class="ph-range-thumb ph-range-thumb--min" id="phRangeThumbMin"></div>
+          <div class="ph-range-thumb ph-range-thumb--max" id="phRangeThumbMax"></div>
+        </div>
+        <div class="ph-range-labels">
+          <span class="ph-range-min" id="phRangeMin">—</span>
+          <span class="ph-range-sep">–</span>
+          <span class="ph-range-max" id="phRangeMax">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ Row 2: 3-Tier Price Cards ─ -->
+    <div class="ph-tiers-row">
+
+      <div class="ph-tier-card ph-tier--quick">
+        <div class="ph-tier-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Fast Cash
+        </div>
+        <span class="ph-tier-label">Harga Cepat Laku</span>
+        <b class="ph-tier-val" id="phQuickPrice">—</b>
+        <span class="ph-tier-sub">Jual cepat, margin tipis</span>
+      </div>
+
+      <div class="ph-tier-card ph-tier--ideal">
+        <div class="ph-tier-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Rekomendasi
+        </div>
+        <span class="ph-tier-label">Harga Ideal Wajar</span>
+        <b class="ph-tier-val" id="phIdealPrice">—</b>
+        <span class="ph-tier-sub">Seimbang antara cepat &amp; untung</span>
+      </div>
+
+      <div class="ph-tier-card ph-tier--max">
+        <div class="ph-tier-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          High Nego
+        </div>
+        <span class="ph-tier-label">Harga Buka Iklan</span>
+        <b class="ph-tier-val" id="phMaxPrice">—</b>
+        <span class="ph-tier-sub">Pasang tinggi, beri ruang nego</span>
+      </div>
+
+    </div>
+
+    <!-- ─ Row 3: Deductions + Recommendation ─ -->
+    <div class="ph-bottom-row">
+
+      <!-- Deduction Breakdown -->
+      <div class="ph-panel ph-panel--deductions">
+        <div class="ph-panel-head">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Rincian Potongan Nilai
+        </div>
+        <div class="ph-deductions-list" id="phDeductionsList">
+          <div class="ph-deduction-empty">Tidak ada minus yang terdeteksi.</div>
+        </div>
+        <div class="ph-total-deduction-row">
+          <span class="ph-total-deduction-lbl">Total Potongan</span>
+          <b class="ph-total-deduction-val" id="phTotalDeduction">—</b>
+        </div>
+      </div>
+
+      <!-- Recommendation & Notes -->
+      <div class="ph-panel ph-panel--recommendation">
+        <div class="ph-panel-head">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Rekomendasi Tindakan
+        </div>
+        <div class="ph-action-pill-wrap">
+          <span class="ph-action-pill" id="phActionPill">—</span>
+        </div>
+        <div class="ph-notes-box" id="phNotesBox">
+          <svg class="ph-notes-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p class="ph-notes-text" id="phNotesText">—</p>
+        </div>
+      </div>
+
+    </div><!-- /ph-bottom-row -->
+
+  </div><!-- /phWidget -->
+
+  <!-- ══════════════════════════════════════════════════════════
+       EO (ESTIMASI ONGKIR) WIDGET
+  ══════════════════════════════════════════════════════════ -->
+  <div class="eo-widget hidden" id="eoWidget">
+
+    <!-- ─ Row 1: Route Map Panel ─ -->
+    <div class="eo-map-panel">
+
+      <!-- Static SVG route visual -->
+      <div class="eo-map-visual">
+        <div class="eo-map-header">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          Rute Pengiriman
+        </div>
+        <div class="eo-route-svg-wrap">
+          <svg class="eo-route-svg" id="eoRouteSvg" viewBox="0 0 340 120" preserveAspectRatio="xMidYMid meet">
+            <!-- Road background -->
+            <rect x="0" y="0" width="340" height="120" rx="10" fill="#F0F4F8"/>
+            <!-- Grid dots -->
+            <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="10" cy="10" r="1" fill="#CBD5E1" opacity="0.5"/>
+            </pattern>
+            <rect width="340" height="120" fill="url(#grid)" rx="10"/>
+            <!-- Route polyline — animated -->
+            <polyline id="eoPolyline" points="40,60 170,60 300,60"
+              fill="none" stroke="#3B82F6" stroke-width="3.5"
+              stroke-linecap="round" stroke-linejoin="round"
+              stroke-dasharray="8 5" opacity="0.7"/>
+            <!-- Origin marker A -->
+            <circle cx="40" cy="60" r="12" fill="#3B82F6" opacity="0.15"/>
+            <circle cx="40" cy="60" r="7" fill="#3B82F6"/>
+            <text x="40" y="64" text-anchor="middle" fill="white" font-size="8" font-weight="bold" font-family="Poppins,sans-serif">A</text>
+            <!-- Destination marker B -->
+            <circle cx="300" cy="60" r="12" fill="#EF4444" opacity="0.15"/>
+            <circle cx="300" cy="60" r="7" fill="#EF4444"/>
+            <text x="300" y="64" text-anchor="middle" fill="white" font-size="8" font-weight="bold" font-family="Poppins,sans-serif">B</text>
+            <!-- Midpoint vehicle icon -->
+            <circle cx="170" cy="60" r="10" fill="white" stroke="#94A3B8" stroke-width="1.5"/>
+            <text x="170" y="64" text-anchor="middle" fill="#475569" font-size="10" font-family="sans-serif">📦</text>
+          </svg>
+          <!-- Traffic condition pill overlay -->
+          <div class="eo-traffic-pill" id="eoTrafficPill">
+            <span class="eo-traffic-dot" id="eoTrafficDot"></span>
+            <span id="eoTrafficLabel">—</span>
+          </div>
+        </div>
+        <!-- Origin / Destination labels -->
+        <div class="eo-route-endpoints">
+          <div class="eo-endpoint eo-endpoint--a">
+            <span class="eo-endpoint-marker eo-endpoint-marker--a">A</span>
+            <span class="eo-endpoint-name" id="eoOriginLabel">—</span>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eo-endpoint-arrow"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="eo-endpoint eo-endpoint--b">
+            <span class="eo-endpoint-marker eo-endpoint-marker--b">B</span>
+            <span class="eo-endpoint-name" id="eoDestLabel">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Route metric badges -->
+      <div class="eo-route-metrics">
+        <div class="eo-metric-card">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="eo-metric-body">
+            <span class="eo-metric-label">Estimasi Waktu</span>
+            <b class="eo-metric-val" id="eoDurationVal">—</b>
+          </div>
+        </div>
+        <div class="eo-metric-card">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <div class="eo-metric-body">
+            <span class="eo-metric-label">Total Jarak</span>
+            <b class="eo-metric-val" id="eoDistanceVal">—</b>
+          </div>
+        </div>
+        <!-- Recommendation banner -->
+        <div class="eo-rec-banner" id="eoRecBanner">
+          <div class="eo-rec-banner-head">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Rekomendasi Terbaik
+          </div>
+          <span class="eo-rec-method-pill" id="eoRecMethodPill">—</span>
+          <p class="eo-rec-reason" id="eoRecReason">—</p>
+        </div>
+      </div>
+
+    </div><!-- /eo-map-panel -->
+
+    <!-- ─ Row 2: Self Delivery + Courier Options ─ -->
+    <div class="eo-options-row">
+
+      <!-- Self Delivery Card -->
+      <div class="eo-self-delivery">
+        <div class="eo-section-head">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+          Kurir Pribadi
+        </div>
+        <div class="eo-self-breakdown" id="eoSelfBreakdown">
+          <div class="eo-self-row">
+            <span class="eo-self-lbl">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 12a9 9 0 0 1 9-9M3 12a9 9 0 0 0 9 9"/></svg>
+              Biaya BBM
+            </span>
+            <span class="eo-self-val" id="eoFuelCost">—</span>
+          </div>
+          <div class="eo-self-row">
+            <span class="eo-self-lbl">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Operasional & Lelah
+            </span>
+            <span class="eo-self-val" id="eoOpCost">—</span>
+          </div>
+        </div>
+        <div class="eo-self-total">
+          <span class="eo-self-total-lbl">Total Kurir Pribadi</span>
+          <b class="eo-self-total-val" id="eoSelfTotal">—</b>
+        </div>
+      </div>
+
+      <!-- Courier Options -->
+      <div class="eo-couriers">
+        <div class="eo-section-head">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Pilihan Ekspedisi
+        </div>
+        <div class="eo-courier-list" id="eoCourierList">
+          <div class="eo-courier-empty">Tidak ada data ekspedisi.</div>
+        </div>
+      </div>
+
+    </div><!-- /eo-options-row -->
+
+  </div><!-- /eoWidget -->
+
+  <!-- ── CAPTION POSTING WIDGET ── -->
+  <div class="cp-widget hidden" id="cpWidget"></div>
+
+  <!-- ── KONSULTAN AI AGENT WIDGET ── -->
+  <div class="ka-widget hidden" id="kaWidget"></div>
+
+  <section class="market-widget hidden" id="marketWidget" aria-label="Analisis harga pasar">
+  </section>
+
+  <!-- ── OUTPUT PANEL ── -->
+  <div class="panel output-panel" id="outputPanel">
+    <div class="output-header">
+      <div class="output-title-row">
+        <span id="outputFnLabel" class="output-fn-label">Konsultan Pembelian</span>
+        <div class="output-actions">
+          <button class="icon-btn" id="copyBtn" title="Salin hasil" onclick="copyOutput()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+          <button class="icon-btn" id="clearBtn" title="Hapus hasil" onclick="clearOutput()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="output-body" id="outputBody">
+      <div class="output-empty">
+        <div class="empty-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <p>Hasil AI akan muncul di sini</p>
+        <span>Pilih menu di sidebar, isi form, dan tekan tombol fungsi</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="panel photo-result-panel hidden" id="photoResultPanel" aria-labelledby="photoResultTitle">
+    <div class="photo-result-header">
+      <div>
+        <h2 id="photoResultTitle">Hasil Studio Foto</h2>
+        <p id="photoResultCaption">Hasil akhir akan tampil setelah pemrosesan selesai.</p>
+      </div>
+      <a class="photo-download-btn hidden" id="photoDownloadBtn" download="resell-foto-produk.png">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>
+        Unduh foto
+      </a>
+    </div>
+    <div class="photo-result-canvas" id="photoResultCanvas">
+      <div class="photo-result-empty" id="photoResultEmpty">Pratinjau hasil edit akan muncul di sini.</div>
+      <img class="hidden" id="photoResultImage" alt="Hasil foto produk setelah pengeditan AI" />
+    </div>
+    <!-- Compositing context ID panel -->
+    <div class="photo-context-panel hidden" id="photoContextPanel">
+      <div class="photo-context-header">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        Compositing Context ID
+      </div>
+      <div class="photo-context-grid" id="photoContextGrid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IG CONTENT CARDS AREA (for ig-autopost) ── -->
+  <div class="ig-content-area hidden" id="igContentArea">
+    <div class="ig-content-area-header">
+      <span class="ig-content-area-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Konten Instagram
+      </span>
+      <span class="ig-content-area-count" id="igContentCount">0 konten</span>
+    </div>
+    <div class="ig-content-grid" id="igContentGrid">
+      <!-- content cards rendered here by JS -->
+    </div>
+  </div>
+
+  <section class="inbox-workspace hidden" id="inboxWorkspace" aria-labelledby="inboxTitle">
+    <header class="inbox-page-header">
+      <div>
+        <h1 id="inboxTitle">Inbox Pesan</h1>
+        <p>Kelola pesan Instagram dari akun Post IG yang sudah terhubung. Draf AI hanya disiapkan; Anda meninjau dan mengirim sendiri.</p>
+      </div>
+      <div class="inbox-sync">
+        <span class="inbox-sync-dot" aria-hidden="true"></span>
+        <span id="inboxSyncStatus" role="status" aria-live="polite">Siap menghubungkan akun</span>
+        <button type="button" class="inbox-refresh-btn" id="inboxRefreshBtn" aria-label="Segarkan inbox">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.6 9A7 7 0 0 1 18 6l2 2M4 16l2 2a7 7 0 0 0 12.4-3"/></svg>
+          Segarkan
+        </button>
+      </div>
+    </header>
+
+    <div class="inbox-connections" aria-label="Koneksi kanal pesan">
+      <article class="inbox-connection" data-inbox-connection="instagram">
+        <div class="inbox-channel-icon inbox-channel-icon--instagram" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".75" fill="currentColor"/></svg>
+        </div>
+        <div class="inbox-connection-copy">
+          <strong>Instagram</strong>
+          <span data-connection-status>Menggunakan akun Instagram yang sama dengan Post IG</span>
+        </div>
+        <button type="button" class="inbox-connect-btn" id="inboxOpenInstagram">Buka Post IG</button>
+      </article>
+    </div>
+
+    <div class="inbox-browser">
+      <aside class="inbox-thread-pane" aria-label="Daftar percakapan">
+        <div class="inbox-thread-header">
+          <h2>Percakapan</h2>
+          <span class="inbox-thread-platform">Instagram</span>
+        </div>
+        <div class="inbox-thread-list" id="inboxThreadList" aria-live="polite">
+          <div class="inbox-empty">Hubungkan akun untuk memuat percakapan.</div>
+        </div>
+      </aside>
+
+      <section class="inbox-chat-pane" aria-label="Percakapan terpilih">
+        <div class="inbox-chat-empty" id="inboxChatEmpty">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>
+          <strong>Pilih percakapan</strong>
+          <span>Pesan terbaru diperiksa otomatis setiap 60 detik selama inbox terbuka.</span>
+        </div>
+        <div class="inbox-chat hidden" id="inboxChat">
+          <header class="inbox-chat-header">
+            <div>
+              <strong id="inboxContactName">Pelanggan</strong>
+              <span id="inboxContactChannel">—</span>
+            </div>
+            <button type="button" class="inbox-text-btn" id="inboxReloadMessagesBtn">Muat ulang</button>
+          </header>
+          <div class="inbox-message-list" id="inboxMessageList" aria-live="polite"></div>
+          <form class="inbox-composer" id="inboxComposer">
+            <label for="inboxReplyText">Balasan</label>
+            <textarea id="inboxReplyText" rows="3" maxlength="4000" placeholder="Tulis balasan, atau minta AI membuat draf untuk ditinjau…" required></textarea>
+            <div class="inbox-composer-footer">
+              <span id="inboxReplyWindowNotice" class="inbox-window-notice" role="status" aria-live="polite">Balas DM dalam 24 jam setelah pesan terbaru dari pelanggan.</span>
+              <div>
+                <button type="button" class="inbox-draft-btn" id="inboxDraftBtn">Buat draf AI</button>
+                <button type="submit" class="inbox-send-btn" id="inboxSendBtn" disabled>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+                  Kirim balasan
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── TOAST ── -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

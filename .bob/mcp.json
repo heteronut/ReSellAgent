@@ -1,0 +1,30 @@
+{
+    "mcpServers": {
+        "lf-resell_agent": {
+            "args": [
+                "/c",
+                "uvx",
+                "--with",
+                "mcp==1.17.0",
+                "mcp-proxy",
+                "--transport",
+                "streamablehttp",
+                "-H",
+                "x-api-key",
+                "YOUR_LANGFLOW_API_KEY",
+                "http://127.0.0.1:7860/api/v1/mcp/project/ba8ab47f-5833-40d5-8bdb-b54df63f51c5/streamable"
+            ],
+            "command": "cmd"
+        },
+        "figma": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "figma-developer-mcp",
+                "--figma-api-key",
+                "YOUR_FIGMA_API_KEY",
+                "--stdio"
+            ]
+        }
+    }
+}
