@@ -1,11 +1,11 @@
-﻿/* ══════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════
    CONFIG
    Auto-detect base URL:
    - Jika diakses lewat backend sendiri (port 3000) → pakai path relatif
    - Jika diakses lewat dev server lain (mis. Live Server 5500) → pakai localhost:3000
 ══════════════════════════════════════════════════════════ */
 const _BACKEND_ORIGIN = window.location.port === '3000'
-  ? ''                           // same-origin — gunakan path relatif
+  ? ''                           // same-origin - gunakan path relatif
   : 'http://localhost:3000';     // frontend di file:// atau dev server lain
 
 const API_BASE    = _BACKEND_ORIGIN + '/api/flows';
@@ -96,8 +96,8 @@ function igRenderProfileSelect() {
   if (subtitle) {
     const active = igActiveProfile();
     subtitle.textContent = active
-      ? `Profil: ${active.name}${active.connected && active.igUsername ? ' — ' + active.igUsername : ''}`
-      : 'Profil: —';
+      ? `Profil: ${active.name}${active.connected && active.igUsername ? ' - ' + active.igUsername : ''}`
+      : 'Profil: -';
   }
 }
 
@@ -112,7 +112,7 @@ function igSwitchProfile(id) {
   igRestoreApiKeyUI();
   igUpdateUI();
   const p = igActiveProfile();
-  if (p) showToast(`👤 Profil aktif: ${p.name}`, 'info');
+  if (p) showToast(`Profil aktif: ${p.name}`, 'info');
   // Refresh status koneksi profil yang baru dipilih
   igFetchStatus();
   igDriveCheckStatus();
@@ -141,7 +141,7 @@ function igCreateProfile() {
   igRestoreApiKeyUI();
   igUpdateUI();
   igDriveCheckStatus();
-  showToast(`✅ Profil "${profile.name}" dibuat. Masukkan API key Composio untuk profil ini.`, 'success');
+  showToast(`Profil "${profile.name}" dibuat. Tambahkan API key Composio untuk profil ini.`, 'success');
 }
 
 function igRenameProfile() {
@@ -151,7 +151,7 @@ function igRenameProfile() {
   if (!name || !name.trim()) return;
   igUpdateActiveProfile({ name: name.trim() });
   igRenderProfileSelect();
-  showToast('✅ Nama profil diperbarui.', 'success');
+  showToast('Nama profil diperbarui.', 'success');
 }
 
 function igDeleteProfile() {
@@ -159,7 +159,7 @@ function igDeleteProfile() {
   const p = igActiveProfile();
   if (!p) return;
   if (profiles.length <= 1) {
-    showToast('❌ Tidak bisa hapus — minimal 1 profil harus ada.', 'error');
+    showToast('Profil tidak dapat dihapus. Sisakan setidaknya satu profil.', 'error');
     return;
   }
   if (!confirm(`Hapus profil "${p.name}"?`)) return;
@@ -171,7 +171,7 @@ function igDeleteProfile() {
   igRestoreApiKeyUI();
   igUpdateUI();
   igDriveCheckStatus();
-  showToast(`🗑️ Profil "${p.name}" dihapus.`, 'info');
+  showToast(`Profil "${p.name}" dihapus.`, 'info');
 }
 
 /* ─── API key per profil aktif ─── */
@@ -186,17 +186,17 @@ function igSaveApiKey() {
   const key    = (input.value || '').trim();
 
   if (!key) {
-    status.textContent = '❌ API key tidak boleh kosong.';
+    status.textContent = 'API key tidak boleh kosong.';
     status.className = 'ig-apikey-status err';
     return;
   }
 
   igUpdateActiveProfile({ composioKey: key });
   input.value = '';
-  input.placeholder = '••••••••  tersimpan — klik Simpan untuk ganti';
-  status.textContent = '✅ API key tersimpan untuk profil ini.';
+  input.placeholder = '••••••••  tersimpan - klik Simpan untuk ganti';
+  status.textContent = 'API key tersimpan untuk profil ini.';
   status.className = 'ig-apikey-status ok';
-  showToast('✅ API Key Composio tersimpan.', 'success');
+  showToast('API key Composio tersimpan.', 'success');
   igUpdateApiKeyUI();
   igUpdateStepChecks();
   igDriveCheckStatus();
@@ -209,8 +209,8 @@ function igRestoreApiKeyUI() {
   if (!input || !status) return;
 
   if (igGetApiKey()) {
-    input.placeholder = '••••••••  tersimpan — klik Simpan untuk ganti';
-    status.textContent = '✅ API key sudah tersimpan untuk profil ini.';
+    input.placeholder = '••••••••  tersimpan - klik Simpan untuk ganti';
+    status.textContent = 'API key sudah tersimpan untuk profil ini.';
     status.className = 'ig-apikey-status ok';
   } else {
     input.placeholder = 'sk-...';
@@ -241,7 +241,7 @@ function igUpdateApiKeyUI() {
   }
 }
 
-/** Ganti API Key — tampilkan kembali input */
+/** Ganti API Key - tampilkan kembali input */
 function igChangeApiKey() {
   const inputRow    = document.getElementById('igApiKeyInputRow');
   const connectedEl = document.getElementById('igApiKeyConnected');
@@ -257,13 +257,13 @@ function igUpdateStepChecks() {
   const hasKey    = !!(p && p.composioKey);
   const connected = !!(p && p.connected);
 
-  // Step 1: daftar Composio — dianggap selesai jika sudah punya key
+  // Step 1: daftar Composio - dianggap selesai jika sudah punya key
   igMarkStep('igStep1Num', hasKey);
-  // Step 2: masukkan API key — selesai jika key tersimpan
+  // Step 2: masukkan API key - selesai jika key tersimpan
   igMarkStep('igStep2Num', hasKey);
-  // Step 3: buka Composio Toolkits — tidak otomatis, tapi jika connected berarti sudah
+  // Step 3: buka Composio Toolkits - tidak otomatis, tapi jika connected berarti sudah
   igMarkStep('igStep3Num', connected);
-  // Step 4: OAuth — selesai jika connected
+  // Step 4: OAuth - selesai jika connected
   igMarkStep('igStep4Num', connected);
 }
 
@@ -285,7 +285,7 @@ function igMarkStep(numElId, done) {
   }
 }
 
-/** Headers untuk request Instagram — sertakan API key profil aktif */
+/** Headers untuk request Instagram - sertakan API key profil aktif */
 function igApiHeaders(extra = {}) {
   const headers = { ...extra };
   const key = igGetApiKey();
@@ -296,7 +296,7 @@ function igApiHeaders(extra = {}) {
 /** Cek API key sebelum aksi yang butuh Composio; return false bila belum ada */
 function igRequireApiKey() {
   if (igGetApiKey()) return true;
-  showToast('❌ Masukkan API Key Composio untuk profil ini terlebih dahulu.', 'error');
+  showToast('Masukkan API key Composio untuk profil ini terlebih dahulu.', 'error');
   const input = document.getElementById('ig_apiKey');
   if (input) input.focus();
   return false;
@@ -307,48 +307,48 @@ function igRequireApiKey() {
 ══════════════════════════════════════════════════════════ */
 const FN_CONFIG = {
   'konsultan-pembelian': {
-    label: 'Konsultan Pembelian',
-    subtitle: 'Analisis kelayakan beli & estimasi harga jual terbaik',
+    label: 'Cek kelayakan beli',
+    subtitle: 'Periksa harga beli, kondisi, dan biaya perbaikan sebelum memutuskan.',
     endpoint: 'konsultan-pembelian'
   },
   'penilai-harga': {
-    label: 'Penilai Harga Jual',
-    subtitle: 'Rekomendasi harga jual optimal berdasarkan kondisi & minus produk',
+    label: 'Tentukan harga jual',
+    subtitle: 'Taksir harga jual dari harga beli dan kondisi barang.',
     endpoint: 'penilai-harga'
   },
   'estimasi-ongkir': {
-    label: 'Estimasi Ongkir',
-    subtitle: 'Rekomendasi jasa kirim & estimasi ongkos pengiriman',
+    label: 'Hitung ongkir',
+    subtitle: 'Perkirakan ongkos kirim berdasarkan berat dan kota tujuan.',
     endpoint: 'estimasi-ongkir'
   },
   'analisis-pasar': {
-    label: 'Analisis Harga Pasar',
-    subtitle: 'Bandingkan harga produk di Tokopedia, Shopee, OLX, Facebook Marketplace',
+    label: 'Bandingkan harga',
+    subtitle: 'Lihat kisaran harga barang serupa di marketplace.',
     endpoint: 'analisis-pasar'
   },
   'caption-posting': {
-    label: 'Caption Posting',
-    subtitle: 'Generate deskripsi produk & caption promosi siap posting',
+    label: 'Buat caption',
+    subtitle: 'Susun deskripsi dan caption dari detail produk.',
     endpoint: 'caption-posting'
   },
   'foto-editor': {
-    label: 'Studio Foto Editor',
-    subtitle: 'Validasi otomatis, komposisi foto produk & latar, penyesuaian cahaya & bayangan berbasis AI',
+    label: 'Edit foto produk',
+    subtitle: 'Ganti latar dan sesuaikan tampilan foto produk.',
     endpoint: null
   },
   'ig-autopost': {
-    label: 'Post IG',
-    subtitle: 'Posting produk otomatis ke Instagram via Composio',
+    label: 'Post ke Instagram',
+    subtitle: 'Siapkan dan terbitkan konten produk ke Instagram.',
     endpoint: null
   },
   inbox: {
-    label: 'Inbox Pesan',
-    subtitle: 'Tinjau dan balas pesan Messenger dan Instagram',
+    label: 'Pesan Instagram',
+    subtitle: 'Tinjau pesan dan periksa draf balasan sebelum mengirim.',
     endpoint: null
   },
   'ai-agent': {
-    label: 'AI Agent',
-    subtitle: 'Tanyakan apapun tentang resell — AI agent akan membimbing',
+    label: 'Tanya ReSell',
+    subtitle: 'Tanyakan hal seputar reseller dan barang yang sedang Anda jual.',
     endpoint: 'ai-agent'
   }
 };
@@ -386,6 +386,76 @@ const APP_SHARED_INPUTS = {
 };
 let appSession = { inputs: {}, sharedInputs: {}, outputs: {}, igContentCards: [] };
 let appSessionStorageWarningShown = false;
+let lastProductContext = null;
+
+const PRODUCT_HANDOFF_TARGETS = {
+  'konsultan-pembelian': {
+    productName: 'kp_productName', buyPrice: 'kp_buyPrice', condition: 'kp_condition', specs: 'kp_specs'
+  },
+  'penilai-harga': {
+    productName: 'ph_productName', buyPrice: 'ph_buyPrice', condition: 'ph_condition', specs: 'ph_specs', defects: 'ph_defects'
+  },
+  'estimasi-ongkir': { productName: 'eo_productName' },
+  'analisis-pasar': {
+    productName: 'ap_productName', sellingPrice: 'ap_currentPrice', condition: 'ap_condition', specs: 'ap_specs'
+  },
+  'caption-posting': {
+    productName: 'cp_productName', sellingPrice: 'cp_price', condition: 'cp_condition', specs: 'cp_specs', sellingPoints: 'cp_sellingPoints'
+  },
+  'ig-autopost': {
+    productName: 'ig_prodName', sellingPrice: 'ig_price', condition: 'ig_condition', specs: 'ig_specs', sellingPoints: 'ig_sellingPoints'
+  }
+};
+
+function getPreferredTheme() {
+  try {
+    const savedTheme = localStorage.getItem('resell_theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
+  } catch (error) {
+    console.error('[theme:load]', error);
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function setTheme(theme, persist = false) {
+  const isDark = theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    const action = isDark ? 'Aktifkan tema terang' : 'Aktifkan tema gelap';
+    toggle.setAttribute('aria-label', action);
+    toggle.setAttribute('title', action);
+    toggle.setAttribute('aria-pressed', String(isDark));
+  }
+  if (!persist) return;
+  try {
+    localStorage.setItem('resell_theme', isDark ? 'dark' : 'light');
+  } catch (error) {
+    console.error('[theme:save]', error);
+    showToast('Tema berubah, tetapi pilihan Anda belum tersimpan di browser.', 'error');
+  }
+}
+
+function associateFieldLabels() {
+  document.querySelectorAll('label:not([for])').forEach(label => {
+    if (!label.parentElement) return;
+    const controls = [...label.parentElement.querySelectorAll('input[id], select[id], textarea[id]')]
+      .filter(control => !control.closest('label'));
+    if (controls.length === 1) label.htmlFor = controls[0].id;
+  });
+}
+
+function setSidebarOpen(open) {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('sidebarToggle');
+  const isMobile = window.matchMedia('(max-width: 960px)').matches;
+  const shouldOpen = isMobile && open;
+  sidebar.classList.toggle('open', shouldOpen);
+  sidebar.inert = isMobile && !shouldOpen;
+  if (isMobile) sidebar.setAttribute('aria-hidden', String(!shouldOpen));
+  else sidebar.removeAttribute('aria-hidden');
+  toggle.setAttribute('aria-expanded', String(shouldOpen));
+}
 
 function appSessionLoad() {
   try {
@@ -552,7 +622,7 @@ function appSessionSetInputValue(id, value) {
   appSessionSaveInput(control);
 }
 
-// IG state — Proxy ke profil aktif.
+// IG state - Proxy ke profil aktif.
 // Semua baca/tulis igState.xxx otomatis tersimpan ke profil yang sedang aktif.
 // Mapping: userId → composioUserId, username → igUsername.
 const igState = new Proxy({}, {
@@ -576,6 +646,12 @@ const igState = new Proxy({}, {
    INIT
 ══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
+  setTheme(getPreferredTheme());
+  setSidebarOpen(false);
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true);
+  });
+  associateFieldLabels();
   appSessionInitInputs();
   igContentCards = appSession.igContentCards;
   igRenderContentCards();
@@ -596,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.nav-item[data-fn]').forEach(btn => {
     btn.addEventListener('click', () => {
       switchFn(btn.dataset.fn);
-      document.getElementById('sidebar').classList.remove('open');
+      setSidebarOpen(false);
     });
   });
 
@@ -606,10 +682,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile sidebar toggle
   document.getElementById('sidebarToggle').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('open');
+    setSidebarOpen(!document.getElementById('sidebar').classList.contains('open'));
   });
+  document.getElementById('productHandoffApply').addEventListener('click', applyProductHandoff);
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    setSidebarOpen(false);
+  });
+  window.addEventListener('resize', () => setSidebarOpen(false));
 
-  // AI Agent — image drop zone
+  // AI Agent - image drop zone
   agentImgInit();
   photoEditorInit();
   igDriveInit();
@@ -630,10 +712,10 @@ function agentImgInit() {
 
   const loadFile = (file, persist = true) => {
     if (!file || !file.type.startsWith('image/')) {
-      showToast('◉ File harus berupa gambar (JPG/PNG/WEBP)', 'error'); return;
+      showToast('Pilih file gambar JPG, PNG, atau WEBP.', 'error'); return;
     }
     if (file.size > 5 * 1024 * 1024) {
-      showToast('◉ Ukuran gambar maks 5 MB', 'error'); return;
+      showToast('Ukuran gambar tidak boleh lebih dari 5 MB.', 'error'); return;
     }
     const reader = new FileReader();
     reader.onload = e => {
@@ -644,7 +726,7 @@ function agentImgInit() {
       if (persist) {
         appSessionSaveAgentImage(file).catch(error => {
           console.error('[app-session:save-agent-image]', error);
-          showToast('Foto AI Agent tampil, tetapi belum tersimpan untuk sesi berikutnya.', 'error');
+          showToast('Foto tampil, tetapi belum tersimpan untuk sesi berikutnya.', 'error');
         });
       }
     };
@@ -683,7 +765,7 @@ function agentImgInit() {
     if (file) loadFile(file, false);
   }).catch(error => {
     console.error('[app-session:load-agent-image]', error);
-    showToast('Foto AI Agent dari sesi sebelumnya tidak dapat dipulihkan.', 'error');
+    showToast('Foto dari sesi sebelumnya tidak dapat dipulihkan.', 'error');
   });
 }
 
@@ -834,13 +916,13 @@ function _applyValidationResult(validation, status, validateStatus) {
   if (!validation.accepted) {
     const reason = validation.reason || 'Foto tidak mengandung barang yang dapat dijual.';
     if (status)        status.textContent        = `Foto tidak layak: ${reason}`;
-    if (validateStatus) validateStatus.textContent = '❌ Tidak layak';
+    if (validateStatus) validateStatus.textContent = 'Foto belum memenuhi syarat';
     showToast('Foto tidak lolos validasi.', 'error');
   } else {
-    const itemName  = photoEditorState.identifiedItem ? ` — ${photoEditorState.identifiedItem}` : '';
+    const itemName  = photoEditorState.identifiedItem ? ` - ${photoEditorState.identifiedItem}` : '';
     const catName   = photoEditorState.itemCategory   ? ` (${photoEditorState.itemCategory})`   : '';
     if (status)        status.textContent        = `Foto layak${itemName}${catName}. Pilih latar, lalu tekan Proses Foto.`;
-    if (validateStatus) validateStatus.textContent = '✅ Lolos validasi';
+    if (validateStatus) validateStatus.textContent = 'Foto memenuhi syarat';
     showToast(`Foto lolos validasi${itemName}.`, 'success');
     // Tambahkan suggested_backgrounds ke dropdown jika ada
     _populateSuggestedBackgrounds(photoEditorState.suggestedBackgrounds);
@@ -858,7 +940,7 @@ function _populateSuggestedBackgrounds(suggestions) {
     const label = bg.description || bg.bg_type || 'Saran AI';
     const option = document.createElement('option');
     option.value = `suggested_${bg.bg_type || 'ai'}`;
-    option.textContent = `✨ ${label}`;
+    option.textContent = label;
     option.dataset.suggested = '1';
     option.dataset.colorHex  = bg.bg_color_hex || '#FFFFFF';
     // Sisipkan tepat sebelum "Foto latar sendiri"
@@ -893,10 +975,10 @@ async function _autoValidateItemPhoto() {
     _applyValidationResult(validation, status, validateStatus);
   } catch (err) {
     photoEditorState.accepted = null;
-    // Beri pesan bersih — sembunyikan detail teknis dari user
+    // Beri pesan bersih - sembunyikan detail teknis dari user
     const msg = err.message || 'Terjadi kesalahan saat menghubungi server.';
     status.textContent = `Validasi gagal: ${msg}`;
-    if (validateStatus) validateStatus.textContent = 'Gagal — coba manual';
+    if (validateStatus) validateStatus.textContent = 'Gagal - coba manual';
     showToast(msg, 'error');
   } finally {
     updatePhotoEditorButton();
@@ -1000,7 +1082,7 @@ function renderCompositingContext(ctx) {
   const panel = document.getElementById('photoContextPanel');
   if (!grid || !panel || !ctx) return;
 
-  const fmt = v => (v === null || v === undefined) ? '—' : String(v);
+  const fmt = v => (v === null || v === undefined) ? '-' : String(v);
   const rows = [
     ['Item ID',             ctx.source_inputs?.item_id],
     ['Background ID',       ctx.source_inputs?.background_id],
@@ -1075,7 +1157,7 @@ async function _compositeOnCanvas(fgDataUrl, bgDataUrl, bgColor, lightingPct, sh
   }
 
   // 3. Objek utama
-  const brightness  = (lightingPct / 100).toFixed(2);        // 0.7–1.4
+  const brightness  = (lightingPct / 100).toFixed(2);        // 0.7-1.4
   const contrast    = (0.9 + (lightingPct - 100) * 0.002).toFixed(2);
   const saturate    = (0.9 + (lightingPct - 100) * 0.003).toFixed(2);
   const hueShift    = Math.round(temperaturePct * 1.2);       // -60..+60 deg
@@ -1171,7 +1253,7 @@ async function runPhotoEditor() {
     resultImage.src = compositeDataUrl;
     resultImage.classList.remove('hidden');
     document.getElementById('photoResultEmpty').classList.add('hidden');
-    document.getElementById('photoResultCaption').textContent = 'Komposisi selesai — latar baru, pencahayaan, dan bayangan telah diterapkan.';
+    document.getElementById('photoResultCaption').textContent = 'Komposisi selesai - latar baru, pencahayaan, dan bayangan telah diterapkan.';
     const download = document.getElementById('photoDownloadBtn');
     download.href     = compositeDataUrl;
     download.download = 'resell-studio-foto.png';
@@ -1207,6 +1289,7 @@ function switchFn(fn) {
   }
   document.getElementById('fnTitle').textContent    = cfg.label;
   document.getElementById('fnSubtitle').textContent = cfg.subtitle;
+  document.getElementById('topbarTitle').textContent = cfg.label;
 
   // Show main run button for all fns except ai-agent & ig-autopost; show agent inline button for ai-agent
   const runBtn     = document.getElementById('runBtn');
@@ -1220,12 +1303,12 @@ function switchFn(fn) {
   document.getElementById('mainContent').classList.toggle('is-inbox', isInbox);
   document.getElementById('inboxWorkspace').classList.toggle('hidden', !isInbox);
 
-  // Update run button — color driven by CSS data-fn, no inline gradient
+  // Update run button - color driven by CSS data-fn, no inline gradient
   runBtn.dataset.fn = fn;
   runBtn.style.background = ''; // let CSS handle it
   document.getElementById('runText').textContent = cfg.label;
 
-  // Update output label (text only — no emoji prefix)
+  // Update output label (text only - no emoji prefix)
   document.getElementById('outputFnLabel').textContent = cfg.label;
 
   // Show/hide IG content area
@@ -1257,6 +1340,7 @@ function switchFn(fn) {
     t.classList.toggle('active', t.dataset.fn === fn);
   });
   setNavActive(fn);
+  renderProductHandoff();
   appSessionRestoreOutput(fn);
   updatePhotoEditorButton();
 
@@ -1267,7 +1351,10 @@ function switchFn(fn) {
 
 function setNavActive(fn) {
   document.querySelectorAll('.nav-item').forEach(n => {
-    n.classList.toggle('active', n.dataset.fn === fn);
+    const isActive = n.dataset.fn === fn;
+    n.classList.toggle('active', isActive);
+    if (isActive) n.setAttribute('aria-current', 'page');
+    else n.removeAttribute('aria-current');
   });
 }
 
@@ -1335,6 +1422,63 @@ function buildPayload(fn) {
   }
 }
 
+function buildProductContext(fn, payload) {
+  const productName = typeof payload.productName === 'string' ? payload.productName.trim() : '';
+  if (!productName) return null;
+  return {
+    productName,
+    buyPrice: payload.buyPrice || '',
+    sellingPrice: payload.price || payload.currentPrice || '',
+    condition: payload.condition || '',
+    specs: payload.specs || '',
+    defects: payload.defects || '',
+    sellingPoints: payload.sellingPoints || '',
+    sourceFn: fn
+  };
+}
+
+function renderProductHandoff() {
+  const handoff = document.getElementById('productHandoff');
+  const targetFields = PRODUCT_HANDOFF_TARGETS[currentFn];
+  if (!handoff || !lastProductContext || !targetFields || currentFn === lastProductContext.sourceFn) {
+    handoff?.classList.add('hidden');
+    return;
+  }
+
+  const hasAvailableField = Object.entries(targetFields).some(([key, id]) => {
+    const value = lastProductContext[key];
+    const control = document.getElementById(id);
+    return value !== undefined && value !== '' && control && !control.value.trim();
+  });
+  handoff.classList.toggle('hidden', !hasAvailableField);
+  if (!hasAvailableField) return;
+
+  document.getElementById('productHandoffName').textContent = lastProductContext.productName;
+  document.getElementById('productHandoffSource').textContent =
+    FN_CONFIG[lastProductContext.sourceFn]?.label || 'alat sebelumnya';
+}
+
+function applyProductHandoff() {
+  if (!lastProductContext) return;
+  const targetFields = PRODUCT_HANDOFF_TARGETS[currentFn];
+  if (!targetFields) return;
+
+  let filledCount = 0;
+  Object.entries(targetFields).forEach(([key, id]) => {
+    const control = document.getElementById(id);
+    const value = lastProductContext[key];
+    if (!control || !value || control.value.trim()) return;
+    control.value = value;
+    control.dispatchEvent(new Event('input', { bubbles: true }));
+    filledCount += 1;
+  });
+
+  renderProductHandoff();
+  if (filledCount > 0) {
+    showToast(`${filledCount} kolom kosong diisi untuk ${lastProductContext.productName}.`, 'success');
+  }
+}
+
 function appSessionRestoreOutput(fn) {
   const savedOutput = appSession.outputs[fn];
   if (typeof savedOutput === 'string' && savedOutput) {
@@ -1350,8 +1494,8 @@ function appSessionRenderEmptyOutput() {
       <div class="empty-icon">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </div>
-      <p>Hasil AI akan muncul di sini</p>
-      <span>Pilih menu di sidebar, isi form, dan tekan tombol fungsi</span>
+      <p>Hasil analisis akan muncul di sini</p>
+      <span>Pilih alat, lengkapi data barang, lalu jalankan analisis.</span>
     </div>`;
 }
 
@@ -1360,7 +1504,7 @@ function appSessionRenderEmptyOutput() {
 ══════════════════════════════════════════════════════════ */
 async function runCurrentFn() {
   if (isLoading) return;
-  // ig-autopost has its own dedicated buttons — skip generic run
+  // ig-autopost has its own dedicated buttons - skip generic run
   if (currentFn === 'ig-autopost') return;
   if (currentFn === 'foto-editor') {
     await runPhotoEditor();
@@ -1372,14 +1516,14 @@ async function runCurrentFn() {
 
   // Validate required fields
   if (fn === 'ai-agent' && !val('f_agent_message')) {
-    showToast('◉ Tulis pertanyaan terlebih dahulu', 'error'); return;
+    showToast('Tulis pertanyaan terlebih dahulu.', 'error'); return;
   }
   if (fn === 'estimasi-ongkir' && (!val('eo_origin') || !val('eo_destination'))) {
-    showToast('◉ Kota Asal & Tujuan wajib diisi', 'error'); return;
+    showToast('Kota asal dan tujuan wajib diisi.', 'error'); return;
   }
   const requiresProduct = ['konsultan-pembelian', 'penilai-harga', 'analisis-pasar', 'caption-posting'];
   if (requiresProduct.includes(fn) && !payload.productName) {
-    showToast('◉ Nama Produk wajib diisi', 'error'); return;
+    showToast('Nama produk wajib diisi.', 'error'); return;
   }
 
   setLoading(true, fn);
@@ -1393,15 +1537,19 @@ async function runCurrentFn() {
     const data = await res.json();
 
     if (!res.ok || data.error || data.connected === false) {
-      showToast(`❌ ${data.error || 'Terjadi kesalahan'}`, 'error');
+      showToast(data.error || 'Permintaan gagal. Periksa data dan coba lagi.', 'error');
     } else {
       appSession.outputs[fn] = data.result;
       appSessionPersist();
+      const productContext = buildProductContext(fn, payload);
+      if (productContext) lastProductContext = productContext;
+      renderProductHandoff();
       if (currentFn === fn) showOutput(data.result, cfg, fn);
-      showToast('✅ Selesai!', 'success');
+      showToast('Analisis selesai.', 'success');
     }
-  } catch {
-    showToast('❌ Tidak bisa terhubung ke backend. Pastikan server aktif di port 3000.', 'error');
+  } catch (error) {
+    console.error(`[api-flow:${fn}]`, error);
+    showToast('Tidak dapat terhubung ke server. Pastikan backend berjalan, lalu coba lagi.', 'error');
   } finally {
     setLoading(false, fn);
   }
@@ -1522,7 +1670,7 @@ function clearOutput() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   MARKET INTELLIGENCE WIDGET — render dari context ID JSON
+   MARKET INTELLIGENCE WIDGET - render dari context ID JSON
    Context IDs: platform_prices[], regional_prices[],
    msrp_original_price, price_trend_history[],
    future_projection.{trend_type,summary},
@@ -1542,12 +1690,12 @@ function renderMarketWidget(data) {
   const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const num = v => (v == null || v === '' || !Number.isFinite(Number(v))) ? null : Number(v);
-  const rp  = v => { const n = num(v); return n == null ? '—' : 'Rp\u00a0' + n.toLocaleString('id-ID'); };
+  const rp  = v => { const n = num(v); return n == null ? '-' : 'Rp\u00a0' + n.toLocaleString('id-ID'); };
   const arr = v => Array.isArray(v) ? v : [];
 
   const rpCompact = v => {
     const n = num(v);
-    if (n == null) return '—';
+    if (n == null) return '-';
     if (n >= 1_000_000) return `Rp\u00a0${Number((n / 1_000_000).toFixed(1)).toLocaleString('id-ID')} jt`;
     if (n >= 1_000)     return `Rp\u00a0${Number((n / 1_000).toFixed(1)).toLocaleString('id-ID')} rb`;
     return rp(n);
@@ -1579,7 +1727,7 @@ function renderMarketWidget(data) {
     return { bg: '#EEF4FD', color: '#315F96', label: initials };
   };
 
-  /* Section A — platform_prices[] */
+  /* Section A - platform_prices[] */
   const platforms = arr(data.platform_prices).filter(item => item && typeof item === 'object');
   const platformMarkup = platforms.length
     ? platforms.map(item => {
@@ -1598,7 +1746,7 @@ function renderMarketWidget(data) {
       }).join('')
     : '<p class="market-empty">Data perbandingan platform belum tersedia.</p>';
 
-  /* Section B — regional_prices[] */
+  /* Section B - regional_prices[] */
   const regions = arr(data.regional_prices).filter(item => item && typeof item === 'object');
   const allRegPrices = regions.flatMap(r => [num(r.min_price), num(r.max_price)]).filter(v => v != null);
   const regMin  = allRegPrices.length ? Math.min(...allRegPrices) : 0;
@@ -1629,14 +1777,14 @@ function renderMarketWidget(data) {
             <span class="market-region-badge" style="background:${theme.bg};color:${theme.color};border-color:${theme.border}">${esc(label)}</span>
           </div>
           ${priceRange(min, max)}
-          <div class="market-region-band" aria-hidden="true" title="Rentang harga: ${esc(rp(min))} – ${esc(rp(max))}">
+          <div class="market-region-band" aria-hidden="true" title="Rentang harga: ${esc(rp(min))} - ${esc(rp(max))}">
             <span style="left:${pLeft.toFixed(1)}%;width:${width.toFixed(1)}%" style="background:${theme.color}"></span>
           </div>
         </article>`;
       }).join('')
     : '<p class="market-empty">Data harga regional belum tersedia.</p>';
 
-  /* Section C — msrp_original_price + price_trend_history[] + future_projection */
+  /* Section C - msrp_original_price + price_trend_history[] + future_projection */
   const msrp = num(data.msrp_original_price);
   const history = arr(data.price_trend_history)
     .filter(p => p && typeof p === 'object')
@@ -1672,7 +1820,7 @@ function renderMarketWidget(data) {
       + ` L ${coords.map(p => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' L ')}`
       + ` L ${coords[coords.length - 1].x.toFixed(1)} ${H - PB} Z`;
 
-    /* Y-axis grid — 3 lines */
+    /* Y-axis grid - 3 lines */
     const gridLines = [0, 0.5, 1].map(t => {
       const y = PT + plotH * t;
       const v = vMax - vSpan * t;
@@ -1682,7 +1830,7 @@ function renderMarketWidget(data) {
       </g>`;
     }).join('');
 
-    /* dots — MSRP anchor uses a star/diamond shape to mark it as the original release price */
+    /* dots - MSRP anchor uses a star/diamond shape to mark it as the original release price */
     const dots = coords.map(p => {
       if (p.isMsrp) {
         const s = 5.5;
@@ -1691,7 +1839,7 @@ function renderMarketWidget(data) {
       return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" class="market-chart-dot"><title>${esc(p.label)} · ${esc(rp(p.price))}</title></circle>`;
     }).join('');
 
-    /* X-axis labels — first & last only to avoid crowding */
+    /* X-axis labels - first & last only to avoid crowding */
     const xLabels = [coords[0], coords[coords.length - 1]]
       .map((p, i) => `<text x="${p.x.toFixed(1)}" y="${H - 12}" text-anchor="${i ? 'end' : 'start'}" class="market-chart-axis">${esc(p.label)}</text>`)
       .join('');
@@ -1718,7 +1866,7 @@ function renderMarketWidget(data) {
     </svg>`;
   }
 
-  /* future_projection.trend_type — arrow icon (Down / Flat / Up) */
+  /* future_projection.trend_type - arrow icon (Down / Flat / Up) */
   const projection = (data.future_projection && typeof data.future_projection === 'object')
     ? data.future_projection : {};
   const trendRaw  = String(projection.trend_type || '').trim();
@@ -1735,18 +1883,18 @@ function renderMarketWidget(data) {
       ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`
       : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M15 8l4 4-4 4"/></svg>`;
 
-  /* future_projection.summary — summary callout */
+  /* future_projection.summary - summary callout */
   const projSummary = projection.summary
     ? `<p>${esc(projection.summary)}</p>`
     : `<p class="market-empty">Ringkasan proyeksi belum tersedia.</p>`;
 
-  /* Section D — competitor_analysis */
+  /* Section D - competitor_analysis */
   const comp = (data.competitor_analysis && typeof data.competitor_analysis === 'object')
     ? data.competitor_analysis : {};
 
-  /* unique_selling_points — green checkmark SVG bullets */
+  /* unique_selling_points - green checkmark SVG bullets */
   const usp       = arr(comp.unique_selling_points).filter(s => s != null);
-  /* weaknesses — red warning SVG bullets */
+  /* weaknesses - red warning SVG bullets */
   const weaknesses = arr(comp.weaknesses).filter(s => s != null);
 
   const SVG_CHECK = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 8 6.5 11.5 13 5"/></svg>`;
@@ -1756,7 +1904,7 @@ function renderMarketWidget(data) {
     ? `<ul class="${cls}">${items.map(s => `<li><span aria-hidden="true">${icon}</span>${esc(s)}</li>`).join('')}</ul>`
     : '<p class="market-empty">Belum ada poin yang tersedia.</p>';
 
-  /* quality_position — Tier Gauge */
+  /* quality_position - Tier Gauge */
   const qualRaw   = String(comp.quality_position || '').trim();
   const qualKey   = qualRaw.toLowerCase().replace(/[\s_-]+/g, '_');
   const qualVal   = /above|premium|unggul|atas|high/.test(qualKey) ? 80
@@ -1940,7 +2088,7 @@ function renderCpWidget(data) {
       ? `<div class="cp-auto-block" style="border-color:${theme.border};background:${theme.bg}">
           <div class="cp-auto-head">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            <span>Automasi tersedia — <strong>${esc(meta.target_flow || '')}</strong></span>
+            <span>Automasi tersedia - <strong>${esc(meta.target_flow || '')}</strong></span>
           </div>
           <button class="cp-auto-btn" style="background:${theme.accent}"
             onclick="cpTriggerAuto(${JSON.stringify(esc(opt.option_id))}, ${JSON.stringify(esc(JSON.stringify(meta)))})">
@@ -1956,7 +2104,7 @@ function renderCpWidget(data) {
     return `<div class="cp-panel${i === 0 ? '' : ' hidden'}" data-widget="${widgetId}" data-option="${esc(opt.option_id)}">
       <div class="cp-caption-block">
         <div class="cp-caption-toolbar">
-          <span class="cp-caption-label">${esc(opt.label)} — ${esc(opt.channel)}</span>
+          <span class="cp-caption-label">${esc(opt.label)} - ${esc(opt.channel)}</span>
           <button class="cp-copy-btn" onclick="cpCopy(this)" aria-label="Salin caption">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Salin
@@ -1974,7 +2122,7 @@ function renderCpWidget(data) {
       <header class="cp-widget-header">
         <div>
           <h2>Caption Posting</h2>
-          <p>Pilih opsi caption yang sesuai platform tujuan — salin atau posting otomatis.</p>
+          <p>Pilih opsi caption yang sesuai platform tujuan - salin atau posting otomatis.</p>
         </div>
         ${data.product_name ? `<span class="cp-product-name">${esc(data.product_name)}</span>` : ''}
       </header>
@@ -2008,7 +2156,7 @@ function cpCopy(btn) {
   });
 }
 
-/* Trigger automation — wires to IG auto-post or external flow */
+/* Trigger automation - wires to IG auto-post or external flow */
 function cpTriggerAuto(optionId, metaJson) {
   try {
     const meta = JSON.parse(metaJson);
@@ -2018,15 +2166,15 @@ function cpTriggerAuto(optionId, metaJson) {
       if (igCaption && meta.payload?.caption) {
         appSessionSetInputValue('ig_caption', meta.payload.caption);
         switchFn('ig-autopost');
-        showToast('✅ Caption sudah diisi ke form Instagram!', 'success');
+        showToast('Caption sudah diisi ke formulir Instagram.', 'success');
       } else {
-        showToast('◉ Hubungkan akun Instagram terlebih dahulu di tab Post IG.', 'info');
+        showToast('Hubungkan akun Instagram melalui menu Post ke Instagram terlebih dahulu.', 'info');
       }
     } else {
-      showToast(`◉ Flow "${meta.target_flow}" belum terhubung.`, 'info');
+      showToast(`Alur "${meta.target_flow}" belum terhubung.`, 'info');
     }
   } catch (_) {
-    showToast('❌ Gagal memproses automation.', 'error');
+    showToast('Otomatisasi gagal diproses.', 'error');
   }
 }
 
@@ -2043,10 +2191,10 @@ function renderKonsultanWidget(data) {
   const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const num = v => (v == null || v === '' || !Number.isFinite(Number(v))) ? null : Number(v);
-  const rp  = v => { const n = num(v); return n == null ? '—' : 'Rp\u00a0' + n.toLocaleString('id-ID'); };
+  const rp  = v => { const n = num(v); return n == null ? '-' : 'Rp\u00a0' + n.toLocaleString('id-ID'); };
   const arr = v => Array.isArray(v) ? v : [];
 
-  /* ── scanned_item — visual detection result ── */
+  /* ── scanned_item - visual detection result ── */
   const scan = data.scanned_item && typeof data.scanned_item === 'object' ? data.scanned_item : null;
   let scanMarkup = '';
   if (scan) {
@@ -2087,7 +2235,7 @@ function renderKonsultanWidget(data) {
       </div>`;
   }
 
-  /* ── valuation_context_id — price tiers & deductions ── */
+  /* ── valuation_context_id - price tiers & deductions ── */
   const val = data.valuation_context_id && typeof data.valuation_context_id === 'object'
     ? data.valuation_context_id : null;
   let valuationMarkup = '';
@@ -2122,7 +2270,7 @@ function renderKonsultanWidget(data) {
       <div class="ka-section ka-valuation">
         <div class="ka-section-head">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <h3>Penilaian Harga Jual — ${esc(val.item_name || '')}</h3>
+          <h3>Penilaian Harga Jual - ${esc(val.item_name || '')}</h3>
         </div>
         <div class="ka-tier-grid">${tierCards}</div>
         <div class="ka-deduct-block">
@@ -2132,7 +2280,7 @@ function renderKonsultanWidget(data) {
       </div>`;
   }
 
-  /* ── purchasing_context_id — buy feasibility ── */
+  /* ── purchasing_context_id - buy feasibility ── */
   const pur = data.purchasing_context_id && typeof data.purchasing_context_id === 'object'
     ? data.purchasing_context_id : null;
   let purchasingMarkup = '';
@@ -2143,7 +2291,7 @@ function renderKonsultanWidget(data) {
       RISKY:       { label: 'Berisiko',          cls: 'is-yellow', icon: `<path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>` },
       SKIP:        { label: 'Jangan Beli',       cls: 'is-red',   icon: `<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>` },
     };
-    const dec = DECISION[decision] || { label: decision || '—', cls: '', icon: '' };
+    const dec = DECISION[decision] || { label: decision || '-', cls: '', icon: '' };
 
     const metrics = [
       { label: 'Harga Penawaran', val: rp(pur.asking_price) },
@@ -2151,7 +2299,7 @@ function renderKonsultanWidget(data) {
       { label: 'Total Modal',      val: rp(pur.total_cost) },
       { label: 'Harga Pasar',      val: rp(pur.market_price) },
       { label: 'Estimasi Profit',  val: rp(pur.estimated_profit) },
-      { label: 'ROI',              val: pur.roi_percentage != null ? `${esc(pur.roi_percentage)}%` : '—' },
+      { label: 'ROI',              val: pur.roi_percentage != null ? `${esc(pur.roi_percentage)}%` : '-' },
     ].map(m => `<div class="ka-metric"><span>${m.label}</span><strong>${m.val}</strong></div>`).join('');
 
     const negoReasons = arr(pur.nego_reasoning);
@@ -2165,7 +2313,7 @@ function renderKonsultanWidget(data) {
       <div class="ka-section ka-purchasing">
         <div class="ka-section-head">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <h3>Kelayakan Pembelian — ${esc(pur.item_name || '')}</h3>
+          <h3>Kelayakan Pembelian - ${esc(pur.item_name || '')}</h3>
           <span class="ka-decision-badge ${dec.cls}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${dec.icon}</svg>
             ${esc(dec.label)}
@@ -2215,7 +2363,7 @@ function renderKonsultanWidget(data) {
 }
 
 /* ══════════════════════════════════════════════════════════
-   KP ANALYSIS WIDGET — render dari context_id JSON
+   KP ANALYSIS WIDGET - render dari context_id JSON
 ══════════════════════════════════════════════════════════ */
 function renderKpWidget(d) {
   const widget = document.getElementById('kpAnalysisWidget');
@@ -2223,9 +2371,9 @@ function renderKpWidget(d) {
 
   // ── Helpers ──
   const fmt = n => (n != null && n !== '' && !isNaN(Number(n)))
-    ? 'Rp\u00a0' + Number(n).toLocaleString('id-ID') : '—';
+    ? 'Rp\u00a0' + Number(n).toLocaleString('id-ID') : '-';
   const pct = n => (n != null && n !== '' && !isNaN(Number(n)))
-    ? Number(n).toFixed(1) + '%' : '—';
+    ? Number(n).toFixed(1) + '%' : '-';
   const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   const svgCheck = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
   const svgWarn  = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
@@ -2235,7 +2383,7 @@ function renderKpWidget(d) {
   const svgShield= `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
 
   // ── Row 1: item_name ──
-  setEl('kpItemName', d.item_name || '—');
+  setEl('kpItemName', d.item_name || '-');
 
   // ── Decision badge (with icon + label, not color-only) ──
   const decisionMap = {
@@ -2243,7 +2391,7 @@ function renderKpWidget(d) {
     RISKY:       { label: 'Berisiko',          icon: svgWarn,  cls: 'RISKY' },
     SKIP:        { label: 'Lewati',            icon: svgSkip,  cls: 'SKIP' }
   };
-  const dec = decisionMap[d.decision_status] || { label: d.decision_status || '—', icon: '', cls: '' };
+  const dec = decisionMap[d.decision_status] || { label: d.decision_status || '-', icon: '', cls: '' };
   const decBadge = document.getElementById('kpDecisionBadge');
   if (decBadge) {
     decBadge.className = 'kp-decision-badge ' + dec.cls;
@@ -2257,7 +2405,7 @@ function renderKpWidget(d) {
     MEDIUM: { label: 'Risiko Sedang', icon: svgWarn,  cls: 'MEDIUM' },
     HIGH:   { label: 'Risiko Tinggi', icon: svgWarn,  cls: 'HIGH' }
   };
-  const risk = riskMap[d.risk_level] || { label: d.risk_level || '—', icon: svgShield, cls: '' };
+  const risk = riskMap[d.risk_level] || { label: d.risk_level || '-', icon: svgShield, cls: '' };
   const riskBadge = document.getElementById('kpRiskBadge');
   if (riskBadge) {
     riskBadge.className = 'kp-risk-badge ' + risk.cls;
@@ -2287,7 +2435,7 @@ function renderKpWidget(d) {
   setEl('kpTotalCost',   fmt(d.total_cost));
   setEl('kpRoi',         pct(d.roi_percentage));
 
-  // Profit — with explicit positive/negative indicator
+  // Profit - with explicit positive/negative indicator
   const profitNum = Number(d.estimated_profit);
   const profitEl  = document.getElementById('kpProfit');
   const profitNote = document.getElementById('kpProfitNote');
@@ -2328,7 +2476,7 @@ function renderKpWidget(d) {
   setEl('kpCostRepair', fmt(d.repair_cost));   // always shown, even if 0
   setEl('kpCostTotal',  fmt(d.total_cost));
   setEl('kpMarketPrice', fmt(d.market_price));
-  // profit in cost panel — colored by sign
+  // profit in cost panel - colored by sign
   const costProfitEl = document.getElementById('kpCostProfit');
   if (costProfitEl) {
     costProfitEl.textContent = fmt(d.estimated_profit);
@@ -2373,7 +2521,7 @@ function renderKpWidget(d) {
 }
 
 /* ══════════════════════════════════════════════════════════
-   PH (PENILAI HARGA JUAL) WIDGET — render dari context_id JSON
+   PH (PENILAI HARGA JUAL) WIDGET - render dari context_id JSON
    Context IDs: item_name, market_normal_min, market_normal_max,
                 deductions[], total_deduction,
                 price_tiers.quick_sale_price, price_tiers.ideal_fair_price, price_tiers.max_listing_price,
@@ -2384,18 +2532,18 @@ function renderPhWidget(d) {
   if (!widget) return;
 
   const fmt = n => (n != null && n !== '' && !isNaN(Number(n)))
-    ? 'Rp\u00a0' + Number(n).toLocaleString('id-ID') : '—';
+    ? 'Rp\u00a0' + Number(n).toLocaleString('id-ID') : '-';
   const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
 
   // ── A. Header: nama barang + range gauge ──
-  setEl('phItemName', d.item_name || '—');
+  setEl('phItemName', d.item_name || '-');
 
   const minVal = Number(d.market_normal_min) || 0;
   const maxVal = Number(d.market_normal_max) || 0;
   setEl('phRangeMin', fmt(minVal));
   setEl('phRangeMax', fmt(maxVal));
 
-  // Range gauge — render min..max as a filled band within a wider reference (max * 1.3 = 100%)
+  // Range gauge - render min..max as a filled band within a wider reference (max * 1.3 = 100%)
   const refMax = maxVal > 0 ? maxVal * 1.3 : 1;
   const fillLeft  = minVal > 0 ? ((minVal / refMax) * 100).toFixed(1) + '%' : '10%';
   const fillWidth = (minVal > 0 && maxVal > 0)
@@ -2429,29 +2577,29 @@ function renderPhWidget(d) {
       listEl.innerHTML = '<div class="ph-deduction-empty">Tidak ada minus yang terdeteksi.</div>';
     }
   }
-  setEl('phTotalDeduction', d.total_deduction != null ? '- ' + fmt(d.total_deduction) : '—');
+  setEl('phTotalDeduction', d.total_deduction != null ? '- ' + fmt(d.total_deduction) : '-');
 
   // ── D. Recommendation action pill ──
   const pillEl = document.getElementById('phActionPill');
   if (pillEl) {
     const action = (d.recommendation_action || '').toString().toUpperCase().replace(/\s+/g, '_');
     const actionLabels = {
-      SELL_AS_IS:   { text: '✓ Jual Langsung', cls: 'SELL_AS_IS' },
-      REPAIR_FIRST: { text: '⚒ Perbaiki Dulu', cls: 'REPAIR_FIRST' }
+      SELL_AS_IS:   { text: 'Jual langsung', cls: 'SELL_AS_IS' },
+      REPAIR_FIRST: { text: 'Perbaiki dulu', cls: 'REPAIR_FIRST' }
     };
-    const info = actionLabels[action] || { text: d.recommendation_action || '—', cls: '' };
+    const info = actionLabels[action] || { text: d.recommendation_action || '-', cls: '' };
     pillEl.textContent = info.text;
     pillEl.className = 'ph-action-pill ' + info.cls;
   }
 
   // Notes callout
-  setEl('phNotesText', d.notes || '—');
+  setEl('phNotesText', d.notes || '-');
 
   widget.classList.remove('hidden');
 }
 
 /* ══════════════════════════════════════════════════════════
-   EO (ESTIMASI ONGKIR) WIDGET — render dari shipping_context_id JSON
+   EO (ESTIMASI ONGKIR) WIDGET - render dari shipping_context_id JSON
    Context IDs: origin_address, destination_address,
                 route_metrics.{distance_km, duration_minutes, traffic_condition},
                 self_delivery.{fuel_cost, operational_cost, total_recommended_fee},
@@ -2462,12 +2610,12 @@ function renderEoWidget(d) {
   if (!widget) return;
 
   const fmt = n => (n != null && n !== '' && !isNaN(Number(n)))
-    ? 'Rp\u00a0' + Number(n).toLocaleString('id-ID') : '—';
+    ? 'Rp\u00a0' + Number(n).toLocaleString('id-ID') : '-';
   const setEl = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
 
   // ── A. Route endpoints ──
-  const origin = d.origin_address || '—';
-  const dest   = d.destination_address || '—';
+  const origin = d.origin_address || '-';
+  const dest   = d.destination_address || '-';
   setEl('eoOriginLabel', origin);
   setEl('eoDestLabel',   dest);
 
@@ -2477,8 +2625,8 @@ function renderEoWidget(d) {
   const durMin  = Number(rm.duration_minutes) || 0;
   const traffic = (rm.traffic_condition || '').toString().toUpperCase();
 
-  setEl('eoDistanceVal', distKm  ? distKm + ' km'  : '—');
-  setEl('eoDurationVal', durMin  ? (durMin >= 60 ? Math.round(durMin / 60) + ' jam ' + (durMin % 60 ? (durMin % 60) + ' mnt' : '') : durMin + ' menit') : '—');
+  setEl('eoDistanceVal', distKm  ? distKm + ' km'  : '-');
+  setEl('eoDurationVal', durMin  ? (durMin >= 60 ? Math.round(durMin / 60) + ' jam ' + (durMin % 60 ? (durMin % 60) + ' mnt' : '') : durMin + ' menit') : '-');
 
   // Traffic pill
   const trafficDot   = document.getElementById('eoTrafficDot');
@@ -2487,7 +2635,7 @@ function renderEoWidget(d) {
   if (trafficDot) {
     trafficDot.className = 'eo-traffic-dot ' + traffic;
   }
-  if (trafficLabel) trafficLabel.textContent = trafficMap[traffic] || traffic || '—';
+  if (trafficLabel) trafficLabel.textContent = trafficMap[traffic] || traffic || '-';
 
   // SVG polyline color by traffic
   const polyline = document.getElementById('eoPolyline');
@@ -2515,11 +2663,11 @@ function renderEoWidget(d) {
         return `<div class="eo-courier-card${isRec ? ' is-recommended' : ''}">
           <span class="eo-courier-type-badge eo-type-${type}">${typeLabels[type] || type}</span>
           <div class="eo-courier-info">
-            <span class="eo-courier-provider">${escapeHtml(opt.provider || '—')}</span>
-            <span class="eo-courier-etd">${escapeHtml(opt.estimated_etd || '—')}</span>
+            <span class="eo-courier-provider">${escapeHtml(opt.provider || '-')}</span>
+            <span class="eo-courier-etd">${escapeHtml(opt.estimated_etd || '-')}</span>
           </div>
           <span class="eo-courier-price">${fmt(opt.estimated_cost)}</span>
-          ${isRec ? '<span class="eo-courier-rec-tag">✓ Terbaik</span>' : ''}
+          ${isRec ? '<span class="eo-courier-rec-tag">Pilihan terbaik</span>' : ''}
         </div>`;
       }).join('');
     } else {
@@ -2531,28 +2679,41 @@ function renderEoWidget(d) {
   const rec = d.best_recommendation || {};
   const methodLabels = { INSTANT: 'Kurir Instan', SAMEDAY: 'Sameday', EXPRESS: 'Ekspedisi Express', REGULAR: 'Ekspedisi Reguler', ECONOMY: 'Ekspedisi Ekonomi', SELF: 'Kurir Pribadi' };
   const pillEl = document.getElementById('eoRecMethodPill');
-  if (pillEl) pillEl.textContent = methodLabels[bestMethod] || rec.method || '—';
-  setEl('eoRecReason', rec.reason || '—');
+  if (pillEl) pillEl.textContent = methodLabels[bestMethod] || rec.method || '-';
+  setEl('eoRecReason', rec.reason || '-');
 
   widget.classList.remove('hidden');
 }
 
 function copyOutput() {
-  const text = document.getElementById('outputBody').innerText;
-  if (!text || text.includes('Hasil AI akan muncul')) {
-    showToast('◉ Belum ada hasil untuk disalin', 'error'); return;
+  const body = document.getElementById('outputBody');
+  const text = body.innerText.trim();
+  if (!text || body.querySelector('.output-empty')) {
+    showToast('Belum ada hasil untuk disalin.', 'error'); return;
   }
-  navigator.clipboard.writeText(text).then(() => showToast('✅ Disalin!', 'success'));
+  navigator.clipboard.writeText(text).then(
+    () => showToast('Hasil disalin.', 'success'),
+    error => {
+      console.error('[clipboard:copy-output]', error);
+      showToast('Hasil tidak dapat disalin. Periksa izin clipboard browser.', 'error');
+    }
+  );
 }
 
 /** Salin nilai dari ig-id-panel ke clipboard */
 function igCopyId(elementId) {
   const el = document.getElementById(elementId);
   const text = el ? el.textContent.trim() : '';
-  if (!text || text === '—') {
-    showToast('◉ Belum ada nilai untuk disalin', 'error'); return;
+  if (!text || text === '-') {
+    showToast('Belum ada nilai untuk disalin.', 'error'); return;
   }
-  navigator.clipboard.writeText(text).then(() => showToast(`✅ Disalin: ${text}`, 'success'));
+  navigator.clipboard.writeText(text).then(
+    () => showToast(`Disalin: ${text}`, 'success'),
+    error => {
+      console.error('[clipboard:copy-id]', error);
+      showToast('Nilai tidak dapat disalin. Periksa izin clipboard browser.', 'error');
+    }
+  );
 }
 
 /**
@@ -2571,7 +2732,7 @@ async function igFetchIds() {
   btn.disabled = true;
   btnText.classList.add('hidden');
   spinner.classList.remove('hidden');
-  showToast('⏳ Mengambil User ID & Creation ID...', 'info');
+  showToast('Mengambil User ID dan Creation ID...', 'info');
 
   try {
     const userId = igState.userId;
@@ -2583,7 +2744,7 @@ async function igFetchIds() {
     const data = await r1.json();
 
     if (!r1.ok || (data.error && !data.connected_account_id)) {
-      showToast(`❌ ${data.error || 'Koneksi tidak aktif. Lakukan OAuth terlebih dahulu.'}`, 'error');
+      showToast(data.error || 'Koneksi belum aktif. Selesaikan proses OAuth terlebih dahulu.', 'error');
       return;
     }
 
@@ -2596,13 +2757,13 @@ async function igFetchIds() {
     igUpdateUI();
     igPersistState();
 
-    const displayUserId     = igState.igUserId       || '—';
-    const displayCreationId = igState.lastCreationId || '—';
+    const displayUserId     = igState.igUserId       || '-';
+    const displayCreationId = igState.lastCreationId || '-';
 
-    showToast(`✅ User ID: ${displayUserId}  |  Creation ID: ${displayCreationId}`, 'success');
+    showToast(`User ID: ${displayUserId} | Creation ID: ${displayCreationId}`, 'success');
     console.log(`[igFetchIds] ig_user_id=${displayUserId} creation_id=${displayCreationId}`);
   } catch {
-    showToast('❌ Tidak dapat terhubung ke server. Pastikan backend aktif.', 'error');
+    showToast('Tidak dapat terhubung ke server. Pastikan backend berjalan.', 'error');
   } finally {
     btn.disabled = false;
     btnText.classList.remove('hidden');
@@ -2645,7 +2806,7 @@ function renderMarkdown(text) {
   const html = withTables
     .split(/(<table[\s\S]*?<\/table>)/g)
     .map((chunk, idx) => {
-      if (idx % 2 === 1) return chunk; // already rendered table HTML — pass through
+      if (idx % 2 === 1) return chunk; // already rendered table HTML - pass through
       return chunk
         .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
         // Headers
@@ -2695,14 +2856,15 @@ function showToast(msg, type = 'info') {
 ══════════════════════════════════════════════════════════ */
 async function checkHealth() {
   try {
-    const res = await fetch('http://localhost:3000/api/health', { signal: AbortSignal.timeout(4000) });
+    const res = await fetch(`${_BACKEND_ORIGIN}/api/health`, { signal: AbortSignal.timeout(4000) });
     if (res.ok) {
-      setStatus('online', '🟢 Terhubung');
+      setStatus('online', 'Terhubung');
     } else {
-      setStatus('offline', '🔴 Error server');
+      setStatus('offline', `Server merespons dengan error (HTTP ${res.status})`);
     }
-  } catch {
-    setStatus('offline', '🔴 Backend offline');
+  } catch (error) {
+    console.warn('[api-health]', error);
+    setStatus('offline', 'Server tidak terhubung');
   }
 }
 
@@ -2712,7 +2874,11 @@ function setStatus(state, text) {
   const tbs  = document.getElementById('topbarStatus');
   dot.className = `status-dot ${state}`;
   txt.textContent = text;
-  if (tbs) { tbs.textContent = state === 'online' ? '●' : '●'; tbs.className = `topbar-status ${state}`; }
+  if (tbs) {
+    document.getElementById('topbarStatusText').textContent = text;
+    tbs.className = `topbar-status ${state}`;
+    tbs.setAttribute('aria-label', text);
+  }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2781,7 +2947,7 @@ async function igDriveConnect() {
   } catch (error) {
     console.error('[google-drive:connect]', error);
     igDriveSetUploadStatus(error.message, 'error');
-    showToast(`❌ ${error.message}`, 'error');
+    showToast(error.message, 'error');
     connectBtn.disabled = false;
   }
 }
@@ -2865,7 +3031,7 @@ async function igDriveDisconnect() {
   } catch (error) {
     console.error('[google-drive:disconnect]', error);
     igDriveSetUploadStatus(error.message, 'error');
-    showToast(`❌ ${error.message}`, 'error');
+    showToast(error.message, 'error');
   }
 }
 
@@ -2917,14 +3083,14 @@ async function igDriveUploadSelected(file) {
   igImageHidePreview();
   if (localStorage.getItem(igDriveConnectedKey()) !== '1') {
     igDriveSetUploadStatus('Google Drive belum terhubung ke Composio.', 'error');
-    showToast('❌ Hubungkan Google Drive melalui Composio sebelum upload.', 'error');
+    showToast('Hubungkan Google Drive melalui Composio sebelum mengunggah foto.', 'error');
     fileInput.value = '';
     return;
   }
 
   if (igImageObjectUrl) URL.revokeObjectURL(igImageObjectUrl);
   igImageObjectUrl = URL.createObjectURL(file);
-  igShowImagePreview(igImageObjectUrl, 'Foto dipilih — sedang diunggah ke Google Drive…', '', false);
+  igShowImagePreview(igImageObjectUrl, 'Foto dipilih - sedang diunggah ke Google Drive…', '', false);
   igDriveUploading = true;
   igDriveUpdateUI();
   igDriveSetUploadStatus('Memproses dan mengunggah foto…', '');
@@ -2949,11 +3115,11 @@ async function igDriveUploadSelected(file) {
     igDriveUploadedUrl = publicUrl;
     igShowImagePreview(igImageObjectUrl, 'Foto tersimpan di Drive dan akses publik aktif.', publicUrl, true);
     igDriveSetUploadStatus('Upload selesai. URL publik foto sudah diisi otomatis.', 'success');
-    showToast('✅ Foto berhasil diunggah dan URL publik sudah diisi.', 'success');
+    showToast('Foto berhasil diunggah. Tautan publik sudah terisi.', 'success');
   } catch (error) {
     console.error('[google-drive:upload]', error);
     igDriveSetUploadStatus(error.message, 'error');
-    showToast(`❌ Upload Google Drive gagal: ${error.message}`, 'error');
+    showToast(`Foto gagal diunggah ke Google Drive: ${error.message}`, 'error');
     appSessionSetInputValue('ig_imageUrl', '');
   } finally {
     igDriveUploading = false;
@@ -3067,34 +3233,34 @@ async function igHandleCallbackParams() {
     // Clean URL params immediately
     window.history.replaceState({}, document.title, '/');
 
-    showToast('⏳ Menghubungkan akun Instagram via Composio...', 'info');
+    showToast('Menghubungkan akun Instagram melalui Composio...', 'info');
 
     // Fetch real account info from Composio via backend
     await igFetchStatus();
 
     if (igState.connected) {
       switchFn('ig-autopost');
-      showToast(`✅ Instagram ${igState.username || ''} berhasil terhubung via Composio!`, 'success');
+      showToast(`Akun Instagram ${igState.username || ''} terhubung melalui Composio.`, 'success');
     }
   }
 
   if (params.get('drive_connected') === '1') {
     window.history.replaceState({}, document.title, '/');
     localStorage.removeItem(igDriveReauthKey());
-    showToast('⏳ Memverifikasi koneksi Google Drive via Composio...', 'info');
+    showToast('Memeriksa koneksi Google Drive melalui Composio...', 'info');
     if (await igDriveCheckStatus()) {
       switchFn('ig-autopost');
-      showToast('✅ Google Drive berhasil terhubung via Composio!', 'success');
+      showToast('Google Drive terhubung melalui Composio.', 'success');
     }
   }
 
   if (params.get('drive_error')) {
-    showToast(`❌ Gagal menghubungkan Google Drive: ${params.get('drive_error')}`, 'error');
+    showToast(`Google Drive gagal terhubung: ${params.get('drive_error')}`, 'error');
     window.history.replaceState({}, document.title, '/');
   }
 
   if (params.get('ig_error')) {
-    showToast(`❌ Gagal hubungkan IG: ${decodeURIComponent(params.get('ig_error'))}`, 'error');
+    showToast(`Instagram gagal terhubung: ${decodeURIComponent(params.get('ig_error'))}`, 'error');
     window.history.replaceState({}, document.title, '/');
   }
 
@@ -3124,16 +3290,16 @@ async function igFetchStatus() {
       igState.connected = false;
       igUpdateUI();
     }
-  } catch (_) { /* network error — keep existing state */ }
+  } catch (_) { /* network error - keep existing state */ }
 }
 
-/** Persist — tidak lagi diperlukan, Proxy igState otomatis simpan ke profil aktif. */
+/** Persist - tidak lagi diperlukan, Proxy igState otomatis simpan ke profil aktif. */
 function igPersistState() { /* no-op: handled by igState Proxy */ }
 
-/** Restore — tidak lagi diperlukan, profil dimuat otomatis saat init. */
+/** Restore - tidak lagi diperlukan, profil dimuat otomatis saat init. */
 function igRestoreState() { /* no-op: handled by profile system */ }
 
-/** Update the setup guide ↔ connected card visibility */
+/** Perbarui tampilan panduan dan status koneksi */
 function igUpdateUI() {
   const setupGuide = document.getElementById('igSetupGuide');
   const info       = document.getElementById('igConnectedInfo');
@@ -3145,7 +3311,7 @@ function igUpdateUI() {
     info.classList.remove('hidden');
     // connected card username
     const connUser = document.getElementById('igUsernameConnected');
-    if (connUser) connUser.textContent = igState.username || '@—';
+    if (connUser) connUser.textContent = igState.username || '@-';
   } else {
     setupGuide.classList.remove('hidden');
     info.classList.add('hidden');
@@ -3153,10 +3319,10 @@ function igUpdateUI() {
 
   // Profile card: IG User ID + username
   const userIdEl = document.getElementById('igUserId');
-  if (userIdEl) userIdEl.textContent = igState.igUserId || '—';
+  if (userIdEl) userIdEl.textContent = igState.igUserId || '-';
 
   const usernameEl = document.getElementById('igUsername');
-  if (usernameEl) usernameEl.textContent = igState.username || '—';
+  if (usernameEl) usernameEl.textContent = igState.username || '-';
 
   // Update API key visibility and step checks
   igUpdateApiKeyUI();
@@ -3167,16 +3333,16 @@ function igUpdateUI() {
 }
 
 /**
- * Step 1 — Open Composio Toolkits page for Instagram in a new tab.
+ * Step 1 - Open Composio Toolkits page for Instagram in a new tab.
  * User adds the Instagram toolkit and their account on Composio.
  */
 function igOpenComposioToolkits() {
   window.open('https://app.composio.dev/app/instagram', '_blank', 'noopener,noreferrer');
-  showToast('🌐 Halaman Composio dibuka di tab baru. Tambahkan Instagram dan klik "Add Account".', 'info');
+  showToast('Halaman Composio dibuka di tab baru. Tambahkan Instagram, lalu pilih "Add Account".', 'info');
 }
 
 /**
- * Step 3 — Verify connection by calling /status.
+ * Step 3 - Verify connection by calling /status.
  * Retrieves ig_user_id and shows User ID + Creation ID in the connected info card.
  */
 async function igVerifyConnection() {
@@ -3184,7 +3350,7 @@ async function igVerifyConnection() {
 
   const btn = document.getElementById('igVerifyBtn');
   if (btn) btn.disabled = true;
-  showToast('⏳ Memverifikasi koneksi dan mengambil IG User ID...', 'info');
+  showToast('Memeriksa koneksi dan mengambil ID pengguna Instagram...', 'info');
 
   try {
     const res  = await fetch(`${IG_API_BASE}/status?user_id=${encodeURIComponent(igState.userId)}`, {
@@ -3193,7 +3359,7 @@ async function igVerifyConnection() {
     const data = await res.json();
 
     if (!res.ok || data.error || data.connected === false) {
-      showToast(`❌ ${data.error || 'Koneksi tidak aktif. Pastikan OAuth sudah selesai.'}`, 'error');
+      showToast(data.error || 'Koneksi belum aktif. Selesaikan proses OAuth terlebih dahulu.', 'error');
       if (btn) btn.disabled = false;
       return;
     }
@@ -3206,29 +3372,29 @@ async function igVerifyConnection() {
     igUpdateUI(); // also updates igUserId / igCreationId DOM elements
     igPersistState();
 
-    const userId = igState.igUserId || '—';
+    const userId = igState.igUserId || '-';
 
     // Force-update the profile card IG User ID element
     const userIdEl = document.getElementById('igUserId');
     if (userIdEl) userIdEl.textContent = userId;
 
-    showToast(`✅ Terverifikasi! IG User ID: ${userId}`, 'success');
+    showToast(`Koneksi terverifikasi. ID pengguna Instagram: ${userId}`, 'success');
   } catch {
-    showToast('❌ Tidak dapat terhubung ke server. Pastikan backend aktif.', 'error');
+    showToast('Tidak dapat terhubung ke server. Pastikan backend berjalan.', 'error');
   } finally {
     if (btn) btn.disabled = false;
   }
 }
 
 /**
- * Step 2 — Request Composio OAuth URL from backend, then redirect user.
+ * Step 2 - Request Composio OAuth URL from backend, then redirect user.
  * Backend calls entity.initiateConnection({ appName: 'instagram' })
  * and returns { auth_url } which is the Composio-managed OAuth redirect.
  */
 async function igConnect() {
   if (!igRequireApiKey()) return;
 
-  showToast('⏳ Menyiapkan koneksi Composio...', 'info');
+  showToast('Menyiapkan koneksi Composio...', 'info');
 
   try {
     const res  = await fetch(`${IG_API_BASE}/connect?user_id=${encodeURIComponent(igState.userId)}`, {
@@ -3237,19 +3403,19 @@ async function igConnect() {
     const data = await res.json();
 
     if (!res.ok || data.error || data.connected === false) {
-      showToast(`❌ ${data.error}`, 'error');
+      showToast(data.error, 'error');
       return;
     }
 
-    // Composio returns a hosted OAuth page — redirect user there
+    // Composio returns a hosted OAuth page - redirect user there
     window.location.href = data.auth_url;
   } catch {
-    showToast('❌ Tidak dapat menghubungkan ke server. Pastikan backend aktif.', 'error');
+    showToast('Tidak dapat terhubung ke server. Pastikan backend berjalan.', 'error');
   }
 }
 
 /**
- * Disconnect IG — clears local state + calls backend to revoke Composio connection.
+ * Disconnect IG - clears local state + calls backend to revoke Composio connection.
  */
 async function igDisconnect() {
   await fetch(`${IG_API_BASE}/disconnect`, {
@@ -3263,11 +3429,11 @@ async function igDisconnect() {
   igState.igUserId        = null;
   igState.lastCreationId  = null;
   igUpdateUI();
-  showToast('✅ Akun Instagram diputus dari Composio.', 'success');
+  showToast('Akun Instagram tidak lagi terhubung ke Composio.', 'success');
 }
 
 /**
- * Generate Caption — menggunakan flow caption-posting, platform Instagram.
+ * Buat caption menggunakan alur caption-posting untuk Instagram.
  */
 async function igGenerateCaption() {
   // Build payload for caption-posting flow (platform = Instagram)
@@ -3280,7 +3446,7 @@ async function igGenerateCaption() {
     sellingPoints: val('ig_sellingPoints') || ''
   };
 
-  showToast('⏳ Generating caption Instagram...', 'info');
+  showToast('Membuat caption Instagram...', 'info');
   const genBtn = document.querySelector('.ig-action-btn.ig-gen-btn');
   if (genBtn) genBtn.disabled = true;
 
@@ -3293,7 +3459,7 @@ async function igGenerateCaption() {
     const data = await res.json();
 
     if (!res.ok || data.error) {
-      showToast(`❌ ${data.error || 'Gagal generate caption'}`, 'error'); return;
+      showToast(data.error || 'Caption gagal dibuat.', 'error'); return;
     }
 
     // Prioritas: ambil caption_text dari opsi Instagram di JSON block
@@ -3327,9 +3493,9 @@ async function igGenerateCaption() {
     }
 
     appSessionSetInputValue('ig_caption', captionText);
-    showToast('✅ Caption IG berhasil di-generate!', 'success');
+    showToast('Caption Instagram selesai dibuat.', 'success');
   } catch {
-    showToast('❌ Tidak bisa terhubung ke backend.', 'error');
+    showToast('Tidak dapat terhubung ke server.', 'error');
   } finally {
     if (genBtn) genBtn.disabled = false;
   }
@@ -3339,7 +3505,7 @@ async function igGenerateCaption() {
 let igContentCards = [];
 
 /**
- * Buat Konten — simpan sebagai container/draf di Instagram (belum dipublish).
+ * Buat Konten - simpan sebagai container/draf di Instagram (belum dipublish).
  * Menampilkan kartu preview konten di area output.
  */
 async function igCreateContent() {
@@ -3348,18 +3514,18 @@ async function igCreateContent() {
     showToast('Tunggu sampai upload foto ke Google Drive selesai.', 'info'); return;
   }
   if (!igState.connected) {
-    showToast('◉ Hubungkan akun Instagram terlebih dahulu.', 'error'); return;
+    showToast('Hubungkan akun Instagram terlebih dahulu.', 'error'); return;
   }
   if (!igState.igUserId) {
-    showToast('◉ ig_user_id belum tersedia. Selesaikan langkah koneksi terlebih dahulu.', 'error'); return;
+    showToast('ID pengguna Instagram belum tersedia. Selesaikan proses koneksi terlebih dahulu.', 'error'); return;
   }
 
   const caption  = document.getElementById('ig_caption')?.value?.trim();
   const imageUrl = document.getElementById('ig_imageUrl')?.value?.trim();
   const tags     = document.getElementById('ig_tags')?.value?.trim() || '';
 
-  if (!caption)  { showToast('◉ Caption wajib diisi.', 'error'); return; }
-  if (!imageUrl) { showToast('◉ URL foto wajib diisi.', 'error'); return; }
+  if (!caption)  { showToast('Caption wajib diisi.', 'error'); return; }
+  if (!imageUrl) { showToast('Tautan foto wajib diisi.', 'error'); return; }
 
   // Loading state
   const createBtn  = document.getElementById('igCreateBtn');
@@ -3372,7 +3538,7 @@ async function igCreateContent() {
   if (createBtn)   createBtn.disabled = true;
 
   try {
-    showToast('⏳ Membuat konten Instagram (container/draf)...', 'info');
+    showToast('Menyiapkan konten Instagram...', 'info');
 
     const res = await fetch(`${IG_API_BASE}/container`, {
       method:  'POST',
@@ -3387,7 +3553,7 @@ async function igCreateContent() {
     const data = await res.json();
 
     if (!res.ok || data.error) {
-      showToast(`❌ ${data.error || 'Gagal membuat konten'}`, 'error'); return;
+      showToast(data.error || 'Konten gagal dibuat.', 'error'); return;
     }
 
     const creationId = data.creation_id || data.container_id || ('draft_' + Date.now());
@@ -3398,10 +3564,10 @@ async function igCreateContent() {
 
     // Tambah kartu ke area output
     igAddContentCard({ caption, imageUrl, tags, creationId });
-    showToast(`✅ Konten berhasil dibuat! Creation ID: ${creationId}`, 'success');
+    showToast(`Konten siap. ID pembuatan: ${creationId}`, 'success');
 
   } catch {
-    showToast('❌ Tidak bisa terhubung ke backend.', 'error');
+    showToast('Tidak dapat terhubung ke server.', 'error');
   } finally {
     if (createIcon) createIcon.classList.remove('hidden');
     if (createText) { createText.textContent = 'Buat Konten'; createText.classList.remove('hidden'); }
@@ -3470,7 +3636,7 @@ function igRenderContentCards() {
         </div>
         <!-- Post button -->
         <button class="ig-card-post-btn" ${card.posted ? 'disabled' : ''} onclick="igPostContent('${escapeHtml(card.id)}', '${escapeHtml(card.creationId)}')">
-          ${card.posted ? '✅ Sudah Diposting' : `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Post Konten`}
+          ${card.posted ? 'Sudah diposting' : `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Post konten`}
         </button>
       </div>
     </div>
@@ -3483,7 +3649,7 @@ function igRenderContentCards() {
 async function igPostContent(cardId, creationId) {
   if (!igRequireApiKey()) return;
   if (!igState.connected) {
-    showToast('◉ Hubungkan akun Instagram terlebih dahulu.', 'error'); return;
+    showToast('Hubungkan akun Instagram terlebih dahulu.', 'error'); return;
   }
 
   const card = igContentCards.find(c => c.id === cardId);
@@ -3491,10 +3657,10 @@ async function igPostContent(cardId, creationId) {
 
   const cardEl  = document.getElementById(cardId);
   const postBtn = cardEl?.querySelector('.ig-card-post-btn');
-  if (postBtn) { postBtn.disabled = true; postBtn.textContent = '⏳ Posting...'; }
+  if (postBtn) { postBtn.disabled = true; postBtn.textContent = 'Sedang memposting...'; }
 
   try {
-    showToast('⏳ Memposting ke Instagram...', 'info');
+    showToast('Memposting ke Instagram...', 'info');
 
     const res = await fetch(`${IG_API_BASE}/publish`, {
       method:  'POST',
@@ -3508,12 +3674,12 @@ async function igPostContent(cardId, creationId) {
     const data = await res.json();
 
     if (!res.ok || data.error) {
-      showToast(`❌ ${data.error || 'Gagal posting konten'}`, 'error');
+      showToast(data.error || 'Konten gagal diposting.', 'error');
       if (postBtn) { postBtn.disabled = false; postBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Post Konten'; }
       return;
     }
 
-    showToast('🎉 Konten berhasil dipublikasikan ke Instagram!', 'success');
+    showToast('Konten berhasil dipublikasikan ke Instagram.', 'success');
 
     // Mark card as posted
     if (cardEl) {
@@ -3521,18 +3687,18 @@ async function igPostContent(cardId, creationId) {
       appSession.igContentCards = igContentCards;
       appSessionPersist();
       cardEl.classList.add('ig-content-card--posted');
-      if (postBtn) { postBtn.disabled = true; postBtn.textContent = '✅ Sudah Diposting'; }
+      if (postBtn) { postBtn.disabled = true; postBtn.textContent = 'Sudah diposting'; }
     }
 
   } catch {
-    showToast('❌ Tidak bisa terhubung ke backend.', 'error');
+    showToast('Tidak dapat terhubung ke server.', 'error');
     if (postBtn) { postBtn.disabled = false; postBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Post Konten'; }
   }
 }
 
-/** Legacy — kept for backward compatibility with igVerifyConnection */
+/** Legacy - kept for backward compatibility with igVerifyConnection */
 async function igPost() {
-  showToast('◉ Gunakan tombol "Buat Konten" untuk membuat konten Instagram.', 'info');
+  showToast('Pilih "Buat konten" untuk menyiapkan konten Instagram.', 'info');
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3634,8 +3800,8 @@ function inboxRenderConnections() {
   if (card) card.classList.toggle('is-connected', !!connection.connected);
   if (status) {
     status.textContent = connection.connected
-      ? `Terhubung${connection.username ? ` sebagai ${connection.username}` : ''} — akun Post IG`
-      : 'Menggunakan akun Instagram yang sama dengan Post IG';
+      ? `Terhubung${connection.username ? ` sebagai ${connection.username}` : ''} - akun Instagram`
+      : 'Menggunakan akun Instagram yang sama dengan menu Post ke Instagram';
   }
 }
 
@@ -3701,7 +3867,7 @@ async function inboxRefresh() {
     inboxState.errors = {};
   }
   if (!igGetApiKey()) {
-    inboxSetSyncStatus('Masukkan API key Composio pada menu Post IG', 'error');
+    inboxSetSyncStatus('Masukkan API key Composio pada menu Post ke Instagram.', 'error');
     inboxRenderConnections();
     inboxRenderConversations();
     return;

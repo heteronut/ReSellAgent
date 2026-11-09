@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🤖 ReSell AI Agent
+# ReSell AI
 
-**Platform AI untuk reseller Indonesia — analisis harga, generate konten, dan posting ke Instagram otomatis.**
+Ruang kerja untuk reseller Indonesia: periksa barang, tentukan harga, siapkan listing, dan kelola pesan Instagram.
 
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)](https://expressjs.com)
@@ -13,28 +13,28 @@
 
 ---
 
-## ✨ Fitur Utama
+## Alat
 
-| Fitur | Deskripsi |
+| Alat | Kegunaan |
 |---|---|
-| 🔍 **Analisis Harga** | Riset harga pasar & rekomendasi harga jual optimal |
-| 💰 **Kalkulator Profit** | Hitung margin, keuntungan, dan break-even secara real-time |
-| 📝 **Generate Deskripsi** | Caption & deskripsi produk siap-posting berbahasa Indonesia |
-| 📊 **Perbandingan Marketplace** | Bandingkan harga di Tokopedia, Shopee, Facebook Marketplace, OLX |
-| 🚚 **Estimasi Ongkir** | Konsultasi biaya pengiriman berdasarkan berat & kota tujuan |
-| 📸 **Foto Editor AI** | Hapus background & edit foto produk otomatis dengan AI |
-| 📬 **Inbox Pesan** | Balas DM Instagram langsung dari dashboard + draf AI |
-| 📤 **Auto-Post Instagram** | Posting produk ke Instagram Business via Composio OAuth |
+| **Cek kelayakan beli** | Tinjau harga beli, kondisi, dan biaya perbaikan |
+| **Tentukan harga jual** | Perkirakan harga jual dari data barang |
+| **Bandingkan harga** | Lihat kisaran harga di marketplace |
+| **Hitung ongkir** | Taksir biaya pengiriman dari berat dan kota |
+| **Buat caption** | Susun deskripsi dan materi listing |
+| **Edit foto produk** | Ganti latar dan sesuaikan tampilan foto |
+| **Pesan Instagram** | Tinjau pesan dan draf balasan sebelum mengirim |
+| **Post ke Instagram** | Siapkan konten dan publikasikan melalui Composio |
 
 ---
 
-## 🏗️ Arsitektur
+## Arsitektur
 
 ```
 ReSellAgent/
 ├── frontend/
 │   ├── index.html              # Single-page app (Vanilla JS)
-│   ├── assets/css/main.css     # Dark navy + amber/cyan theme
+│   ├── assets/css/main.css     # Tema terang dan gelap
 │   └── assets/js/main.js       # Semua logika klien
 │
 └── backend/
@@ -51,11 +51,11 @@ ReSellAgent/
         └── google-drive.js     # Google Drive integration
 ```
 
-**Stack:** Static HTML/CSS/JS (Vanilla) · Express.js · Langflow · Composio · Meta Graph API
+**Stack:** Static HTML/CSS/JS (Vanilla) · Express.js · OpenAI-compatible AI API / Langflow · Composio · Meta Graph API
 
 ---
 
-## 🚀 Instalasi & Setup
+## Instalasi dan konfigurasi
 
 ### 1. Clone & Install
 
@@ -74,7 +74,12 @@ cp config.env.example config.env
 Edit `backend/config.env`:
 
 ```env
-# ── Langflow ────────────────────────────────────────────
+# ── OpenAI-compatible AI API (opsional; diprioritaskan jika diisi) ─
+AI_API_BASE_URL=http://localhost:20128/v1
+AI_API_KEY=your_api_key
+AI_MODEL=kr/auto
+
+# ── Langflow (fallback; tetap diperlukan untuk Foto Editor AI) ─────
 LANGFLOW_SERVER_URL=http://127.0.0.1:7860
 LANGFLOW_API_KEY=your_langflow_api_key
 
@@ -118,9 +123,15 @@ Buka **http://localhost:3000** di browser.
 
 ---
 
-## 🤖 Konfigurasi Langflow Flows
+## Konfigurasi AI
 
-Setiap fitur AI membutuhkan satu flow di Langflow. Berikut kontrak input/output masing-masing:
+Fitur teks menggunakan endpoint OpenAI-compatible jika `AI_API_BASE_URL` dan `AI_API_KEY` diisi. Default model adalah `kr/auto`; ubah `AI_MODEL` sesuai model yang tersedia pada gateway. API key hanya disimpan di `backend/config.env` dan tidak dikirim ke frontend.
+
+Jika endpoint AI tidak dikonfigurasi, fitur teks menggunakan Langflow. Foto Editor AI tetap membutuhkan flow Langflow `FLOW_FOTO_VALIDATOR` dan `FLOW_FOTO_EDITOR`.
+
+### Konfigurasi Langflow Flows
+
+Foto Editor AI membutuhkan flow Langflow berikut. Kontrak input/output:
 
 ### Flow: `FLOW_FOTO_VALIDATOR`
 - **Input:** JSON `{ "image_mime_type": "image/jpeg", "image_base64": "..." }`
@@ -138,20 +149,20 @@ Setiap fitur AI membutuhkan satu flow di Langflow. Berikut kontrak input/output 
 
 ---
 
-## 📬 Inbox Pesan Instagram
+## Pesan Instagram
 
-- Menggunakan akun Instagram yang sudah terhubung di menu **Post IG** — tidak perlu OAuth ulang.
+- Menggunakan akun Instagram yang sudah terhubung di menu **Post IG** - tidak perlu OAuth ulang.
 - Akun harus bertipe **Instagram Business/Creator** dengan izin pesan aktif di koneksi Meta.
 - Percakapan diperbarui otomatis setiap **60 detik**.
 - Meta hanya mengizinkan balasan API dalam **24 jam** setelah pesan/interaksi pelanggan.
 - Tombol **Kirim** dinonaktifkan otomatis jika jendela 24 jam sudah lewat.
-- **Draf AI** membutuhkan `FLOW_INBOX_REPLY_DRAFT` — draf tetap bisa diedit sebelum dikirim.
+- **Draf AI** menggunakan OpenAI-compatible AI API jika dikonfigurasi; jika tidak, atur `FLOW_INBOX_REPLY_DRAFT` di Langflow. Draf tetap bisa diedit sebelum dikirim.
 
 > **Facebook Messenger & WhatsApp** belum diaktifkan di Inbox untuk saat ini.
 
 ---
 
-## 📡 API Endpoints
+## Endpoint API
 
 | Method | Endpoint | Deskripsi |
 |---|---|---|
@@ -166,7 +177,7 @@ Setiap fitur AI membutuhkan satu flow di Langflow. Berikut kontrak input/output 
 
 ---
 
-## ⚙️ Health Check
+## Pemeriksaan server
 
 ```bash
 curl http://localhost:3000/api/health
@@ -187,16 +198,16 @@ curl http://localhost:3000/api/health
 
 ---
 
-## 🛡️ Keamanan
+## Keamanan
 
 - `backend/config.env` **tidak di-commit** ke repository (sudah di `.gitignore`).
-- Salin `config.env.example` → `config.env` dan isi dengan key milik sendiri.
+- Salin `config.env.example` menjadi `config.env`, lalu isi dengan key milik sendiri.
 - API key Composio & Meta App Secret **jangan pernah** di-expose ke frontend.
 - Jika API key ter-leak, segera **regenerate** dari dashboard masing-masing platform.
 
 ---
 
-## 🗺️ Roadmap
+## Rencana pengembangan
 
 - [ ] WhatsApp & Facebook Messenger di Inbox
 - [ ] Integrasi Tokopedia & Shopee API untuk sinkronisasi listing
@@ -206,6 +217,6 @@ curl http://localhost:3000/api/health
 
 ---
 
-## 📄 Lisensi
+## Lisensi
 
-MIT © 2025 [heteronut](https://github.com/heteronut)
+MIT License. Copyright 2025 [heteronut](https://github.com/heteronut).

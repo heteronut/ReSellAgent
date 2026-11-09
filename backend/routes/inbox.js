@@ -404,7 +404,7 @@ router.post('/:channel/send', async (req, res) => {
 router.post('/draft', async (req, res) => {
   const { messages, platform, contact_name: contactName } = req.body || {};
   const flowId = process.env.FLOW_INBOX_REPLY_DRAFT;
-  if (!flowId || !flowId.trim()) {
+  if (!process.env.AI_API_BASE_URL && (!flowId || !flowId.trim())) {
     return res.status(503).json({
       error: 'Flow AI balasan belum dikonfigurasi. Isi FLOW_INBOX_REPLY_DRAFT di backend/config.env.'
     });

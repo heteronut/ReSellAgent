@@ -2,7 +2,7 @@ const express  = require('express');
 const router   = express.Router();
 const axios    = require('axios');
 const FormData = require('form-data');
-const { runFlow } = require('../middleware/langflow');
+const { runFlow, runLangflowFlow } = require('../middleware/langflow');
 
 // ─── Flow IDs ────────────────────────────────────────────────────────────────
 const FLOWS = {
@@ -216,7 +216,7 @@ Di bagian paling bawah, selalu sertakan JSON block dengan tag \`\`\`json ... \`\
     res.json({ success: true, result });
   } catch (err) {
     console.error('[konsultan-pembelian]', err.message);
-    res.status(500).json({ error: 'Gagal menghubungi AI. Pastikan Langflow aktif.' });
+    res.status(500).json({ error: 'Gagal menghubungi AI. Periksa koneksi dan konfigurasi AI API backend.' });
   }
 });
 
@@ -296,7 +296,7 @@ Di bagian paling bawah, selalu sertakan JSON block dengan tag \`\`\`json ... \`\
     res.json({ success: true, result });
   } catch (err) {
     console.error('[penilai-harga]', err.message);
-    res.status(500).json({ error: 'Gagal menghubungi AI. Pastikan Langflow aktif.' });
+    res.status(500).json({ error: 'Gagal menghubungi AI. Periksa koneksi dan konfigurasi AI API backend.' });
   }
 });
 
@@ -387,7 +387,7 @@ Di bagian paling bawah, selalu sertakan JSON block dengan tag \`\`\`json ... \`\
     res.json({ success: true, result });
   } catch (err) {
     console.error('[estimasi-ongkir]', err.message);
-    res.status(500).json({ error: 'Gagal menghubungi AI. Pastikan Langflow aktif.' });
+    res.status(500).json({ error: 'Gagal menghubungi AI. Periksa koneksi dan konfigurasi AI API backend.' });
   }
 });
 
@@ -467,7 +467,7 @@ Ganti semua nilai 0 dan placeholder dengan data riil berdasarkan pengetahuanmu t
     res.json({ success: true, result });
   } catch (err) {
     console.error('[analisis-pasar]', err.message);
-    res.status(500).json({ error: 'Gagal menghubungi AI. Pastikan Langflow aktif.' });
+    res.status(500).json({ error: 'Gagal menghubungi AI. Periksa koneksi dan konfigurasi AI API backend.' });
   }
 });
 
@@ -572,7 +572,7 @@ Ganti ISIAN_OPSI_1, ISIAN_OPSI_2, ISIAN_OPSI_3 dengan caption yang sudah kamu tu
     res.json({ success: true, result });
   } catch (err) {
     console.error('[caption-posting]', err.message);
-    res.status(500).json({ error: 'Gagal menghubungi AI. Pastikan Langflow aktif.' });
+    res.status(500).json({ error: 'Gagal menghubungi AI. Periksa koneksi dan konfigurasi AI API backend.' });
   }
 });
 
@@ -692,7 +692,7 @@ ${message.trim()}${imageNote}`;
     res.json({ success: true, result });
   } catch (err) {
     console.error('[ai-agent]', err.message);
-    res.status(500).json({ error: 'Gagal menghubungi AI. Pastikan Langflow aktif.' });
+    res.status(500).json({ error: 'Gagal menghubungi AI. Periksa koneksi dan konfigurasi AI API backend.' });
   }
 });
 
@@ -707,7 +707,7 @@ router.post('/foto-editor/validate', async (req, res) => {
   try {
     // Kirim sebagai JSON dengan kunci image_base64 agar flow Validator Foto dapat membacanya
     const inputJson = JSON.stringify({ image_base64: image.dataUrl });
-    const result = await runFlow(FLOWS.FOTO_VALIDATOR, inputJson);
+    const result = await runLangflowFlow(FLOWS.FOTO_VALIDATOR, inputJson);
     const raw = parsePhotoFlowJson(result);
     const validation = normalizedValidatorResult(raw);
     res.json({ success: true, validation });
@@ -852,7 +852,7 @@ router.post('/foto-editor/process', async (req, res) => {
       background_photo_context_id: bgCtx
     });
 
-    const result = await runFlow(FLOWS.FOTO_EDITOR, flowPayload);
+    const result = await runLangflowFlow(FLOWS.FOTO_EDITOR, flowPayload);
     const output = parsePhotoFlowJson(result);
 
     const imageDataUrl = normalizeEditedImage(output.image_data_url || output.image_base64);

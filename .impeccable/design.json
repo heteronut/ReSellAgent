@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T10:14:21.4293026+07:00",
+  "title": "Design System: ReSell AI",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Fresh Teal",
+        "canonical": "#087F83",
+        "tonalRamp": ["oklch(15% 0.026 198.8)", "oklch(25% 0.026 198.8)", "oklch(35% 0.026 198.8)", "oklch(45% 0.026 198.8)", "oklch(55% 0.026 198.8)", "oklch(65% 0.026 198.8)", "oklch(75% 0.026 198.8)", "oklch(95% 0.026 198.8)"]
+      },
+      "navy": {
+        "role": "primary",
+        "displayName": "Trusted Navy",
+        "canonical": "#173D4A",
+        "tonalRamp": ["oklch(15% 0.028 223.6)", "oklch(25% 0.028 223.6)", "oklch(35% 0.028 223.6)", "oklch(45% 0.028 223.6)", "oklch(55% 0.028 223.6)", "oklch(65% 0.028 223.6)", "oklch(75% 0.028 223.6)", "oklch(95% 0.028 223.6)"]
+      },
+      "navy-hover": {
+        "role": "primary",
+        "displayName": "Navy Hover",
+        "canonical": "#27656A",
+        "tonalRamp": ["oklch(15% 0.026 202.6)", "oklch(25% 0.026 202.6)", "oklch(35% 0.026 202.6)", "oklch(45% 0.026 202.6)", "oklch(55% 0.026 202.6)", "oklch(65% 0.026 202.6)", "oklch(75% 0.026 202.6)", "oklch(95% 0.026 202.6)"]
+      },
+      "amber": {
+        "role": "secondary",
+        "displayName": "Trade Amber",
+        "canonical": "#DCA835",
+        "tonalRamp": ["oklch(15% 0.031 82.9)", "oklch(25% 0.031 82.9)", "oklch(35% 0.031 82.9)", "oklch(45% 0.031 82.9)", "oklch(55% 0.031 82.9)", "oklch(65% 0.031 82.9)", "oklch(75% 0.031 82.9)", "oklch(95% 0.031 82.9)"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Soft Green-Gray Canvas",
+        "canonical": "#F3F6F4",
+        "tonalRamp": ["oklch(15% 0.004 157.2)", "oklch(25% 0.004 157.2)", "oklch(35% 0.004 157.2)", "oklch(45% 0.004 157.2)", "oklch(55% 0.004 157.2)", "oklch(65% 0.004 157.2)", "oklch(75% 0.004 157.2)", "oklch(95% 0.004 157.2)"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Clean Surface",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["oklch(15% 0.000 89.9)", "oklch(25% 0.000 89.9)", "oklch(35% 0.000 89.9)", "oklch(45% 0.000 89.9)", "oklch(55% 0.000 89.9)", "oklch(65% 0.000 89.9)", "oklch(75% 0.000 89.9)", "oklch(95% 0.000 89.9)"]
+      },
+      "surface-subtle": {
+        "role": "neutral",
+        "displayName": "Quiet Surface",
+        "canonical": "#F7F9F7",
+        "tonalRamp": ["oklch(15% 0.003 145.5)", "oklch(25% 0.003 145.5)", "oklch(35% 0.003 145.5)", "oklch(45% 0.003 145.5)", "oklch(55% 0.003 145.5)", "oklch(65% 0.003 145.5)", "oklch(75% 0.003 145.5)", "oklch(95% 0.003 145.5)"]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Ink Teal",
+        "canonical": "#19323B",
+        "tonalRamp": ["oklch(15% 0.028 223.4)", "oklch(25% 0.028 223.4)", "oklch(35% 0.028 223.4)", "oklch(45% 0.028 223.4)", "oklch(55% 0.028 223.4)", "oklch(65% 0.028 223.4)", "oklch(75% 0.028 223.4)", "oklch(95% 0.028 223.4)"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Teal-Gray",
+        "canonical": "#61777A",
+        "tonalRamp": ["oklch(15% 0.026 206.6)", "oklch(25% 0.026 206.6)", "oklch(35% 0.026 206.6)", "oklch(45% 0.026 206.6)", "oklch(55% 0.026 206.6)", "oklch(65% 0.026 206.6)", "oklch(75% 0.026 206.6)", "oklch(95% 0.026 206.6)"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Soft Sage Border",
+        "canonical": "#DFE7E2",
+        "tonalRamp": ["oklch(15% 0.011 158.8)", "oklch(25% 0.011 158.8)", "oklch(35% 0.011 158.8)", "oklch(45% 0.011 158.8)", "oklch(55% 0.011 158.8)", "oklch(65% 0.011 158.8)", "oklch(75% 0.011 158.8)", "oklch(95% 0.011 158.8)"]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Reseller Green",
+        "canonical": "#28744F",
+        "tonalRamp": ["oklch(15% 0.035 158.6)", "oklch(25% 0.035 158.6)", "oklch(35% 0.035 158.6)", "oklch(45% 0.035 158.6)", "oklch(55% 0.035 158.6)", "oklch(65% 0.035 158.6)", "oklch(75% 0.035 158.6)", "oklch(95% 0.035 158.6)"]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Warm Rose",
+        "canonical": "#B84D46",
+        "tonalRamp": ["oklch(15% 0.025 26.3)", "oklch(25% 0.025 26.3)", "oklch(35% 0.025 26.3)", "oklch(45% 0.025 26.3)", "oklch(55% 0.025 26.3)", "oklch(65% 0.025 26.3)", "oklch(75% 0.025 26.3)", "oklch(95% 0.025 26.3)"]
+      },
+      "violet": {
+        "role": "tertiary",
+        "displayName": "Measured Violet",
+        "canonical": "#675C91",
+        "tonalRamp": ["oklch(15% 0.026 292.7)", "oklch(25% 0.026 292.7)", "oklch(35% 0.026 292.7)", "oklch(45% 0.026 292.7)", "oklch(55% 0.026 292.7)", "oklch(65% 0.026 292.7)", "oklch(75% 0.026 292.7)", "oklch(95% 0.026 292.7)"]
+      },
+      "dark-canvas": {
+        "role": "neutral",
+        "displayName": "Night Canvas",
+        "canonical": "#111B20",
+        "tonalRamp": ["oklch(15% 0.018 230.2)", "oklch(25% 0.018 230.2)", "oklch(35% 0.018 230.2)", "oklch(45% 0.018 230.2)", "oklch(55% 0.018 230.2)", "oklch(65% 0.018 230.2)", "oklch(75% 0.018 230.2)", "oklch(95% 0.018 230.2)"]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Night Surface",
+        "canonical": "#18262B",
+        "tonalRamp": ["oklch(15% 0.021 222.1)", "oklch(25% 0.021 222.1)", "oklch(35% 0.021 222.1)", "oklch(45% 0.021 222.1)", "oklch(55% 0.021 222.1)", "oklch(65% 0.021 222.1)", "oklch(75% 0.021 222.1)", "oklch(95% 0.021 222.1)"]
+      },
+      "dark-text": {
+        "role": "neutral",
+        "displayName": "Pale Mint Text",
+        "canonical": "#EDF4EF",
+        "tonalRamp": ["oklch(15% 0.010 155.1)", "oklch(25% 0.010 155.1)", "oklch(35% 0.010 155.1)", "oklch(45% 0.010 155.1)", "oklch(55% 0.010 155.1)", "oklch(65% 0.010 155.1)", "oklch(75% 0.010 155.1)", "oklch(95% 0.010 155.1)"]
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Bright Teal",
+        "canonical": "#68C1B5",
+        "tonalRamp": ["oklch(15% 0.027 184.3)", "oklch(25% 0.027 184.3)", "oklch(35% 0.027 184.3)", "oklch(45% 0.027 184.3)", "oklch(55% 0.027 184.3)", "oklch(65% 0.027 184.3)", "oklch(75% 0.027 184.3)", "oklch(95% 0.027 184.3)"]
+      },
+      "dark-navy": {
+        "role": "primary",
+        "displayName": "Deep Teal-Navy",
+        "canonical": "#285052",
+        "tonalRamp": ["oklch(15% 0.026 199.8)", "oklch(25% 0.026 199.8)", "oklch(35% 0.026 199.8)", "oklch(45% 0.026 199.8)", "oklch(55% 0.026 199.8)", "oklch(65% 0.026 199.8)", "oklch(75% 0.026 199.8)", "oklch(95% 0.026 199.8)"]
+      },
+      "dark-amber": {
+        "role": "secondary",
+        "displayName": "Bright Trade Amber",
+        "canonical": "#E6B64B",
+        "tonalRamp": ["oklch(15% 0.031 84.4)", "oklch(25% 0.031 84.4)", "oklch(35% 0.031 84.4)", "oklch(45% 0.031 84.4)", "oklch(55% 0.031 84.4)", "oklch(65% 0.031 84.4)", "oklch(75% 0.031 84.4)", "oklch(95% 0.031 84.4)"]
+      }
+    },
+    "typographyMeta": {
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default product content and form text; body copy rises to 16px on narrow screens."
+      },
+      "title": {
+        "displayName": "Panel Title",
+        "purpose": "Clear section titles within the reseller workspace."
+      },
+      "label": {
+        "displayName": "Field Label",
+        "purpose": "Compact, high-clarity labels for fields and controls."
+      },
+      "action": {
+        "displayName": "Primary Action",
+        "purpose": "Clear, confident label for the main task action."
+      },
+      "compact-action": {
+        "displayName": "Compact Action",
+        "purpose": "Smaller action label for secondary handoff controls."
+      }
+    },
+    "shadows": [
+      { "name": "shadow-card", "value": "0 2px 8px rgba(22,48,54,0.06)", "purpose": "Subtle separation for resting light-theme panels." },
+      { "name": "shadow-raised", "value": "0 8px 24px rgba(22,48,54,0.12)", "purpose": "Emphasis for elevated light-theme surfaces." },
+      { "name": "shadow-high", "value": "0 12px 32px rgba(22,48,54,0.14)", "purpose": "Extra separation for high-priority surfaces." },
+      { "name": "shadow-card-dark", "value": "0 2px 8px rgba(0,0,0,0.18)", "purpose": "Subtle separation for resting dark-theme panels." },
+      { "name": "shadow-raised-dark", "value": "0 8px 24px rgba(0,0,0,0.22)", "purpose": "Emphasis for elevated dark-theme surfaces." }
+    ],
+    "motion": [
+      { "name": "spring-snappy", "value": "cubic-bezier(0.23,1,0.32,1)", "purpose": "Responsive sidebar and emphasized transition easing." },
+      { "name": "state-transition", "value": "150ms", "purpose": "Standard control color and border transitions." },
+      { "name": "press-transition", "value": "100ms", "purpose": "Brief pressed-state response." }
+    ],
+    "breakpoints": [
+      { "name": "workspace-single-column", "value": "1100px" },
+      { "name": "mobile-navigation", "value": "960px" },
+      { "name": "compact-form", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Confident action for the main task in a panel.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Jalankan analisis</button>",
+      "css": ".ds-button-primary { background: var(--primary-900); color: #fff; padding: 13px 24px; border: 0; border-radius: 12px; font: 600 14px/1.5 Poppins, system-ui, sans-serif; cursor: pointer; transition: background 150ms, box-shadow 150ms, transform 100ms; box-shadow: var(--shadow); } .ds-button-primary:hover { background: var(--primary-800); } .ds-button-primary:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; } .ds-button-primary:active { transform: scale(.97); } .ds-button-primary:disabled { opacity: .5; cursor: not-allowed; }"
+    },
+    {
+      "name": "Secondary Handoff",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Moves product details to a related tool without replacing existing input.",
+      "html": "<button class=\"ds-button-secondary\" type=\"button\">Gunakan detail produk</button>",
+      "css": ".ds-button-secondary { min-height: 44px; padding: 9px 14px; border: 1px solid var(--primary); border-radius: 8px; background: var(--surface); color: var(--primary-dark); font: 600 12.8px/1.25 Poppins, system-ui, sans-serif; cursor: pointer; transition: background 150ms, color 150ms, border-color 150ms; } .ds-button-secondary:hover { background: var(--primary-900); color: #fff; border-color: var(--primary-900); } .ds-button-secondary:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Recessed field with clear label and teal focus feedback.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Nama barang</span><input class=\"ds-input\" type=\"text\" placeholder=\"Contoh: Laptop 14 inci\"></label>",
+      "css": ".ds-field { display: grid; gap: 5px; font: 400 15px/1.5 Poppins, system-ui, sans-serif; } .ds-field-label { color: var(--text-soft); font-size: 12px; font-weight: 600; } .ds-input { width: 100%; min-height: 44px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface2); color: var(--text); font: inherit; transition: border-color 150ms, background 150ms, box-shadow 150ms; } .ds-input::placeholder { color: var(--muted); } .ds-input:focus { border-color: var(--primary); background: var(--surface); box-shadow: 0 0 0 3px rgba(14,110,175,.1); outline: none; } .ds-input:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }"
+    },
+    {
+      "name": "Workspace Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Quiet bordered surface for input or results.",
+      "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-title\">Hasil analisis</h2><p class=\"ds-panel-copy\">Ringkasan keputusan barang tampil di sini.</p></section>",
+      "css": ".ds-panel { padding: 20px 24px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow-card); color: var(--text); } .ds-panel-title { margin: 0 0 8px; font: 700 20px/1.25 Poppins, system-ui, sans-serif; } .ds-panel-copy { margin: 0; color: var(--text-soft); font: 400 15px/1.5 Poppins, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Sidebar Navigation Item",
+      "kind": "nav",
+      "refersTo": "nav-active",
+      "description": "Grouped workflow link with a distinct current-page state.",
+      "html": "<button class=\"ds-nav-item\" type=\"button\" aria-current=\"page\"><span class=\"ds-nav-mark\" aria-hidden=\"true\"></span> Cek kelayakan beli</button>",
+      "css": ".ds-nav-item { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 10px 14px; border: 0; border-radius: 8px; background: transparent; color: #D0DEDC; text-align: left; font: 500 13px/1.4 Poppins, system-ui, sans-serif; cursor: pointer; transition: background 150ms, color 150ms; } .ds-nav-item:hover { background: rgba(255,255,255,.09); color: #fff; } .ds-nav-item[aria-current=\"page\"] { background: rgba(104,193,181,.18); color: #fff; font-weight: 600; } .ds-nav-item:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; } .ds-nav-mark { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }"
+    },
+    {
+      "name": "Active Feature Tab",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Compact selection control for switching analysis workflows.",
+      "html": "<button class=\"ds-feature-tab\" type=\"button\" aria-pressed=\"true\">Harga jual</button>",
+      "css": ".ds-feature-tab { padding: 5px 12px; border: 1px solid var(--primary-900); border-radius: 8px; background: var(--primary-900); color: #fff; font: 600 12px/1.4 Poppins, system-ui, sans-serif; cursor: pointer; transition: background 130ms, color 130ms, border-color 130ms; } .ds-feature-tab:hover { background: var(--primary-800); } .ds-feature-tab:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; } .ds-feature-tab:active { transform: scale(.96); }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "button-secondary",
+      "description": "Compact, text-labeled system status.",
+      "html": "<span class=\"ds-status-chip\"><span class=\"ds-status-dot\" aria-hidden=\"true\"></span> Terhubung</span>",
+      "css": ".ds-status-chip { display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface2); color: var(--success-text); font: 600 12px/1.4 Poppins, system-ui, sans-serif; } .ds-status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Meja Kerja Tepercaya",
+    "overview": "ReSell AI is a distinct, dependable workbench for independent resellers. Its interface is practical and direct, with a recognizable teal-and-navy foundation and a warm amber signature. The design should feel unique and extraordinary through confident hierarchy, clear grouping, and considered interaction details, not through novelty that slows down everyday work.\n\nThe desktop experience pairs familiar category navigation with a focused input-and-result workspace. Indonesian labels, Rupiah-oriented workflows, and a responsive layout keep the interface grounded in local reseller work. Light and dark themes preserve the same hierarchy and color roles. Marketplace identities and logos are not visual references.",
+    "keyCharacteristics": [
+      "A trustworthy navy frame with teal interaction cues and amber emphasis.",
+      "Clear, information-dense panels designed for repeated operational use.",
+      "Direct Indonesian copy and predictable controls across desktop and mobile."
+    ],
+    "rules": [
+      { "name": "The Role-First Color Rule", "body": "Color indicates hierarchy or state. Keep amber selective, and do not rely on color alone to communicate status.", "section": "colors" },
+      { "name": "The Scan-First Type Rule", "body": "Keep field labels and actions explicit; avoid decorative display treatments that compete with product data.", "section": "typography" },
+      { "name": "The Surface-First Depth Rule", "body": "Prefer tonal surface shifts and borders; reserve shadows for meaningful hierarchy.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep product actions and field labels in clear, concise Indonesian.",
+      "Do use navy for dependable structure, teal for interaction, and amber as a selective brand accent.",
+      "Do preserve the light/dark role mapping and the mobile one-column workflow.",
+      "Do maintain readable text, visible focus, and minimum 44px touch targets.",
+      "Do keep product handoff non-destructive by filling only blank destination fields."
+    ],
+    "donts": [
+      "Don't imitate the visual identity, logo, or signature palette of any marketplace.",
+      "Don't use amber as a large-area background or as the default color for every action.",
+      "Don't add decorative gradients, excessive shadows, or motion that obscures product data.",
+      "Don't communicate status through color alone or reduce keyboard focus visibility."
+    ]
+  }
+}

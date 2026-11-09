@@ -77,6 +77,8 @@ app.get('/auth/inbox/callback', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
+    ai_api_configured: !!(process.env.AI_API_BASE_URL && process.env.AI_API_KEY),
+    ai_model: process.env.AI_MODEL || 'kr/auto',
     langflow_url: process.env.LANGFLOW_SERVER_URL,
     instagram_configured: !!(process.env.COMPOSIO_API_KEY && process.env.COMPOSIO_API_KEY !== 'your_composio_api_key_here'),
     instagram_meta_configured: !!(process.env.META_APP_ID && process.env.META_APP_SECRET),

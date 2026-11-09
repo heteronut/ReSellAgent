@@ -5,7 +5,7 @@
 html { height: 100%; }
 body {
   font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--text);
   background: var(--base);
@@ -14,110 +14,59 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::selection       { background: rgba(14,99,175,0.2); color: var(--text); }
-::-moz-selection  { background: rgba(14,99,175,0.2); color: var(--text); }
-:focus-visible    { outline: none; box-shadow: 0 0 0 2px var(--primary); border-radius: 6px; }
+::selection       { background: var(--primary-100); color: var(--text); }
+::-moz-selection  { background: var(--primary-100); color: var(--text); }
+:focus-visible    { outline: 3px solid var(--primary); outline-offset: 2px; }
+html { scrollbar-color: var(--border2) var(--base); }
+body { caret-color: var(--primary); }
 
-/* ══════════════════════════════════════════════════════
-   DESIGN TOKENS — Extracted from Figma
-   File: Sales Dashboard Design (Community)
-   Node: 8121:2 — Dashboard Design
-══════════════════════════════════════════════════════ */
+/* ReSell AI design tokens */
 :root {
-  /* ── Canvas & Surfaces ──
-     Canvas bg: #FAFBFC (Figma frame fill)
-     Card/panel bg: Color/White = #FFFFFF
-     Greys/Blue Grey/300 = #BDC9D3 (border stroke) */
-  --base:           #FAFBFC;
+  color-scheme: light;
+  --base:           #F3F6F4;
   --surface:        #FFFFFF;
-  --surface2:       #F8F9FA;   /* fill_b5b46eee */
-  --surface3:       #EDF2F6;
-  --border:         #EFF1F3;
-  --border2:        #BDC9D3;   /* Greys/Blue Grey/300 */
-
-  /* ── Text colours ──
-     Greys/Blue Grey/900 = #151D48 (headings)
-     Greys/Blue Grey/700 = #737791 (body/labels)
-     fill_2508f847 = #425166 (secondary text)
-     fill_d5f5db33 = #464E5F (chart labels) */
-  --text:           #151D48;   /* Greys/Blue Grey/900 */
-  --text-soft:      #425166;   /* fill_2508f847 */
-  --muted:          #737791;   /* Greys/Blue Grey/700 */
-
-  /* ── Primary palette ──
-     Primary/900  = #5D5FEF  (active nav fill, Figma token)
-     Primary/800  = #4079ED  (secondary accent)
-     Primary/200  = #7B91B0  (muted accent)
-     Primary/Dark Shade = #05004E (darkest heading) */
-  --primary:        #5D5FEF;   /* Primary/900 */
-  --primary-900:    #5D5FEF;
-  --primary-800:    #4079ED;   /* Primary/800 */
-  --primary-dark:   #05004E;   /* Primary/Dark Shade */
-  --primary-200:    #7B91B0;   /* Primary/200 */
-  --primary-100:    #F0F9FF;
-
-  /* ── Supporting / status colours ──
-     Supporting Color/Yellow  = #FFA412
-     Supporting Color/Green   = #3CD856
-     Supporting Color/Violet  = #A700FF
-     Colors/Red/500           = #EF4444
-     State Colors/Success     = #27AE60 */
-  --yellow:         #FFA412;
-  --green:          #3CD856;
-  --violet:         #A700FF;
-  --rose:           #EF4444;
-  --success:        #27AE60;
-
-  /* ── Card pastel backgrounds (Figma Today's Sales cards) ──
-     Card 1 (Total Sales)     #FFE2E5
-     Card 2 (Total Order)     #FFF4DE
-     Card 3 (Product Sold)    Colors/Green/100 = #DCFCE7
-     Card 4 (New Customers)   Colors/Purple/100 = #F3E8FF */
-  --card-red:       #FFE2E5;
-  --card-yellow:    #FFF4DE;
-  --card-green:     #DCFCE7;   /* Colors/Green/100 */
-  --card-purple:    #F3E8FF;   /* Colors/Purple/100 */
-
-  /* ── Chart accent colours ──
-     fill_f31f87b3 = #0095FF (blue line)
-     fill_9bf5e8d9 = #00E096 (green line)
-     fill_7065d81a = #F64E60 (red dot/line)
-     Supporting Color/Violet = #A700FF */
-  --chart-blue:     #0095FF;
-  --chart-green:    #00E096;
-  --chart-red:      #F64E60;
-  --chart-violet:   #A700FF;
-
-  /* ── Legacy aliases (kept so existing code doesn't break) ── */
-  --amber:          #FFA412;   /* mapped to Figma yellow */
-  --amber-dim:      rgba(255,164,18,0.12);
-  --amber-glow:     rgba(255,164,18,0.2);
-  --cyan:           #0095FF;
-
-  /* ── Function colors ── */
-  --fn-product:     #FFA412;
-  --fn-profit:      #3CD856;
-  --fn-marketing:   #A700FF;
-  --fn-automation:  #FF8900;
-  --fn-market:      #0095FF;
-  --fn-shipping:    #F64E60;
-
-  /* ── Typography scale (from Figma text styles) ──
-     xs/Regular    12px / 400 / lh:16px
-     xs/Medium     12px / 500 / lh:16px
-     sm/Regular    14px / 400 / lh:20px
-     sm/Medium     14px / 500 / lh:20px
-     base/Regular  16px / 400 / lh:30px
-     base/Medium   16px / 500 / lh:24px
-     xl/Semibold   20px / 600 / lh:32px
-     2xl/Semibold  24px / 600 / lh:32px
-     3xl/Semibold  30px / 600 / lh:1.5em
-     4xl/Semibold  36px / 600 / lh:1.4em
-     Primary font: Poppins
-     Chart labels: Epilogue */
+  --surface2:       #F7F9F7;
+  --surface3:       #EAF0ED;
+  --border:         #DFE7E2;
+  --border2:        #9AACA2;
+  --text:           #19323B;
+  --text-soft:      #435D64;
+  --muted:          #61777A;
+  --primary:        #087F83;
+  --primary-900:    #173D4A;
+  --primary-800:    #27656A;
+  --primary-dark:   #102D38;
+  --primary-200:    #9BBEB8;
+  --primary-100:    #E6F1EE;
+  --yellow:         #DCA835;
+  --green:          #367956;
+  --violet:         #675C91;
+  --rose:           #B84D46;
+  --success:        #28744F;
+  --success-text:   #28744F;
+  --danger-text:    #B84D46;
+  --warning-text:   #8A5E00;
+  --info-text:      #286879;
+  --card-red:       #F8E8E4;
+  --card-yellow:    #F7F0DF;
+  --card-green:     #E5F0E7;
+  --card-purple:    #EEEAF4;
+  --chart-blue:     #287D8C;
+  --chart-green:    #43835F;
+  --chart-red:      #B84D46;
+  --chart-violet:   #675C91;
+  --amber:          #DCA835;
+  --amber-dim:      rgba(220,168,53,0.14);
+  --amber-glow:     rgba(220,168,53,0.22);
+  --cyan:           #168B91;
+  --fn-product:     #DCA835;
+  --fn-profit:      #43835F;
+  --fn-marketing:   #675C91;
+  --fn-automation:  #BC7043;
+  --fn-market:      #287D8C;
+  --fn-shipping:    #B84D46;
   --font-sans:      'Poppins', system-ui, sans-serif;
   --font-chart:     'Epilogue', system-ui, sans-serif;
-
   --text-xs:        12px;
   --text-sm:        14px;
   --text-base:      16px;
@@ -130,67 +79,101 @@ body {
   --lh-sm:          20px;
   --lh-base:        24px;
   --lh-xl:          32px;
-
-  /* ── Layout ──
-     Sidebar width: 345px (layout_c7148728 width from Figma)
-     Top bar height: 120px (Figma top bar dimensions)
-     Card border-radius: 20px (Today Sales card), 16px (nav active item), 12px (other cards)
-     Shadow (Figma "Shadow" token): 0px 20px 50px 0px rgba(55,69,87,0.1)
-     Card shadow (effect_ae6446aa): 0px 4px 20px 0px rgba(238,238,238,0.5) */
-  --sidebar-w:      345px;
-  --content-max-w:  1440px;
-  --topbar-h:       80px;
-  --radius:         16px;    /* nav active item, search bar */
-  --radius-lg:      20px;    /* Today Sales card */
-  --radius-sm:      12px;    /* other cards */
-  --radius-xs:      8px;     /* small elements */
-
-  /* ── Shadows (exact from Figma tokens) ── */
-  --shadow:         0px 20px 50px 0px rgba(55,69,87,0.1);   /* "Shadow" token */
-  --shadow-card:    0px 4px 20px 0px rgba(238,238,238,0.5); /* effect_ae6446aa */
-  --shadow-md:      0px 8px 30px 0px rgba(55,69,87,0.12);
-
-  /* ── Spacing (from Figma gaps & padding) ──
-     Gaps used: 8px, 10px, 12px, 14px, 16px, 24px, 30px
-     Padding used: 8px, 16px 24px, 12px 24px, 8px 16px, 2px 32px 2px 24px */
+  --sidebar-w:      272px;
+  --topbar-h:       68px;
+  --radius:         12px;
+  --radius-lg:      16px;
+  --radius-sm:      10px;
+  --radius-xs:      8px;
+  --shadow:         0 8px 24px rgba(22,48,54,0.12);
+  --shadow-card:    0 2px 8px rgba(22,48,54,0.06);
+  --shadow-md:      0 12px 32px rgba(22,48,54,0.14);
   --space-1:  8px;
   --space-2:  12px;
   --space-3:  16px;
   --space-4:  24px;
   --space-5:  30px;
-
-  /* ── Spring easing ── */
   --spring-snappy:  cubic-bezier(0.23, 1, 0.32, 1);
   --spring-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
   --spring-enter:   cubic-bezier(0.21, 1.02, 0.73, 1);
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --base:           #111B20;
+  --surface:        #18262B;
+  --surface2:       #1E2E33;
+  --surface3:       #293B40;
+  --border:         #34494D;
+  --border2:        #587074;
+  --text:           #EDF4EF;
+  --text-soft:      #C2D2CC;
+  --muted:          #9FB4AE;
+  --primary:        #68C1B5;
+  --primary-900:    #285052;
+  --primary-800:    #377C78;
+  --primary-dark:   #10272D;
+  --primary-200:    #668E86;
+  --primary-100:    #223C3A;
+  --yellow:         #E6B64B;
+  --green:          #75B28A;
+  --violet:         #5F4F83;
+  --rose:           #F08B7B;
+  --success:        #28744F;
+  --success-text:   #B5E4BE;
+  --danger-text:    #F3C0B9;
+  --warning-text:   #F2D28E;
+  --info-text:      #9DD0E7;
+  --card-red:       #422A29;
+  --card-yellow:    #403825;
+  --card-green:     #253B2D;
+  --card-purple:    #342D43;
+  --chart-blue:     #286879;
+  --chart-green:    #83C79A;
+  --chart-red:      #F08B7B;
+  --chart-violet:   #B39BDD;
+  --amber:          #E6B64B;
+  --amber-dim:      rgba(230,182,75,0.16);
+  --amber-glow:     rgba(230,182,75,0.24);
+  --cyan:           #68C1C3;
+  --fn-product:     #E6B64B;
+  --fn-profit:      #83C79A;
+  --fn-marketing:   #B39BDD;
+  --fn-automation:  #D99C6B;
+  --fn-market:      #72C0C7;
+  --fn-shipping:    #F08B7B;
+  --shadow:         0 8px 24px rgba(0,0,0,0.22);
+  --shadow-card:    0 2px 8px rgba(0,0,0,0.18);
+  --shadow-md:      0 12px 32px rgba(0,0,0,0.28);
+}
+
 /* ══════════════════════════════════════════════════════
-   LAYOUT — SIDEBAR + MAIN
+   LAYOUT - SIDEBAR + MAIN
 ══════════════════════════════════════════════════════ */
 .sidebar {
   position: fixed; top: 0; left: 0; bottom: 0;
   width: var(--sidebar-w);
-  background: var(--surface);
-  border-right: 1px solid var(--border);
+  background: var(--primary-dark);
+  border-right: 1px solid rgba(255,255,255,0.08);
   display: flex; flex-direction: column;
   z-index: 200;
   overflow-y: auto;
-  box-shadow: 1px 0 0 var(--border);  /* Figma: hairline border, no deep shadow on sidebar */
+  box-shadow: none;
 }
 .sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-track { background: transparent; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
 .main-content {
-  width: min(calc(100% - var(--sidebar-w)), var(--content-max-w));
-  margin-left: max(var(--sidebar-w), calc((100% - var(--content-max-w) + var(--sidebar-w)) / 2));
+  width: calc(100% - var(--sidebar-w));
+  margin-left: var(--sidebar-w);
   min-width: 0;
   min-height: 100vh;
-  padding: 24px 28px 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  padding: calc(var(--topbar-h) + 24px) clamp(20px, 2.5vw, 40px) 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -199,57 +182,56 @@ body {
 .sidebar-logo {
   display: flex; align-items: center; gap: 12px;
   padding: 0 24px;
-  height: 80px;
+  height: var(--topbar-h);
   font-size: 1.2rem; font-weight: 700;
   font-family: 'Poppins', sans-serif;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  color: var(--primary-900);
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  color: #FFFFFF;
   flex-shrink: 0;
 }
-.logo-mark { color: var(--primary); flex-shrink: 0; }
-.logo-text b { color: var(--primary); }
+.logo-mark { color: var(--amber); flex-shrink: 0; }
+.logo-text b { color: var(--amber); }
 
 .sidebar-nav {
-  flex: 1; padding: 20px 16px;
+  flex: 1; padding: 16px 14px 20px;
   display: flex; flex-direction: column; gap: 2px;
 }
 .nav-group-label {
-  font-size: 0.62rem; font-weight: 600; letter-spacing: 1.4px;
-  text-transform: uppercase; color: var(--muted);
-  padding: 10px 14px 6px;
+  font-size: 0.72rem; font-weight: 600;
+  color: #AFC2C4;
+  padding: 12px 14px 5px;
   font-family: 'Poppins', sans-serif;
 }
 .nav-item {
   display: flex; align-items: center; gap: 14px;
   width: 100%; background: none; border: none;
-  padding: 14px 18px; border-radius: var(--radius);
-  font-size: 0.875rem; font-weight: 500;
+  min-height: 44px;
+  padding: 10px 14px; border-radius: var(--radius-xs);
+  font-size: 0.84rem; font-weight: 500;
   font-family: 'Poppins', sans-serif;
-  color: var(--text-soft); cursor: pointer;
+  color: #D0DEDC; cursor: pointer;
   transition: background 150ms ease, color 150ms ease;
   text-align: left;
 }
-.nav-item:hover { background: var(--surface2); color: var(--text); }
+.nav-item:hover { background: rgba(255,255,255,0.09); color: #FFFFFF; }
 .nav-item:active { transform: scale(0.98); }
 
-/* Active — Figma Primary/900 = #5D5FEF indigo */
 .nav-item.active {
-  background: var(--primary-900);
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: var(--primary-dark);
   font-weight: 600;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
-.nav-item.active .nav-icon { opacity: 1; color: #FFFFFF; }
+.nav-item.active .nav-icon { opacity: 1; color: var(--primary-dark); }
 
-/* All fn active: primary indigo. IG: Figma Supporting Color/Violet */
 .nav-item[data-fn="konsultan-pembelian"].active,
 .nav-item[data-fn="penilai-harga"].active,
 .nav-item[data-fn="estimasi-ongkir"].active,
 .nav-item[data-fn="analisis-pasar"].active,
 .nav-item[data-fn="caption-posting"].active,
-.nav-item[data-fn="ai-agent"].active { background: var(--primary-900); color: #fff; }
-.nav-item[data-fn="ig-autopost"].active { background: var(--violet); color: #fff; }
+.nav-item[data-fn="ai-agent"].active,
+.nav-item[data-fn="ig-autopost"].active { background: #FFFFFF; color: var(--primary-dark); }
 
 .nav-icon {
   width: 18px; height: 18px; flex-shrink: 0;
@@ -275,8 +257,8 @@ body {
 .sidebar-footer {
   display: flex; align-items: center; gap: 10px;
   padding: 16px 24px;
-  border-top: 1px solid var(--border);
-  font-size: 0.78rem; color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.14);
+  font-size: 0.78rem; color: #C0D0CE;
   font-family: 'Poppins', sans-serif;
 }
 .status-dot {
@@ -292,25 +274,41 @@ body {
    TOPBAR (mobile only)
 ══════════════════════════════════════════════════════ */
 .topbar {
-  display: none;
-  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  display: flex;
+  position: fixed; top: 0; left: var(--sidebar-w); right: 0; z-index: 300;
   height: var(--topbar-h);
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   align-items: center; justify-content: space-between;
   padding: 0 16px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 4px rgba(22,48,54,0.05);
 }
 .topbar-brand { font-size: 1rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif; }
 .topbar-brand b { color: var(--primary); }
+.topbar-title { flex: 1; margin-left: 12px; font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.topbar-brand { display: none; }
+.topbar-tools { display: flex; align-items: center; gap: 14px; }
 .topbar-toggle {
+  display: none;
   background: none; border: none; cursor: pointer; color: var(--text-soft);
+  width: 44px; height: 44px; align-items: center; justify-content: center;
   padding: 6px; border-radius: var(--radius-xs);
   transition: background 150ms, color 150ms;
 }
 .topbar-toggle:hover { background: var(--surface2); color: var(--text); }
-.topbar-status { color: var(--muted); display: flex; align-items: center; }
-.topbar-status.online { color: #22C55E; }
+.topbar-status { color: var(--muted); display: flex; align-items: center; gap: 7px; font-size: 0.78rem; }
+.topbar-status.online { color: var(--success-text); }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; color: var(--text-soft);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-xs); cursor: pointer;
+  transition: background 150ms, color 150ms, border-color 150ms;
+}
+.theme-toggle:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+.theme-icon--sun { display: none; }
+:root[data-theme="dark"] .theme-icon--moon { display: none; }
+:root[data-theme="dark"] .theme-icon--sun { display: block; }
 
 /* ══════════════════════════════════════════════════════
    PANELS
@@ -323,8 +321,43 @@ body {
   overflow: hidden;
 }
 
-.input-panel  { width: 100%; }
-.output-panel { width: 100%; min-height: 500px; display: flex; flex-direction: column; }
+.input-panel  { width: 100%; min-width: 0; }
+.output-panel {
+  width: 100%; min-width: 0; min-height: 500px;
+  display: flex; flex-direction: column;
+  grid-column: 1; grid-row: 2;
+  align-self: start;
+}
+.main-content > #kpAnalysisWidget,
+.main-content > #phWidget,
+.main-content > #eoWidget,
+.main-content > #marketWidget,
+.main-content > #kaWidget,
+.main-content > #cpWidget,
+.main-content > #photoResultPanel,
+.main-content > #igContentArea,
+.main-content > #inboxWorkspace {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+}
+.product-handoff {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin: 16px 24px 0; padding: 14px 16px;
+  background: var(--primary-100); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.product-handoff.hidden { display: none; }
+.product-handoff-copy { color: var(--text-soft); font-size: 0.84rem; line-height: 1.5; }
+.product-handoff-copy strong { color: var(--text); }
+.product-handoff-button {
+  min-height: 44px; flex: 0 0 auto; padding: 9px 14px;
+  border: 1px solid var(--primary); border-radius: var(--radius-xs);
+  background: var(--surface); color: var(--primary-dark);
+  font: 600 0.8rem/1.25 'Poppins', system-ui, sans-serif; cursor: pointer;
+  transition: background 150ms, color 150ms, border-color 150ms;
+}
+.product-handoff-button:hover { background: var(--primary-900); color: #FFFFFF; border-color: var(--primary-900); }
 
 /* ── Panel Header ── */
 .panel-header {
@@ -344,7 +377,7 @@ body {
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.panel-title { font-size: 1rem; font-weight: 700; line-height: 1.2; color: var(--text); font-family: 'Poppins', sans-serif; }
+.panel-title { font-size: 1.25rem; font-weight: 700; line-height: 1.25; color: var(--text); font-family: 'Poppins', sans-serif; }
 .panel-subtitle { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
 /* ── Tabs ── */
@@ -401,6 +434,9 @@ body {
   box-shadow: 0 0 0 3px rgba(14,110,175,0.1);
   outline: none;
 }
+.field-group input,
+.field-group select,
+.field-group textarea { min-height: 44px; }
 .req { color: var(--rose); }
 
 .extra-fields { }
@@ -439,7 +475,7 @@ body {
 .run-btn:active  { transform: scale(0.97); box-shadow: 0 2px 6px rgba(15,54,89,0.2); }
 .run-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-/* Per-function button colors — Figma Primary/900 #5D5FEF, Violet #A700FF, Green #27AE60, Blue #0095FF */
+/* Per-function button colors - Figma Primary/900 #5D5FEF, Violet #A700FF, Green #27AE60, Blue #0095FF */
 .run-btn[data-fn="konsultan-pembelian"]       { background: var(--primary-900); box-shadow: var(--shadow); }
 .run-btn[data-fn="konsultan-pembelian"]:hover { background: var(--primary-800); }
 .run-btn[data-fn="penilai-harga"]             { background: var(--success); box-shadow: 0px 4px 20px 0px rgba(39,174,96,0.3); }
@@ -493,13 +529,9 @@ body {
 .icon-btn:active { transform: scale(0.92); }
 
 .output-body {
-  flex: 1; padding: 20px 24px; overflow-y: auto;
+  flex: 1; padding: 20px 24px;
   font-size: 0.85rem; line-height: 1.7; color: var(--text);
 }
-.output-body::-webkit-scrollbar { width: 5px; }
-.output-body::-webkit-scrollbar-track { background: transparent; }
-.output-body::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
-
 .output-empty {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; gap: 8px; padding: 60px 24px;
@@ -512,13 +544,13 @@ body {
 /* Markdown output */
 .output-body h1,.output-body h2,.output-body h3 { font-weight: 700; margin: 18px 0 8px; font-family: 'Poppins', sans-serif; }
 .output-body h2 { font-size: 0.96rem; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-.output-body h3 { font-size: 0.9rem; color: var(--primary-800); }
+.output-body h3 { font-size: 0.9rem; color: var(--primary); }
 .output-body strong { font-weight: 700; color: var(--text); }
 /* Standalone bold line used as section title (new AI format: **JUDUL**) */
 .output-body .md-section-title {
   margin: 16px 0 4px;
   font-size: 0.88rem; font-weight: 700;
-  color: var(--primary-800);
+  color: var(--primary);
   font-family: 'Poppins', sans-serif;
   line-height: 1.3;
 }
@@ -539,12 +571,12 @@ body {
   padding: 1px 5px; border-radius: 4px; border: 1px solid var(--border);
 }
 .output-body table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.82rem; }
-.output-body th { background: var(--surface2); padding: 8px 12px; border: 1px solid var(--border); font-weight: 600; text-align: left; color: var(--primary-900); font-family: 'Poppins', sans-serif; }
+.output-body th { background: var(--surface2); padding: 8px 12px; border: 1px solid var(--border); font-weight: 600; text-align: left; color: var(--text); font-family: 'Poppins', sans-serif; }
 .output-body td { padding: 8px 12px; border: 1px solid var(--border); }
 .output-body tr:nth-child(even) td { background: var(--surface2); }
 
 /* ══════════════════════════════════════════════════════
-   KP WIDGET — Konsultan Pembelian Analysis Card
+   KP WIDGET - Konsultan Pembelian Analysis Card
 ══════════════════════════════════════════════════════ */
 .kp-widget {
   grid-column: 1 / -1;
@@ -687,7 +719,7 @@ body {
 .kp-mc--total .kp-mc-val { color: var(--primary-900); }
 .kp-mc--roi   .kp-mc-val { color: #7C3AED; }
 
-/* Pastel card backgrounds — Figma style */
+/* Pastel card backgrounds - Figma style */
 .kp-mc--ask   { background: var(--card-red); }
 .kp-mc--total { background: var(--card-yellow); }
 .kp-mc--profit { background: var(--card-green); }
@@ -1199,7 +1231,7 @@ body {
 }
 .eo-route-svg { display: block; width: 100%; height: auto; }
 
-/* Traffic condition pill — overlaid on map */
+/* Traffic condition pill - overlaid on map */
 .eo-traffic-pill {
   position: absolute; top: 10px; right: 10px;
   display: inline-flex; align-items: center; gap: 6px;
@@ -1420,7 +1452,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════
-   SKELETON LOADER — shimmer
+   SKELETON LOADER - shimmer
 ══════════════════════════════════════════════════════ */
 .skeleton-wrap { display: flex; flex-direction: column; gap: 12px; padding: 4px; }
 .sk {
@@ -1527,7 +1559,7 @@ body {
   gap: 10px; flex-wrap: wrap;
 }
 .ig-drive-status { color: var(--text-soft); font-size: 12px; font-weight: 600; }
-.ig-drive-status.is-connected { color: #15803D; }
+.ig-drive-status.is-connected { color: var(--success-text); }
 .ig-drive-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .ig-drive-actions .ig-step-btn { margin: 0; }
 .ig-drive-file-label {
@@ -1541,7 +1573,7 @@ body {
 .ig-drive-file-label.is-disabled { opacity: 0.5; cursor: not-allowed; }
 .ig-drive-upload-hint { color: var(--text-soft); font-size: 11px; line-height: 1.5; }
 .ig-drive-upload-hint.is-error { color: var(--rose); }
-.ig-drive-upload-hint.is-success { color: #15803D; }
+.ig-drive-upload-hint.is-success { color: var(--success-text); }
 .ig-image-preview {
   display: flex; align-items: flex-start; gap: 12px;
   margin-top: 10px; padding: 10px;
@@ -1578,7 +1610,7 @@ body {
 .ig-apikey-row input:focus { border-color: var(--primary); outline: none; }
 .ig-apikey-row .ig-step-btn { margin-top: 0; align-self: center; }
 .ig-apikey-status { font-size: 11px; margin-top: 4px; min-height: 14px; color: var(--text-soft); }
-.ig-apikey-status.ok  { color: #16A34A; }
+.ig-apikey-status.ok  { color: var(--success-text); }
 .ig-apikey-status.err { color: var(--rose); }
 
 .ig-profile-bar {
@@ -1612,7 +1644,7 @@ body {
   color: var(--primary);
 }
 .ig-account-detail { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-.ig-account-detail strong { font-size: 14px; color: #16A34A; font-family: 'Poppins', sans-serif; }
+.ig-account-detail strong { font-size: 14px; color: var(--success-text); font-family: 'Poppins', sans-serif; }
 .ig-meta { font-size: 11px; color: var(--text-soft); }
 .ig-disconnect-btn {
   background: none; border: 1px solid #FCA5A5; border-radius: 8px;
@@ -1661,7 +1693,7 @@ body {
 .ig-id-copy-btn:active { transform: scale(0.95); }
 .ig-id-copy-btn:disabled { opacity: 0.4; cursor: default; }
 
-/* IG Profile Card — gabungan Profil Aktif + IG User ID */
+/* IG Profile Card - gabungan Profil Aktif + IG User ID */
 .ig-profile-card {
   display: flex; gap: 0;
   margin: 0 20px 12px;
@@ -1790,7 +1822,7 @@ body {
   padding: 20px;
 }
 
-/* ── IG Content Card — ratio 4:6 (width:height) ── */
+/* ── IG Content Card - ratio 4:6 (width:height) ── */
 .ig-content-card {
   /* fixed ratio: width = 4 units, height = 6 units → aspect-ratio 2/3 */
   position: relative;
@@ -1813,7 +1845,7 @@ body {
   background: #F0FDF4;
 }
 
-/* Delete button — round, top-right corner, slightly outside card */
+/* Delete button - round, top-right corner, slightly outside card */
 .ig-card-delete-btn {
   position: absolute; top: -10px; right: -10px;
   width: 28px; height: 28px; border-radius: 50%;
@@ -1827,7 +1859,7 @@ body {
 .ig-card-delete-btn:hover  { background: #FEF2F2; color: var(--rose); border-color: #FCA5A5; }
 .ig-card-delete-btn:active { transform: scale(0.9); }
 
-/* Image area — fills top portion of card (4 wide : 3.5 tall roughly) */
+/* Image area - fills top portion of card (4 wide : 3.5 tall roughly) */
 .ig-card-img-wrap {
   width: 100%;
   aspect-ratio: 1 / 1;  /* square preview like IG */
@@ -1904,14 +1936,19 @@ body {
 }
 @media (max-width: 960px) {
   :root { --topbar-h: 64px; }
-  .sidebar { transform: translateX(-100%); transition: transform 0.25s var(--spring-snappy); }
+  .sidebar { width: min(86vw, var(--sidebar-w)); transform: translateX(-100%); transition: transform 0.25s var(--spring-snappy); }
   .sidebar.open { transform: translateX(0); }
-  .topbar { display: flex; }
+  .topbar { left: 0; padding: 0 14px; }
+  .topbar-brand { display: flex; }
+  .topbar-title { display: none; }
+  .topbar-toggle { display: inline-flex; }
   .main-content {
-    width: 100%; max-width: none; margin-left: 0;
+    width: 100%; margin-left: 0;
     padding: calc(var(--topbar-h) + 16px) clamp(16px, 3vw, 28px) 32px;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .input-grid { grid-template-columns: 1fr; }
+  .output-panel { min-height: 360px; }
+  .input-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kp-metrics-row { grid-template-columns: repeat(2, 1fr); }
   .kp-identity-title-row { flex-direction: column; align-items: flex-start; }
   .kp-badges-row { justify-content: flex-start; }
@@ -1922,11 +1959,18 @@ body {
 @media (max-width: 480px) {
   .kp-metrics-row { grid-template-columns: 1fr 1fr; }
   .kp-bottom-row  { grid-template-columns: 1fr; }
+  body { font-size: 16px; }
   .panel-header { padding: 18px 16px 14px; }
   .input-grid { padding: 16px; }
+  .input-grid { grid-template-columns: minmax(0, 1fr); }
+  .field-group input,
+  .field-group select,
+  .field-group textarea { font-size: 16px; }
   .output-body { padding: 16px; }
   .ig-action-row { flex-wrap: wrap; }
   .ig-action-btn { flex-basis: 100%; }
+  .product-handoff { align-items: stretch; flex-direction: column; margin: 14px 16px 0; }
+  .topbar-status span { display: none; }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1941,6 +1985,102 @@ body {
   flex-direction: column;
   gap: 18px;
   min-width: 0;
+}
+
+:root[data-theme="dark"] .toast.success {
+  background: #203A2A; border-color: #426E4C; color: #B5E4BE;
+}
+:root[data-theme="dark"] .toast.error {
+  background: #452B2B; border-color: #84504B; color: #F3C0B9;
+}
+:root[data-theme="dark"] .kp-decision-badge.RECOMMENDED,
+:root[data-theme="dark"] .kp-risk-badge.LOW,
+:root[data-theme="dark"] .kp-repair-badge.no-repair,
+:root[data-theme="dark"] .kp-repair-tag.no,
+:root[data-theme="dark"] .ph-tier--ideal .ph-tier-badge,
+:root[data-theme="dark"] .ph-action-pill.SELL_AS_IS,
+:root[data-theme="dark"] .ka-scan-badge.is-ok,
+:root[data-theme="dark"] .ka-decision-badge.is-green {
+  background: #233E2E; border-color: #426E4C; color: var(--success-text);
+}
+:root[data-theme="dark"] .kp-decision-badge.RISKY,
+:root[data-theme="dark"] .kp-risk-badge.MEDIUM,
+:root[data-theme="dark"] .kp-repair-badge.needs-repair,
+:root[data-theme="dark"] .ph-tier--max .ph-tier-badge,
+:root[data-theme="dark"] .ph-action-pill.REPAIR_FIRST,
+:root[data-theme="dark"] .ka-scan-badge.is-warn,
+:root[data-theme="dark"] .ka-decision-badge.is-yellow {
+  background: #413722; border-color: #75613B; color: var(--warning-text);
+}
+:root[data-theme="dark"] .kp-decision-badge.SKIP,
+:root[data-theme="dark"] .kp-risk-badge.HIGH,
+:root[data-theme="dark"] .ph-tier--quick .ph-tier-badge,
+:root[data-theme="dark"] .ka-decision-badge.is-red {
+  background: #452B2B; border-color: #84504B; color: var(--danger-text);
+}
+:root[data-theme="dark"] .kp-mc-profit-note.gain,
+:root[data-theme="dark"] .ig-post-success strong,
+:root[data-theme="dark"] .ig-account-detail strong,
+:root[data-theme="dark"] .ig-apikey-status.ok,
+:root[data-theme="dark"] .ig-apikey-connected-badge {
+  color: var(--success-text);
+}
+:root[data-theme="dark"] .kp-mc-profit-note.loss,
+:root[data-theme="dark"] .ph-deduction-amount,
+:root[data-theme="dark"] .ph-total-deduction-val,
+:root[data-theme="dark"] .ka-deduct-amount {
+  color: var(--danger-text);
+}
+:root[data-theme="dark"] .ph-tier--quick { background: #223544; }
+:root[data-theme="dark"] .ph-tier--ideal { background: #20382A; border-top-color: #426E4C; }
+:root[data-theme="dark"] .ph-tier--max { background: #3D3027; }
+:root[data-theme="dark"] .ph-tier--quick:hover { background: #293F50; }
+:root[data-theme="dark"] .ph-tier--ideal:hover { background: #294A34; }
+:root[data-theme="dark"] .ph-tier--max:hover { background: #4B392C; }
+:root[data-theme="dark"] .ph-tier--quick .ph-tier-val,
+:root[data-theme="dark"] .ka-tier-card.is-mid .ka-tier-price,
+:root[data-theme="dark"] .ka-nego-header h4,
+:root[data-theme="dark"] .ka-nego-price,
+:root[data-theme="dark"] .ka-nego-list li svg {
+  color: var(--info-text);
+}
+:root[data-theme="dark"] .ph-tier--ideal .ph-tier-val { color: var(--success-text); }
+:root[data-theme="dark"] .ph-tier--max .ph-tier-val { color: var(--warning-text); }
+:root[data-theme="dark"] .ph-total-deduction-row {
+  background: #3B2929; border-color: #69413D;
+}
+:root[data-theme="dark"] .ka-tier-card.is-mid,
+:root[data-theme="dark"] .ka-nego-block {
+  border-color: #3A5774; background: #1D3040;
+}
+:root[data-theme="dark"] .ka-nego-roi { color: var(--info-text); background: #263D50; }
+:root[data-theme="dark"] .ka-defect-list li svg { color: var(--warning-text); }
+:root[data-theme="dark"] .eo-type-INSTANT { background: #452B2B; color: var(--danger-text); }
+:root[data-theme="dark"] .eo-type-SAMEDAY { background: #413722; color: var(--warning-text); }
+:root[data-theme="dark"] .eo-type-EXPRESS { background: #342D43; color: #D0B9F2; }
+:root[data-theme="dark"] .eo-type-REGULAR { background: #223544; color: #9DD0E7; }
+:root[data-theme="dark"] .eo-type-ECONOMY { background: #233E2E; color: var(--success-text); }
+:root[data-theme="dark"] .eo-courier-card.is-recommended {
+  background: #20382A; border-color: #426E4C;
+}
+:root[data-theme="dark"] .eo-courier-rec-tag {
+  background: #294A34; color: #B5E4BE;
+}
+:root[data-theme="dark"] .ig-drive-status.is-connected { color: #B5E4BE; }
+:root[data-theme="dark"] .ig-connected-info {
+  background: #20382A; border-color: #426E4C;
+}
+:root[data-theme="dark"] .ig-disconnect-btn { border-color: #84504B; }
+:root[data-theme="dark"] .ig-post-success { background: #20382A; border-color: #426E4C; }
+:root[data-theme="dark"] .topbar { box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 .inbox-page-header {
   display: flex;
@@ -2490,7 +2630,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════
-   AI AGENT PANEL LAYOUT — 4:3 side-by-side
+   AI AGENT PANEL LAYOUT - 4:3 side-by-side
 ══════════════════════════════════════════════════════ */
 .agent-layout {
   display: grid;
@@ -2530,7 +2670,7 @@ body {
   min-height: 0;
 }
 
-/* Inline run button — full width, no extra margin */
+/* Inline run button - full width, no extra margin */
 .agent-run-btn {
   width: 100% !important;
   margin: 0 !important;
@@ -2548,7 +2688,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════
-   AGENT IMAGE UPLOAD — drop zone
+   AGENT IMAGE UPLOAD - drop zone
 ══════════════════════════════════════════════════════ */
 .field-hint {
   font-weight: 400; color: var(--muted); font-size: 0.7rem; margin-left: 6px;
@@ -2803,7 +2943,7 @@ body {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-/* Tabs — segmented control style */
+/* Tabs - segmented control style */
 .cp-tabs {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 0; padding: 14px 24px 0;
